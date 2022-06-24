@@ -30,16 +30,11 @@ class Profile extends Component {
         </div>
         <div class="header-column justify-content-end"> 
           <nav class="login-signup navbar navbar-expand">
-            <ul class="navbar-nav">
-                <li class="dropdown profile ms-2"> <a class="px-0 dropdown-toggle" href="#"><img class="rounded-circle" src="assets/images/profile-thumb-sm.jpg" alt="" /></a>
-                    <ul class="dropdown-menu">
-                        <li class="text-center text-3 py-2">Hi, Smith Rhodes</li>
-                        <li class="dropdown-divider mx-n3"></li>
-                        <li><a class="dropdown-item" href="/#"><i class="fas fa-user"></i>My Profile</a></li>
-                        <li><a class="dropdown-item" href="/#"><i class="fas fa-sign-out-alt"></i>Sign Out</a></li>
-                    </ul>
-                </li>
-            </ul>
+          <div class="col-auto d-flex align-items-center ms-auto">
+                    <div class="dropdown"> <a class="text-muted btn-link" href="#" role="button" id="statements" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img class="rounded-circle" src="assets/images/profile-thumb-sm.jpg" alt="" /></a>
+                      <div class="dropdown-menu dropdown-menu-end" aria-labelledby="statements"> <a class="dropdown-item" href="/my-profile">My Profile</a> <a class="dropdown-item" href="#">Logout</a> </div>
+                    </div>
+                  </div>
           </nav>
         </div>
       </div>
