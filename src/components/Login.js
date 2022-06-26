@@ -18,7 +18,7 @@ class Login extends Component {
       <div class="col-md-6">
         <div class="hero-wrap d-flex align-items-center h-100">
           <div class="hero-mask opacity-8 bg-primary"></div>
-          <div class="hero-bg hero-bg-scroll" style={{backgroundImage:"assets/images/bg/image-3.jpg"}}></div>
+          <div class="hero-bg hero-bg-scroll" style={{ backgroundImage: "url(/assets/images/bg/image-3.jpg)" }}></div>
           <div class="hero-content mx-auto w-100 h-100 d-flex flex-column">
             <div class="row g-0">
               <div class="col-10 col-lg-9 mx-auto">
@@ -95,11 +95,11 @@ class Login extends Component {
 </div>
 {/* <!-- Styles Switcher End -->  */}
 {/* <!-- Script -->  */}
-<script src="vendor/jquery/jquery.min.js"></script> 
-<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script> 
+<script src="assets/vendor/jquery/jquery.min.js"></script> 
+<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script> 
 {/* <!-- Style Switcher -->  */}
-<script src="js/switcher.min.js"></script> 
-<script src="js/theme.js"></script>
+<script src="assets/js/switcher.min.js"></script> 
+<script src="assets/js/theme.js"></script>
 
             </div>
         )

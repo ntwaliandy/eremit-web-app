@@ -134,7 +134,7 @@ class Contact extends Component {
   </div>
   <section class="hero-wrap section shadow-md">
     <div class="hero-mask opacity-9 bg-primary"></div>
-    <div class="hero-bg" style={{backgroundImage:"assets/images/bg/image-2.jpg"}}></div>
+    <div class="hero-bg" style={{ backgroundImage: "url(/assets/images/bg/image-2.jpg)" }}></div>
     <div class="hero-content">
       <div class="container text-center">
         <h2 class="text-9 text-white">Awesome Customer Support</h2>
@@ -214,12 +214,12 @@ class Contact extends Component {
 {/* <!-- Styles Switcher End -->  */}
 
 {/* <!-- Script -->  */}
-<script src="vendor/jquery/jquery.min.js"></script> 
-<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script> 
-<script src="vendor/owl.carousel/owl.carousel.min.js"></script> 
+<script src="assets/vendor/jquery/jquery.min.js"></script> 
+<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script> 
+<script src="assets/vendor/owl.carousel/owl.carousel.min.js"></script> 
 {/* <!-- Style Switcher -->  */}
-<script src="js/switcher.min.js"></script> 
-<script src="js/theme.js"></script>
+<script src="assets/js/switcher.min.js"></script> 
+<script src="assets/js/theme.js"></script>
 </div>
 
             </div>

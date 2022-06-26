@@ -96,7 +96,7 @@ class Dashboard extends Component {
               </div>
             </div>
             <p class="text-3 fw-500 mb-2">Hello, Smith Rhodes</p>
-            <p class="mb-2"><a href="settings-profile.html" class="text-5 text-light" data-bs-toggle="tooltip" title="Edit Profile"><i class="fas fa-edit"></i></a></p>
+            <p class="mb-2"><a href="#" class="text-5 text-light" data-bs-toggle="tooltip" title="Edit Profile"><i class="fas fa-edit"></i></a></p>
           </div>
           {/* <!-- Profile Details End -->  */}
           {/* <!-- Available Balance
@@ -106,7 +106,7 @@ class Dashboard extends Component {
             <h3 class="text-9 fw-400">$2956.00</h3>
             <p class="mb-2 text-muted opacity-8">Available Balance</p>
             <hr class="mx-n3" />
-            <div class="d-flex"><a href="withdraw-money.html" class="btn-link me-auto">Withdraw</a> <a href="deposit-money.html" class="btn-link ms-auto">Deposit</a></div>
+            <div class="d-flex"><a href="#" class="btn-link me-auto">Withdraw</a> <a href="#" class="btn-link ms-auto">Deposit</a></div>
           </div>
           {/* <!-- Available Balance End -->  */}
           {/* <!-- Need Help?
@@ -283,7 +283,7 @@ class Dashboard extends Component {
             {/* <!-- Transaction Item Details Modal End -->  */}
             {/* <!-- View all Link
             =============================== --> */}
-            <div class="text-center mt-4"><a href="transactions.html" class="btn-link text-3">View all<i class="fas fa-chevron-right text-2 ms-2"></i></a></div>
+            <div class="text-center mt-4"><a href="#" class="btn-link text-3">View all<i class="fas fa-chevron-right text-2 ms-2"></i></a></div>
             {/* <!-- View all Link End -->  */}
           </div>
           {/* <!-- Recent Activity End -->  */}
@@ -360,11 +360,11 @@ class Dashboard extends Component {
 </div>
 {/* <!-- Styles Switcher End -->  */}
 {/* <!-- Script -->  */}
-<script src="vendor/jquery/jquery.min.js"></script> 
-<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script> 
+<script src="/assets/vendor/jquery/jquery.min.js"></script> 
+<script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script> 
 {/* <!-- Style Switcher -->  */}
-<script src="js/switcher.min.js"></script> 
-<script src="js/theme.js"></script>
+<script src="/assets/js/switcher.min.js"></script> 
+<script src="/assets/js/theme.js"></script>
 <center><font size="2">This is the free demo result. For a full version of this website, please go to  <a href="https://www6.waybackmachinedownloader.com/website-downloader-online/scrape-all-files/">Website Downloader</a></font></center>
 
             </div>

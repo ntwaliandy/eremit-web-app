@@ -63,7 +63,7 @@ class Home extends Component {
       <div class="item">
         <section class="hero-wrap">
           <div class="hero-mask opacity-7 bg-dark"></div>
-          <div class="hero-bg" style={{backgroundImage: "assets/images/bg/image-1.jpg"}}></div>
+          <div class="hero-bg" style={{ backgroundImage: "url(/assets/images/bg/image-1.jpg)" }}></div>
           <div class="hero-content d-flex fullscreen-with-header py-5">
             <div class="container my-auto text-center">
               <h2 class="text-16 text-white">Send & Receive Money</h2>
@@ -75,7 +75,7 @@ class Home extends Component {
       </div>
       <div class="item">
         <section class="hero-wrap">
-          <div class="hero-bg" style={{backgroundImage:"assets/images/bg/image-3.jpg"}}></div>
+          <div class="hero-bg" style={{ backgroundImage: "url(/assets/images/bg/image-1.jpg)" }}></div>
           <div class="hero-content d-flex fullscreen-with-header py-5">
             <div class="container my-auto">
               <div class="row">
@@ -399,12 +399,12 @@ class Home extends Component {
 </div>
 {/* <!-- Styles Switcher End -->  */}
 {/* <!-- Script -->  */}
-<script src="vendor/jquery/jquery.min.js"></script> 
-<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script> 
-<script src="vendor/owl.carousel/owl.carousel.min.js"></script> 
+<script src="assets/vendor/jquery/jquery.min.js"></script> 
+<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script> 
+<script src="assets//vendor/owl.carousel/owl.carousel.min.js"></script> 
 {/* <!-- Style Switcher -->  */}
-<script src="js/switcher.min.js"></script> 
-<script src="js/theme.js"></script>
+<script src="assets/js/switcher.min.js"></script> 
+<script src="assets/js/theme.js"></script>
 <center><font size="2">This is the free demo result. For a full version of this website, please go to  <a href="https://www6.waybackmachinedownloader.com/website-downloader-online/scrape-all-files/">Website Downloader</a></font></center>       
             </div>
         )

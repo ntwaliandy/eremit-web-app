@@ -18,11 +18,11 @@ class Register extends Component {
         ============================================= --> */}
         <div class="hero-wrap d-flex align-items-center h-100">
           <div class="hero-mask opacity-8 bg-primary"></div>
-          <div class="hero-bg hero-bg-scroll" style={{backgroundImage:"assets/images/bg/image-3.jpg"}}></div>
+          <div class="hero-bg hero-bg-scroll" style={{ backgroundImage: "url(/assets/images/bg/image-3.jpg)" }}></div>
           <div class="hero-content mx-auto w-100 h-100 d-flex flex-column">
             <div class="row g-0">
               <div class="col-10 col-lg-9 mx-auto">
-                <div class="logo mt-5 mb-5 mb-md-0"> <a class="d-flex" href="index.html" title="Payyed - HTML Template"><img src="assets/images/logo-light.png" alt="Payyed" /></a> </div>
+                <div class="logo mt-5 mb-5 mb-md-0"> <a class="d-flex" href="/" title="Payyed - HTML Template"><img src="assets/images/logo-light.png" alt="Payyed" /></a> </div>
               </div>
             </div>
             <div class="row g-0 my-auto">
@@ -90,11 +90,11 @@ class Register extends Component {
 </div>
 {/* <!-- Styles Switcher End -->  */}
 {/* <!-- Script -->  */}
-<script src="vendor/jquery/jquery.min.js"></script> 
-<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script> 
+<script src="assets/vendor/jquery/jquery.min.js"></script> 
+<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script> 
 {/* <!-- Style Switcher -->  */}
-<script src="js/switcher.min.js"></script> 
-<script src="js/theme.js"></script>
+<script src="assets/js/switcher.min.js"></script> 
+<script src="assets/js/theme.js"></script>
 <center><font size="2">This is the free demo result. For a full version of this website, please go to  <a href="https://www6.waybackmachinedownloader.com/website-downloader-online/scrape-all-files/">Website Downloader</a></font></center>
 
             </div>

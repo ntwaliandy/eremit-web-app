@@ -66,14 +66,14 @@ class About extends Component {
   <section class="page-header page-header-text-light py-0 mb-0">
 	<section class="hero-wrap section">
     <div class="hero-mask opacity-7 bg-dark"></div>
-    <div class="hero-bg hero-bg-scroll" style={{backgroundImage:"images/bg/image-2.jpg"}}></div>
+    <div class="hero-bg hero-bg-scroll" style={{ backgroundImage: "url(/assets/images/bg/image-2.jpg)" }}></div>
     <div class="hero-content">
       <div class="container">
         <div class="row">
           <div class="col-12 text-center">
             <h1 class="text-11 fw-500 text-white mb-3">About Payyed</h1>
             <p class="text-5 text-white lh-base mb-4">Our mission is to help you save on transfer fees and exchange rates!</p>
-            <a href="register.html" class="btn btn-primary m-2">Open a Free Account</a> <a class="btn btn-outline-light video-btn m-2" href="#" data-src="https://www.youtube.com/embed/7e90gBu4pas" data-bs-toggle="modal" data-bs-target="#videoModal"><span class="me-2"><i class="fas fa-play-circle"></i></span>See How it Works</a> </div>
+            <a href="/register" class="btn btn-primary m-2">Open a Free Account</a> <a class="btn btn-outline-light video-btn m-2" href="#" data-src="https://www.youtube.com/embed/7e90gBu4pas" data-bs-toggle="modal" data-bs-target="#videoModal"><span class="me-2"><i class="fas fa-play-circle"></i></span>See How it Works</a> </div>
         </div>
       </div>
     </div>
@@ -96,7 +96,7 @@ class About extends Component {
               <p class="text-4">Quidam lisque persius interesset his et, in quot quidam persequeris vim, ad mea essent possim iriure. Lisque persius interesset his et, in quot quidam persequeris vim, ad mea essent possim iriure. lisque persius interesset his et, in quot quidam mea essent possim iriure.</p>
             </div>
           </div>
-          <div class="col-lg-6 my-auto text-center"> <img class="img-fluid shadow-lg rounded-3" src="images/who-we-are.jpg" alt="" /> </div>
+          <div class="col-lg-6 my-auto text-center"> <img class="img-fluid shadow-lg rounded-3" src="assets/images/who-we-are.jpg" alt="" /> </div>
         </div>
       </div>
     </section>
@@ -109,8 +109,8 @@ class About extends Component {
         <div class="row g-0">
           <div class="col-lg-6 order-2 order-lg-1">
             <div class="row">
-              <div class="col-6 col-lg-7 ms-auto mb-lg-n5"> <img class="img-fluid rounded-3 shadow-lg" src="images/our-values-vision.jpg" alt="banner" /> </div>
-              <div class="col-6 col-lg-8 mt-lg-n5"> <img class="img-fluid rounded-3 shadow-lg" src="images/our-values-mission.jpg" alt="banner" /> </div>
+              <div class="col-6 col-lg-7 ms-auto mb-lg-n5"> <img class="img-fluid rounded-3 shadow-lg" src="assets/images/our-values-vision.jpg" alt="banner" /> </div>
+              <div class="col-6 col-lg-8 mt-lg-n5"> <img class="img-fluid rounded-3 shadow-lg" src="assets/images/our-values-mission.jpg" alt="banner" /> </div>
             </div>
           </div>
           <div class="col-lg-6 d-flex order-1 order-lg-2">
@@ -137,7 +137,7 @@ class About extends Component {
         <p class="lead text-center mb-5">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
         <div class="row g-4">
           <div class="col-sm-6 col-md-3 text-center">
-            <div class="team rounded d-inline-block"> <img class="img-fluid rounded" alt="" src="images/team/leader.jpg" />
+            <div class="team rounded d-inline-block"> <img class="img-fluid rounded" alt="" src="assets/images/team/leader.jpg" />
               <h3>Neil Patel</h3>
               <p class="text-muted">CEO &amp; Founder</p>
               <ul class="social-icons social-icons-sm d-inline-flex">
@@ -148,7 +148,7 @@ class About extends Component {
             </div>
           </div>
           <div class="col-sm-6 col-md-3 text-center">
-            <div class="team rounded d-inline-block"> <img class="img-fluid rounded" alt="" src="images/team/leader-2.jpg" />
+            <div class="team rounded d-inline-block"> <img class="img-fluid rounded" alt="" src="assets/images/team/leader-2.jpg" />
               <h3>James Maxwell</h3>
               <p class="text-muted">Co-Founder</p>
               <ul class="social-icons social-icons-sm d-inline-flex">
@@ -159,7 +159,7 @@ class About extends Component {
             </div>
           </div>
           <div class="col-sm-6 col-md-3 text-center">
-            <div class="team rounded d-inline-block"> <img class="img-fluid rounded" alt="" src="images/team/leader-3.jpg" />
+            <div class="team rounded d-inline-block"> <img class="img-fluid rounded" alt="" src="assets/images/team/leader-3.jpg" />
               <h3>Ruby Clinton</h3>
               <p class="text-muted">Chief Marketing Officer</p>
               <ul class="social-icons social-icons-sm d-inline-flex">
@@ -170,7 +170,7 @@ class About extends Component {
             </div>
           </div>
           <div class="col-sm-6 col-md-3 text-center">
-            <div class="team rounded d-inline-block"> <img class="img-fluid rounded" alt="" src="images/team/leader-4.jpg" />
+            <div class="team rounded d-inline-block"> <img class="img-fluid rounded" alt="" src="assets/images/team/leader-4.jpg" />
               <h3>Miky Sheth</h3>
               <p class="text-muted">General Manager</p>
               <ul class="social-icons social-icons-sm d-inline-flex">
@@ -193,18 +193,18 @@ class About extends Component {
         <p class="lead text-center mb-5">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
         <div class="brands-grid separator-border">
           <div class="row align-items-center text-center">
-            <div class="col-6 col-sm-4 col-lg-2"><a href=""><img class="img-fluid" src="images/partner/partner-1.png" alt="Brands" /></a></div>
-            <div class="col-6 col-sm-4 col-lg-2"><a href=""><img class="img-fluid" src="images/partner/partner-2.png" alt="Brands" /></a></div>
-            <div class="col-6 col-sm-4 col-lg-2"><a href=""><img class="img-fluid" src="images/partner/partner-3.png" alt="Brands" /></a></div>
-            <div class="col-6 col-sm-4 col-lg-2"><a href=""><img class="img-fluid" src="images/partner/partner-4.png" alt="Brands" /></a></div>
-            <div class="col-6 col-sm-4 col-lg-2"><a href=""><img class="img-fluid" src="images/partner/partner-5.png" alt="Brands" /></a></div>
-            <div class="col-6 col-sm-4 col-lg-2"><a href=""><img class="img-fluid" src="images/partner/partner-6.png" alt="Brands" /></a></div>
-            <div class="col-6 col-sm-4 col-lg-2"><a href=""><img class="img-fluid" src="images/partner/partner-7.png" alt="Brands" /></a></div>
-            <div class="col-6 col-sm-4 col-lg-2"><a href=""><img class="img-fluid" src="images/partner/partner-8.png" alt="Brands" /></a></div>
-            <div class="col-6 col-sm-4 col-lg-2"><a href=""><img class="img-fluid" src="images/partner/partner-9.png" alt="Brands" /></a></div>
-            <div class="col-6 col-sm-4 col-lg-2"><a href=""><img class="img-fluid" src="images/partner/partner-10.png" alt="Brands" /></a></div>
-            <div class="col-6 col-sm-4 col-lg-2"><a href=""><img class="img-fluid" src="images/partner/partner-11.png" alt="Brands" /></a></div>
-            <div class="col-6 col-sm-4 col-lg-2"><a href=""><img class="img-fluid" src="images/partner/partner-1.png" alt="Brands" /></a></div>
+            <div class="col-6 col-sm-4 col-lg-2"><a href=""><img class="img-fluid" src="assets/images/partner/partner-1.png" alt="Brands" /></a></div>
+            <div class="col-6 col-sm-4 col-lg-2"><a href=""><img class="img-fluid" src="assets/images/partner/partner-2.png" alt="Brands" /></a></div>
+            <div class="col-6 col-sm-4 col-lg-2"><a href=""><img class="img-fluid" src="assets/images/partner/partner-3.png" alt="Brands" /></a></div>
+            <div class="col-6 col-sm-4 col-lg-2"><a href=""><img class="img-fluid" src="assets/images/partner/partner-4.png" alt="Brands" /></a></div>
+            <div class="col-6 col-sm-4 col-lg-2"><a href=""><img class="img-fluid" src="assets/images/partner/partner-5.png" alt="Brands" /></a></div>
+            <div class="col-6 col-sm-4 col-lg-2"><a href=""><img class="img-fluid" src="assets/images/partner/partner-6.png" alt="Brands" /></a></div>
+            <div class="col-6 col-sm-4 col-lg-2"><a href=""><img class="img-fluid" src="assets/images/partner/partner-7.png" alt="Brands" /></a></div>
+            <div class="col-6 col-sm-4 col-lg-2"><a href=""><img class="img-fluid" src="assets/images/partner/partner-8.png" alt="Brands" /></a></div>
+            <div class="col-6 col-sm-4 col-lg-2"><a href=""><img class="img-fluid" src="assets/images/partner/partner-9.png" alt="Brands" /></a></div>
+            <div class="col-6 col-sm-4 col-lg-2"><a href=""><img class="img-fluid" src="assets/images/partner/partner-10.png" alt="Brands" /></a></div>
+            <div class="col-6 col-sm-4 col-lg-2"><a href=""><img class="img-fluid" src="assets/images/partner/partner-11.png" alt="Brands" /></a></div>
+            <div class="col-6 col-sm-4 col-lg-2"><a href=""><img class="img-fluid" src="assets/images/partner/partner-1.png" alt="Brands" /></a></div>
           </div>
         </div>
       </div>
@@ -388,12 +388,12 @@ class About extends Component {
 {/* <!-- Styles Switcher End -->  */}
 
 {/* <!-- Script -->  */}
-<script src="vendor/jquery/jquery.min.js"></script> 
-<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script> 
-<script src="vendor/owl.carousel/owl.carousel.min.js"></script> 
+<script src="assets/vendor/jquery/jquery.min.js"></script> 
+<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script> 
+<script src="assets/vendor/owl.carousel/owl.carousel.min.js"></script> 
 {/* <!-- Style Switcher -->  */}
-<script src="js/switcher.min.js"></script> 
-<script src="js/theme.js"></script>
+<script src="assets/js/switcher.min.js"></script> 
+<script src="assets/js/theme.js"></script>
 
             </div>
         )
