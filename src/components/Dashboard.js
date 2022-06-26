@@ -21,7 +21,7 @@ class Dashboard extends Component {
         <div class="header-column justify-content-start"> 
           {/* <!-- Logo
           ============================= --> */}
-          <div class="logo me-3"> <a class="d-flex" href="index.html" title="Payyed - HTML Template"><img src="assets/images/logo.png" alt="Payyed" /></a> </div>
+          <div class="logo me-3"> <a class="d-flex" href="/" title="Payyed - HTML Template"><img src="assets/images/logo.png" alt="Payyed" /></a> </div>
           {/* <!-- Logo end -->  */}
           {/* <!-- Collapse Button
           ============================== --> */}
@@ -32,7 +32,7 @@ class Dashboard extends Component {
           <nav class="primary-menu navbar navbar-expand-lg">
             <div id="header-nav" class="collapse navbar-collapse">
               <ul class="navbar-nav me-auto">
-                <li class="active"><a href="index.html">Dashboard</a></li>
+                <li class="active"><a href="/">Dashboard</a></li>
                 <li><a href="#">Transactions</a></li>
                 </ul>
                 </div>

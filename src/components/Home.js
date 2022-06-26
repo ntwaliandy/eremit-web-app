@@ -63,7 +63,7 @@ class Home extends Component {
       <div class="item">
         <section class="hero-wrap">
           <div class="hero-mask opacity-7 bg-dark"></div>
-          <div class="hero-bg" style={{backgroundImage:"assets/images/bg/image-1.jpg"}}></div>
+          <div class="hero-bg" style={{backgroundImage: "assets/images/bg/image-1.jpg"}}></div>
           <div class="hero-content d-flex fullscreen-with-header py-5">
             <div class="container my-auto text-center">
               <h2 class="text-16 text-white">Send & Receive Money</h2>
@@ -71,7 +71,7 @@ class Home extends Component {
                 Over 180 countries and 120 currencies supported.</p>
               <a href="/register" class="btn btn-primary m-2">Open a Free Account</a> <a class="btn btn-outline-light video-btn m-2" href="#" data-src="https://www.youtube.com/embed/7e90gBu4pas" data-bs-toggle="modal" data-bs-target="#videoModal"><span class="text-2 me-3"><i class="fas fa-play"></i></span>See How it Works</a> </div>
           </div>
-        </section>
+        </section> 
       </div>
       <div class="item">
         <section class="hero-wrap">
