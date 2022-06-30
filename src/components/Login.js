@@ -22,7 +22,7 @@ class Login extends Component {
           <div class="hero-content mx-auto w-100 h-100 d-flex flex-column">
             <div class="row g-0">
               <div class="col-10 col-lg-9 mx-auto">
-                <div class="logo mt-5 mb-5 mb-md-0"> <a class="d-flex" href="index.html" title="Payyed - HTML Template"><img src="assets/images/logo-light.png" alt="Payyed" /></a> </div>
+                <div class="logo mt-5 mb-5 mb-md-0"> <a class="d-flex" href="/" title="Payyed - HTML Template"><img src="assets/images/logo-light.png" alt="Payyed" /></a> </div>
               </div>
             </div>
             <div class="row g-0 my-auto">
@@ -60,7 +60,7 @@ class Login extends Component {
                   </div>
                   <div class="col-sm text-end"><a class="btn-link" href="#">Forgot Password ?</a></div>
                 </div>
-                <div class="d-grid mb-3"><button class="btn btn-primary" type="submit" href="/dashboard"> Login</button>  </div>
+                <div class="d-grid mb-3"><button class="btn btn-primary" type="submit" href="/"> Login</button>  </div>
               </form>
               <p class="text-3 text-center text-muted">Don't have an account? <a class="btn-link" href="/dashboard">Sign Up</a></p>
             </div>
@@ -74,26 +74,7 @@ class Login extends Component {
 {/* <!-- Back to Top
 ============================================= -->  */}
 <a id="back-to-top" data-bs-toggle="tooltip" title="Back to Top" href="javascript:void(0)"><i class="fa fa-chevron-up"></i></a> 
-{/* <!-- Styles Switcher --> */}
-<div id="styles-switcher" class="left">
-  <h2 class="text-3">Color Switcher</h2>
-  <hr />
-  <ul>
-    <li class="blue" data-bs-toggle="tooltip" title="Blue" data-path="css/color-blue.css"></li>
-	<li class="indigo" data-bs-toggle="tooltip" title="Indigo" data-path="css/color-indigo.css"></li>
-    <li class="purple" data-bs-toggle="tooltip" title="Purple" data-path="css/color-purple.css"></li>
-	<li class="pink" data-bs-toggle="tooltip" title="Pink" data-path="css/color-pink.css"></li>
-	<li class="red" data-bs-toggle="tooltip" title="Red" data-path="css/color-red.css"></li>
-    <li class="orange" data-bs-toggle="tooltip" title="Orange" data-path="css/color-orange.css"></li>
-	<li class="yellow" data-bs-toggle="tooltip" title="Yellow" data-path="css/color-yellow.css"></li>
-	<li class="teal" data-bs-toggle="tooltip" title="Teal" data-path="css/color-teal.css"></li>
-    <li class="cyan" data-bs-toggle="tooltip" title="Cyan" data-path="css/color-cyan.css"></li>
-    <li class="brown" data-bs-toggle="tooltip" title="Brown" data-path="css/color-brown.css"></li>
-  </ul>
-  <button class="btn btn-dark btn-sm border-0 fw-400 rounded-0 shadow-none" data-bs-toggle="tooltip" title="Green" id="reset-color">Reset Default</button>
-  <button class="btn switcher-toggle"><i class="fas fa-cog"></i></button>
-</div>
-{/* <!-- Styles Switcher End -->  */}
+
 {/* <!-- Script -->  */}
 <script src="assets/vendor/jquery/jquery.min.js"></script> 
 <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script> 

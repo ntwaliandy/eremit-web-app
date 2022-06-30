@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 
 
+
+
 class Home extends Component {
     render() {
         return (
@@ -56,39 +58,78 @@ class Home extends Component {
   {/* <!-- Header End -->  */}
   {/* <!-- Content
   ============================================= --> */}
-  <div id="content"> 
+  
+  <div id="content">
+ 
+  <div class="item">
+       
+        <section class="hero-wrap">
+          <div class="hero-mask opacity-7 bg-dark"></div>
+          <div class="hero-bg" style={{ backgroundImage: "url(/assets/images/bg/image-5.jpg)" }}></div>
+          <div class="hero-content d-flex fullscreen-with-header py-5">
+          
+            <div class="container my-auto text-center">
+                
+              <h2 class="text-16 text-white">Send & Receive Money</h2>
+              <p class="text-5 text-white mb-4">Quickly and easily send, receive and request money online with Payyed.<br class="d-none d-lg-block" />
+                Over 180 countries and 120 currencies supported.</p>
+              <a href="/register" class="btn btn-primary m-2">Open a Free Account</a> 
+             
+              </div>
+             
+          </div>
+        </section> 
+        
+      </div>
+      
+      
     {/* <!-- Slideshow
     ============================================= --> */}
-	<div class="owl-carousel owl-theme single-slideshow" data-autoplay="true" data-loop="true" data-autoheight="true" data-nav="true" data-items="1">
-      <div class="item">
+	 {/* <div class="owl-carousel owl-theme single-slideshow" data-autoplay="true" data-loop="true" data-autoheight="true" data-nav="true" data-items="1"> */}
+ 
+      {/* <div class="item">
+       
         <section class="hero-wrap">
           <div class="hero-mask opacity-7 bg-dark"></div>
           <div class="hero-bg" style={{ backgroundImage: "url(/assets/images/bg/image-1.jpg)" }}></div>
           <div class="hero-content d-flex fullscreen-with-header py-5">
+          
             <div class="container my-auto text-center">
+                
               <h2 class="text-16 text-white">Send & Receive Money</h2>
               <p class="text-5 text-white mb-4">Quickly and easily send, receive and request money online with Payyed.<br class="d-none d-lg-block" />
                 Over 180 countries and 120 currencies supported.</p>
-              <a href="/register" class="btn btn-primary m-2">Open a Free Account</a> <a class="btn btn-outline-light video-btn m-2" href="#" data-src="https://www.youtube.com/embed/7e90gBu4pas" data-bs-toggle="modal" data-bs-target="#videoModal"><span class="text-2 me-3"><i class="fas fa-play"></i></span>See How it Works</a> </div>
+              <a href="/register" class="btn btn-primary m-2">Open a Free Account</a> <a class="btn btn-outline-light video-btn m-2" href="#" data-src="https://www.youtube.com/embed/7e90gBu4pas" data-bs-toggle="modal" data-bs-target="#videoModal"><span class="text-2 me-3"><i class="fas fa-play"></i></span>See How it Works</a>
+             
+              </div>
+             
           </div>
         </section> 
-      </div>
-      <div class="item">
+        
+      </div> */}
+      {/* <div class="item">
+        
         <section class="hero-wrap">
           <div class="hero-bg" style={{ backgroundImage: "url(/assets/images/bg/image-1.jpg)" }}></div>
           <div class="hero-content d-flex fullscreen-with-header py-5">
+            
             <div class="container my-auto">
               <div class="row">
                 <div class="col-12 col-lg-8 col-xl-7 text-center text-lg-start">
-                  <h2 class="text-13 text-white">Trusted by more than 50,000 businesses worldwide.</h2>
+                 
                   <p class="text-5 text-white mb-4">Over 180 countries and 120 currencies supported.</p>
-                  <a href="/register" class="btn btn-primary me-3">Get started for free</a> <a class="btn btn-link text-light video-btn" href="#" data-src="https://www.youtube.com/embed/7e90gBu4pas" data-bs-toggle="modal" data-bs-target="#videoModal"><span class="me-2"><i class="fas fa-play-circle"></i></span>Watch Demo</a> </div>
+                  <a href="/register" class="btn btn-primary me-3">Get started for free</a> <a class="btn btn-link text-light video-btn" href="#" data-src="https://www.youtube.com/embed/7e90gBu4pas" data-bs-toggle="modal" data-bs-target="#videoModal"><span class="me-2"><i class="fas fa-play-circle"></i></span>Watch Demo</a> 
+                  
+                  </div>
               </div>
             </div>
+            
           </div>
         </section>
-      </div>
-    </div>
+        
+      </div> */}
+   
+    {/* </div> */}
     {/* <!-- Slideshow end -->  */}
     {/* <!-- Why choose
     ============================================= --> */}
@@ -310,7 +351,7 @@ class Home extends Component {
         <div class="justify-content-center text-center">
           <h2 class="text-9">Get the app</h2>
           <p class="lead mb-4">Download our app for the fastest, most convenient way to send & get Payment.</p>
-          <a class="d-inline-flex mx-3" href=""><img alt="" width="168" height="49"  src="assets/images/app-store.png" /></a> <a class="d-inline-flex mx-3" href=""><img alt="" width="166" height="49"  src="assets/images/google-play-store.png" /></a>
+          <a class="d-inline-flex mx-3" href="#"><img alt="" width="168" height="49"  src="assets/images/app-store.png" /></a> <a class="d-inline-flex mx-3" href="#"><img alt="" width="166" height="49"  src="assets/images/google-play-store.png" /></a>
 		</div>
       </div>
     </section>
@@ -324,12 +365,9 @@ class Home extends Component {
       <div class="row">
         <div class="col-lg d-lg-flex align-items-center">
           <ul class="nav justify-content-center justify-content-lg-start text-3">
-            <li class="nav-item"> <a class="nav-link active" href="about-us.html">About Us</a></li>
+            <li class="nav-item"> <a class="nav-link actnpm run ive" href="#">About Us</a></li>
             <li class="nav-item"> <a class="nav-link" href="#">Support</a></li>
-            <li class="nav-item"> <a class="nav-link" href="contact-us.html">Contact us</a></li>
-            <li class="nav-item"> <a class="nav-link" href="#">Careers</a></li>
-            <li class="nav-item"> <a class="nav-link" href="#">Affiliate</a></li>
-            <li class="nav-item"> <a class="nav-link" href="#">Fees</a></li>
+            <li class="nav-item"> <a class="nav-link" href="#">Contact us</a></li>
           </ul>
         </div>
         <div class="col-lg d-lg-flex justify-content-lg-end mt-3 mt-lg-0">
@@ -371,41 +409,20 @@ class Home extends Component {
 	  <button type="button" class="btn-close btn-close-white ms-auto me-n3" data-bs-dismiss="modal" aria-label="Close"></button>
       <div class="modal-body p-0">
         <div class="ratio ratio-16x9">
-		  <iframe id="video" src="" allow="autoplay;" allowFullScreen></iframe>
+		  <iframe title="myFrame" id="video" src="" allow="autoplay;" allowFullScreen ></iframe>
         </div>
       </div>
     </div>
   </div>
 </div>
 {/* <!-- Video Modal end -->  */}
-{/* <!-- Styles Switcher --> */}
-<div id="styles-switcher" class="left">
-  <h2 class="text-3">Color Switcher</h2>
-  <hr />
-  <ul>
-    <li class="blue" data-bs-toggle="tooltip" title="Blue" data-path="css/color-blue.css"></li>
-	<li class="indigo" data-bs-toggle="tooltip" title="Indigo" data-path="css/color-indigo.css"></li>
-    <li class="purple" data-bs-toggle="tooltip" title="Purple" data-path="css/color-purple.css"></li>
-	<li class="pink" data-bs-toggle="tooltip" title="Pink" data-path="css/color-pink.css"></li>
-	<li class="red" data-bs-toggle="tooltip" title="Red" data-path="css/color-red.css"></li>
-    <li class="orange" data-bs-toggle="tooltip" title="Orange" data-path="css/color-orange.css"></li>
-	<li class="yellow" data-bs-toggle="tooltip" title="Yellow" data-path="css/color-yellow.css"></li>
-	<li class="teal" data-bs-toggle="tooltip" title="Teal" data-path="css/color-teal.css"></li>
-    <li class="cyan" data-bs-toggle="tooltip" title="Cyan" data-path="css/color-cyan.css"></li>
-    <li class="brown" data-bs-toggle="tooltip" title="Brown" data-path="css/color-brown.css"></li>
-  </ul>
-  <button class="btn btn-dark btn-sm border-0 fw-400 rounded-0 shadow-none" data-bs-toggle="tooltip" title="Green" id="reset-color">Reset Default</button>
-  <button class="btn switcher-toggle"><i class="fas fa-cog"></i></button>
-</div>
-{/* <!-- Styles Switcher End -->  */}
 {/* <!-- Script -->  */}
-<script src="assets/vendor/jquery/jquery.min.js"></script> 
-<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script> 
-<script src="assets//vendor/owl.carousel/owl.carousel.min.js"></script> 
+<script src="./assets/vendor/jquery/jquery.min.js"></script> 
+<script src="./assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script> 
+<script src="./assets//vendor/owl.carousel/owl.carousel.min.js"></script> 
 {/* <!-- Style Switcher -->  */}
-<script src="assets/js/switcher.min.js"></script> 
-<script src="assets/js/theme.js"></script>
-<center><font size="2">This is the free demo result. For a full version of this website, please go to  <a href="https://www6.waybackmachinedownloader.com/website-downloader-online/scrape-all-files/">Website Downloader</a></font></center>       
+<script src="./assets/js/switcher.min.js"></script> 
+<script src="./assets/js/theme.js"></script>
             </div>
         )
 

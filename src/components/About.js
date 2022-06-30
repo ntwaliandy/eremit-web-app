@@ -311,9 +311,6 @@ class About extends Component {
             <li class="nav-item"> <a class="nav-link active" href="#">About Us</a></li>
             <li class="nav-item"> <a class="nav-link" href="#">Support</a></li>
             <li class="nav-item"> <a class="nav-link" href="#">Help</a></li>
-            <li class="nav-item"> <a class="nav-link" href="#">Careers</a></li>
-            <li class="nav-item"> <a class="nav-link" href="#">Affiliate</a></li>
-            <li class="nav-item"> <a class="nav-link" href="#">Fees</a></li>
           </ul>
         </div>
         <div class="col-lg d-lg-flex justify-content-lg-end mt-3 mt-lg-0">
@@ -366,26 +363,6 @@ class About extends Component {
 </div>
 {/* <!-- Video Modal end -->  */}
 
-{/* <!-- Styles Switcher --> */}
-<div id="styles-switcher" class="left">
-  <h2 class="text-3">Color Switcher</h2>
-  <hr />
-  <ul>
-    <li class="blue" data-bs-toggle="tooltip" title="Blue" data-path="css/color-blue.css"></li>
-	<li class="indigo" data-bs-toggle="tooltip" title="Indigo" data-path="css/color-indigo.css"></li>
-    <li class="purple" data-bs-toggle="tooltip" title="Purple" data-path="css/color-purple.css"></li>
-	<li class="pink" data-bs-toggle="tooltip" title="Pink" data-path="css/color-pink.css"></li>
-	<li class="red" data-bs-toggle="tooltip" title="Red" data-path="css/color-red.css"></li>
-    <li class="orange" data-bs-toggle="tooltip" title="Orange" data-path="css/color-orange.css"></li>
-	<li class="yellow" data-bs-toggle="tooltip" title="Yellow" data-path="css/color-yellow.css"></li>
-	<li class="teal" data-bs-toggle="tooltip" title="Teal" data-path="css/color-teal.css"></li>
-    <li class="cyan" data-bs-toggle="tooltip" title="Cyan" data-path="css/color-cyan.css"></li>
-    <li class="brown" data-bs-toggle="tooltip" title="Brown" data-path="css/color-brown.css"></li>
-  </ul>
-  <button class="btn btn-dark btn-sm border-0 fw-400 rounded-0 shadow-none" data-bs-toggle="tooltip" title="Green" id="reset-color">Reset Default</button>
-  <button class="btn switcher-toggle"><i class="fas fa-cog"></i></button>
-</div>
-{/* <!-- Styles Switcher End -->  */}
 
 {/* <!-- Script -->  */}
 <script src="assets/vendor/jquery/jquery.min.js"></script> 
