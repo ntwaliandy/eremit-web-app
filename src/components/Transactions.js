@@ -1,20 +1,16 @@
-import React, {Component} from "react";
+import React, { Component} from "react";
 
+class Transaction extends Component {
+    render() {
+        return (
+         <div>
+           
+        {/* <div id="preloader">
+        <div data-loader="dual-ring"></div>
+        </div> */}
 
-class Dashboard extends Component {
-    render(){
-        return(
-            <div>
-                {/* <!-- Preloader --> */}
-{/* <div id="preloader">
-  <div data-loader="dual-ring"></div>
-</div> */}
-{/* <!-- Preloader End -->  */}
-{/* <!-- Document Wrapper   
-============================================= --> */}
 <div id="main-wrapper"> 
-  {/* <!-- Header
-  ============================================= --> */}
+  
   <header id="header">
     <div class="container">
       <div class="header-row">
@@ -27,8 +23,8 @@ class Dashboard extends Component {
           <nav class="primary-menu navbar navbar-expand-lg">
             <div id="header-nav" class="collapse navbar-collapse">
               <ul class="navbar-nav me-auto">
-                <li class="active"><a href="/dashboard">Dashboard</a></li>
-                <li><a href="/transactions">Transactions</a></li>
+                <li><a href="/dashboard">Dashboard</a></li>
+                <li class="active"><a href="/transactions">Transactions</a></li>
                 <li><a href="/send-money">Send/Request</a></li>
                 <li><a href="/help">Help</a></li>
               </ul>
@@ -39,7 +35,7 @@ class Dashboard extends Component {
           <nav class="login-signup navbar navbar-expand">
           <div class="col-auto d-flex align-items-center ms-auto">
                     <div class="dropdown"> <a class="text-muted btn-link" href="#" role="button" id="statements" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img class="rounded-circle" src="assets/images/profile-thumb-sm.jpg" alt="" /></a>
-                      <div class="dropdown-menu dropdown-menu-end" aria-labelledby="statements"> <a class="dropdown-item" href="#">My Profile</a> <a class="dropdown-item" href="/login">Logout</a> </div>
+                      <div class="dropdown-menu dropdown-menu-end" aria-labelledby="statements"> <a class="dropdown-item" href="/my-profile">My Profile</a> <a class="dropdown-item" href="#">Logout</a> </div>
                     </div>
                   </div>
           </nav>
@@ -47,17 +43,10 @@ class Dashboard extends Component {
       </div>
     </div>
   </header>
-  {/* <!-- Header End --> */}
-  {/* <!-- Content
-  ============================================= --> */}
   <div id="content" class="py-4">
     <div class="container">
       <div class="row"> 
-        {/* <!-- Left Panel
-        ============================================= --> */}
         <aside class="col-lg-3"> 
-          {/* <!-- Profile Details
-          =============================== --> */}
           <div class="bg-white shadow-sm rounded text-center p-3 mb-4">
             <div class="profile-thumb mt-3 mb-4"> <img class="rounded-circle" src="assets/images/profile-thumb.jpg" alt="" />
               <div class="profile-thumb-edit bg-primary text-white" data-bs-toggle="tooltip" title="Change Profile Picture"> <i class="fas fa-camera position-absolute"></i>
@@ -65,82 +54,85 @@ class Dashboard extends Component {
               </div>
             </div>
             <p class="text-3 fw-500 mb-2">Hello, Smith Rhodes</p>
-            <p class="mb-2"><a href="#" class="text-5 text-light" data-bs-toggle="tooltip" title="Edit Profile"><i class="fas fa-edit"></i></a></p>
+            <p class="mb-2"><a href="assets/settings-profile.html" class="text-5 text-light" data-bs-toggle="tooltip" title="Edit Profile"><i class="fas fa-edit"></i></a></p>
           </div>
-          {/* <!-- Profile Details End -->  */}
-          {/* <!-- Available Balance
-          =============================== --> */}
           <div class="bg-white shadow-sm rounded text-center p-3 mb-4">
             <div class="text-17 text-light my-3"><i class="fas fa-wallet"></i></div>
             <h3 class="text-9 fw-400">$2956.00</h3>
             <p class="mb-2 text-muted opacity-8">Available Balance</p>
             <hr class="mx-n3" />
-            <div class="d-flex"><a href="#" class="btn-link me-auto">Withdraw</a> <a href="#" class="btn-link ms-auto">Deposit</a></div>
+            <div class="d-flex"><a href="assets/withdraw-money.html" class="btn-link me-auto">Withdraw</a> <a href="assets/deposit-money.html" class="btn-link ms-auto">Deposit</a></div>
           </div>
-          {/* <!-- Available Balance End -->  */}
-          {/* <!-- Need Help?
-          =============================== --> */}
           <div class="bg-white shadow-sm rounded text-center p-3 mb-4">
             <div class="text-17 text-light my-3"><i class="fas fa-comments"></i></div>
             <h3 class="text-5 fw-400 my-4">Need Help?</h3>
             <p class="text-muted opacity-8 mb-4">Have questions or concerns regrading your account?<br />
               Our experts are here to help!.</p>
-            <div class="d-grid"><a href="#" class="btn btn-primary">Chate with Us</a></div>
+            <div class="d-grid"><a href="/#" class="btn btn-primary">Chate with Us</a></div>
 		  </div>
-          {/* <!-- Need Help? End -->  */}
         </aside>
-        {/* <!-- Left Panel End --> */}
-        {/* <!-- Middle Panel
-        ============================================= --> */}
-        <div class="col-lg-9"> 
-          {/* <!-- Profile Completeness
-          =============================== --> */}
-          <div class="bg-white shadow-sm rounded p-4 mb-4">
-            <h3 class="text-5 fw-400 d-flex align-items-center mb-4">Profile Completeness<span class="border text-success rounded-pill fw-500 text-2 px-3 py-1 ms-2">50%</span></h3>
-            <hr class="mb-4 mx-n4" />
-            <div class="row gy-4 profile-completeness">
-              <div class="col-sm-6 col-md-3">
-                <div class="border rounded text-center px-3 py-4"> <span class="d-block text-10 text-light mt-2 mb-3"><i class="fas fa-mobile-alt"></i></span> <span class="text-5 d-block text-success mt-4 mb-3"><i class="fas fa-check-circle"></i></span>
-                  <p class="mb-0">Mobile Added</p>
+        <div class="col-lg-9">
+          <h2 class="fw-400 mb-3">Transactions</h2>
+          <div class="row">
+            <div class="col mb-2">
+              <form id="filterTransactions" method="post">
+                <div class="row g-3 mb-3">
+                  <div class="col-sm-6 col-md-5">
+                    <div class="position-relative">
+					<input id="dateRange" type="text" class="form-control" placeholder="Date Range" />
+                    <span class="icon-inside"><i class="fas fa-calendar-alt"></i></span>
+					</div>
+				  </div>
+                  <div class="col-auto d-flex align-items-center me-auto form-group" data-bs-toggle="collapse"> <a class="btn-link" data-bs-toggle="collapse" href="#allFilters" aria-expanded="false" aria-controls="allFilters">All Filters<i class="fas fa-sliders-h text-3 ms-1"></i></a> </div>
+				  
+                  <div class="col-auto d-flex align-items-center ms-auto">
+                    <div class="dropdown"> <a class="text-muted btn-link" href="#" role="button" id="statements" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-file-download text-3 me-1"></i>Statements</a>
+                      <div class="dropdown-menu dropdown-menu-end" aria-labelledby="statements"> <a class="dropdown-item" href="#">CSV</a> <a class="dropdown-item" href="#">PDF</a> </div>
+                    </div>
+                  </div>
+                  <div class="col-12 collapse" id="allFilters">
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" id="allTransactions" name="allFilters" checked />
+                      <label class="form-check-label" for="allTransactions">All Transactions</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" id="paymentsSend" name="allFilters" />
+                      <label class="form-check-label" for="paymentsSend">Payments Send</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" id="paymentsReceived" name="allFilters" />
+                      <label class="form-check-label" for="paymentsReceived">Payments Received</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" id="refunds" name="allFilters" />
+                      <label class="form-check-label" for="refunds">Refunds</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" id="withdrawal" name="allFilters" />
+                      <label class="form-check-label" for="withdrawal">Withdrawal</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" id="deposit" name="allFilters" />
+                      <label class="form-check-label" for="deposit">Deposit</label>
+                    </div>
+                  </div>
                 </div>
-              </div>
-              <div class="col-sm-6 col-md-3">
-                <div class="border rounded text-center px-3 py-4"> <span class="d-block text-10 text-light mt-2 mb-3"><i class="fas fa-envelope"></i></span> <span class="text-5 d-block text-success mt-4 mb-3"><i class="fas fa-check-circle"></i></span>
-                  <p class="mb-0">Email Added</p>
-                </div>
-              </div>
-              <div class="col-sm-6 col-md-3">
-                <div class="position-relative border rounded text-center px-3 py-4"> <span class="d-block text-10 text-light mt-2 mb-3"><i class="fas fa-credit-card"></i></span> <span class="text-5 d-block text-light mt-4 mb-3"><i class="far fa-circle "></i></span>
-                  <p class="mb-0"><a class="btn-link stretched-link" href="">Add Card</a></p>
-                </div>
-              </div>
-              <div class="col-sm-6 col-md-3">
-                <div class="position-relative border rounded text-center px-3 py-4"> <span class="d-block text-10 text-light mt-2 mb-3"><i class="fas fa-university"></i></span> <span class="text-5 d-block text-light mt-4 mb-3"><i class="far fa-circle "></i></span>
-                  <p class="mb-0"><a class="btn-link stretched-link" href="">Add Bank Account</a></p>
-                </div>
-              </div>
+              </form>
             </div>
           </div>
-          {/* <!-- Profile Completeness End -->  */}
-          {/* <!-- Recent Activity
-          =============================== --> */}
           <div class="bg-white shadow-sm rounded py-4 mb-4">
-            <h3 class="text-5 fw-400 d-flex align-items-center px-4 mb-4">Recent Activity</h3>
-            {/* <!-- Title
-            =============================== --> */}
+            <h3 class="text-5 fw-400 d-flex align-items-center px-4 mb-4">All Transactions</h3>
+            
             <div class="transaction-title py-2 px-4">
-              <div class="row fw-00">
+              <div class="row">
                 <div class="col-2 col-sm-1 text-center"><span class="">Date</span></div>
                 <div class="col col-sm-7">Description</div>
                 <div class="col-auto col-sm-2 d-none d-sm-block text-center">Status</div>
                 <div class="col-3 col-sm-2 text-end">Amount</div>
               </div>
             </div>
-            {/* <!-- Title End -->  */}
-            {/* <!-- Transaction List
-            =============================== --> */}
             <div class="transaction-list">
-              <div class="transaction-item px-4 py-3" data-bs-toggle="modal" data-bs-target="#transaction-detail">
+              <div class="transaction-item px-4 py-3" data-bs-toggle="modal" data-bs-target="/#transaction-detail">
                 <div class="row align-items-center flex-row">
                   <div class="col-2 col-sm-1 text-center"> <span class="d-block text-4 fw-300">16</span> <span class="d-block text-1 fw-300 text-uppercase">APR</span> </div>
                   <div class="col col-sm-7"> <span class="d-block text-4">HDFC Bank</span> <span class="text-muted">Withdraw to Bank account</span> </div>
@@ -148,7 +140,7 @@ class Dashboard extends Component {
                   <div class="col-3 col-sm-2 text-end text-4"> <span class="text-nowrap">- $562</span> <span class="text-2 text-uppercase">(USD)</span> </div>
                 </div>
               </div>
-              <div class="transaction-item px-4 py-3" data-bs-toggle="modal" data-bs-target="#transaction-detail">
+              <div class="transaction-item px-4 py-3" data-bs-toggle="modal" data-bs-target="/#transaction-detail">
                 <div class="row align-items-center flex-row">
                   <div class="col-2 col-sm-1 text-center"> <span class="d-block text-4 fw-300">15</span> <span class="d-block text-1 fw-300 text-uppercase">APR</span> </div>
                   <div class="col col-sm-7"> <span class="d-block text-4">Envato Pty Ltd</span> <span class="text-muted">Payment Received</span> </div>
@@ -156,7 +148,7 @@ class Dashboard extends Component {
                   <div class="col-3 col-sm-2 text-end text-4"> <span class="text-nowrap">+ $562</span> <span class="text-2 text-uppercase">(USD)</span> </div>
                 </div>
               </div>
-              <div class="transaction-item px-4 py-3" data-bs-toggle="modal" data-bs-target="#transaction-detail">
+              <div class="transaction-item px-4 py-3" data-bs-toggle="modal" data-bs-target="/#transaction-detail">
                 <div class="row align-items-center flex-row">
                   <div class="col-2 col-sm-1 text-center"> <span class="d-block text-4 fw-300">04</span> <span class="d-block text-1 fw-300 text-uppercase">APR</span> </div>
                   <div class="col col-sm-7"> <span class="d-block text-4">HDFC Bank</span> <span class="text-muted">Withdraw to Bank account</span> </div>
@@ -164,7 +156,7 @@ class Dashboard extends Component {
                   <div class="col-3 col-sm-2 text-end text-4"> <span class="text-nowrap">- $106</span> <span class="text-2 text-uppercase">(USD)</span> </div>
                 </div>
               </div>
-              <div class="transaction-item px-4 py-3" data-bs-toggle="modal" data-bs-target="#transaction-detail">
+              <div class="transaction-item px-4 py-3" data-bs-toggle="modal" data-bs-target="/#transaction-detail">
                 <div class="row align-items-center flex-row">
                   <div class="col-2 col-sm-1 text-center"> <span class="d-block text-4 fw-300">28</span> <span class="d-block text-1 fw-300 text-uppercase">MAR</span> </div>
                   <div class="col col-sm-7"> <span class="d-block text-4">Patrick Cary</span> <span class="text-muted">Refund</span> </div>
@@ -172,7 +164,7 @@ class Dashboard extends Component {
                   <div class="col-3 col-sm-2 text-end text-4"> <span class="text-nowrap">+ $60</span> <span class="text-2 text-uppercase">(USD)</span> </div>
                 </div>
               </div>
-              <div class="transaction-item px-4 py-3" data-bs-toggle="modal" data-bs-target="#transaction-detail">
+              <div class="transaction-item px-4 py-3" data-bs-toggle="modal" data-bs-target="/#transaction-detail">
                 <div class="row align-items-center flex-row">
                   <div class="col-2 col-sm-1 text-center"> <span class="d-block text-4 fw-300">28</span> <span class="d-block text-1 fw-300 text-uppercase">MAR</span> </div>
                   <div class="col col-sm-7"> <span class="d-block text-4">Patrick Cary</span> <span class="text-muted">Payment Sent</span> </div>
@@ -180,7 +172,7 @@ class Dashboard extends Component {
                   <div class="col-3 col-sm-2 text-end text-4"> <span class="text-nowrap">- $60</span> <span class="text-2 text-uppercase">(USD)</span> </div>
                 </div>
               </div>
-              <div class="transaction-item px-4 py-3" data-bs-toggle="modal" data-bs-target="#transaction-detail">
+              <div class="transaction-item px-4 py-3" data-bs-toggle="modal" data-bs-target="/#transaction-detail">
                 <div class="row align-items-center flex-row">
                   <div class="col-2 col-sm-1 text-center"> <span class="d-block text-4 fw-300">16</span> <span class="d-block text-1 fw-300 text-uppercase">FEB</span> </div>
                   <div class="col col-sm-7"> <span class="d-block text-4">HDFC Bank</span> <span class="text-muted">Withdraw to Bank account</span> </div>
@@ -188,7 +180,7 @@ class Dashboard extends Component {
                   <div class="col-3 col-sm-2 text-end text-4"> <span class="text-nowrap">- $1498</span> <span class="text-2 text-uppercase">(USD)</span> </div>
                 </div>
               </div>
-              <div class="transaction-item px-4 py-3" data-bs-toggle="modal" data-bs-target="#transaction-detail">
+              <div class="transaction-item px-4 py-3" data-bs-toggle="modal" data-bs-target="/#transaction-detail">
                 <div class="row align-items-center flex-row">
                   <div class="col-2 col-sm-1 text-center"> <span class="d-block text-4 fw-300">15</span> <span class="d-block text-1 fw-300 text-uppercase">FEB</span> </div>
                   <div class="col col-sm-7"> <span class="d-block text-4">Envato Pty Ltd</span> <span class="text-muted">Payment Received</span> </div>
@@ -197,9 +189,6 @@ class Dashboard extends Component {
                 </div>
               </div>
             </div>
-            {/* <!-- Transaction List End -->  */}
-            {/* <!-- Transaction Item Details Modal
-            =========================================== --> */}
             <div id="transaction-detail" class="modal fade" role="dialog" aria-hidden="true">
               <div class="modal-dialog modal-dialog-centered transaction-details" role="document">
                 <div class="modal-content">
@@ -217,7 +206,7 @@ class Dashboard extends Component {
                         <h5 class="text-5 fw-400 m-3">Transaction Details
                           <button type="button" class="btn-close text-2 float-end" data-bs-dismiss="modal" aria-label="Close"></button>
                         </h5>
-                        <hr />
+                        {/* <hr> */}
                         <div class="px-3">
                           <ul class="list-unstyled">
                             <li class="mb-2">Payment Amount <span class="float-end text-3">$562.00</span></li>
@@ -249,73 +238,63 @@ class Dashboard extends Component {
                 </div>
               </div>
             </div>
-            {/* <!-- Transaction Item Details Modal End -->  */}
-            {/* <!-- View all Link
-            =============================== --> */}
-            <div class="text-center mt-4"><a href="#" class="btn-link text-3">View all<i class="fas fa-chevron-right text-2 ms-2"></i></a></div>
-            {/* <!-- View all Link End -->  */}
+            <ul class="pagination justify-content-center mt-4 mb-0">
+              <li class="page-item disabled"> <a class="page-link" href="/#" tabIndex="-1"><i class="fas fa-angle-left"></i></a> </li>
+              <li class="page-item"><a class="page-link" href="/#">1</a></li>
+              <li class="page-item active"><a class="page-link" href="/#">2</a></li>
+              <li class="page-item"><a class="page-link" href="/#">3</a></li>
+              <li class="page-item d-flex align-content-center flex-wrap text-muted text-5 mx-1">......</li>
+              <li class="page-item"><a class="page-link" href="/#">15</a></li>
+              <li class="page-item"> <a class="page-link" href="/#"><i class="fas fa-angle-right"></i></a> </li>
+            </ul>
           </div>
-          {/* <!-- Recent Activity End -->  */}
         </div>
-        {/* <!-- Middle Panel End -->  */}
       </div>
     </div>
   </div>
-  {/* <!-- Content end -->  */}
-  {/* <!-- Footer
-  ============================================= --> */}
   <footer id="footer">
     <div class="container">
       <div class="row">
         <div class="col-lg d-lg-flex align-items-center">
           <ul class="nav justify-content-center justify-content-lg-start text-3">
-            <li class="nav-item"> <a class="nav-link active" href="#">About Us</a></li>
-            <li class="nav-item"> <a class="nav-link" href="#">Support</a></li>
-            <li class="nav-item"> <a class="nav-link" href="#">Help</a></li>
-            
+            <li class="nav-item"> <a class="nav-link active" href="/#">About Us</a></li>
+            <li class="nav-item"> <a class="nav-link" href="/#">Support</a></li>
+            <li class="nav-item"> <a class="nav-link" href="/#">Help</a></li>
+            <li class="nav-item"> <a class="nav-link" href="/#">Careers</a></li>
+            <li class="nav-item"> <a class="nav-link" href="/#">Affiliate</a></li>
+            <li class="nav-item"> <a class="nav-link" href="/#">Fees</a></li>
           </ul>
         </div>
         <div class="col-lg d-lg-flex justify-content-lg-end mt-3 mt-lg-0">
           <ul class="social-icons justify-content-center">
-            <li class="social-icons-facebook"><a data-bs-toggle="tooltip" href="http://www.facebook.com/" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a></li>
-            <li class="social-icons-twitter"><a data-bs-toggle="tooltip" href="http://www.twitter.com/" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a></li>
-            <li class="social-icons-google"><a data-bs-toggle="tooltip" href="http://www.google.com/" target="_blank" title="Google"><i class="fab fa-google"></i></a></li>
-            <li class="social-icons-youtube"><a data-bs-toggle="tooltip" href="http://www.youtube.com/" target="_blank" title="Youtube"><i class="fab fa-youtube"></i></a></li>
+            <li class="social-icons-facebook"><a data-bs-toggle="tooltip" href="http://www.facebook.com/" title="Facebook"><i class="fab fa-facebook-f"></i></a></li>
+            <li class="social-icons-twitter"><a data-bs-toggle="tooltip" href="http://www.twitter.com/" title="Twitter"><i class="fab fa-twitter"></i></a></li>
+            <li class="social-icons-google"><a data-bs-toggle="tooltip" href="http://www.google.com/" title="Google"><i class="fab fa-google"></i></a></li>
+            <li class="social-icons-youtube"><a data-bs-toggle="tooltip" href="http://www.youtube.com/" title="Youtube"><i class="fab fa-youtube"></i></a></li>
           </ul>
         </div>
       </div>
       <div class="footer-copyright pt-3 pt-lg-2 mt-2">
         <div class="row">
           <div class="col-lg">
-            <p class="text-center text-lg-start mb-2 mb-lg-0">Copyright &copy; 2022 <a href="#">Payyed</a>. All Rights Reserved.</p>
+            <p class="text-center text-lg-start mb-2 mb-lg-0">Copyright &copy; 2022 <a href="/#">Payyed</a>. All Rights Reserved.</p>
           </div>
           <div class="col-lg d-lg-flex align-items-center justify-content-lg-end">
             <ul class="nav justify-content-center">
-              <li class="nav-item"> <a class="nav-link active" href="#">Security</a></li>
-              <li class="nav-item"> <a class="nav-link" href="#">Terms</a></li>
-              <li class="nav-item"> <a class="nav-link" href="#">Privacy</a></li>
+              <li class="nav-item"> <a class="nav-link active" href="/#">Security</a></li>
+              <li class="nav-item"> <a class="nav-link" href="/#">Terms</a></li>
+              <li class="nav-item"> <a class="nav-link" href="/#">Privacy</a></li>
             </ul>
           </div>
         </div>
       </div>
     </div>
   </footer>
-  {/* <!-- Footer end -->  */}
 </div>
-{/* <!-- Document Wrapper end -->  */}
-{/* <!-- Back to Top
-============================================= -->  */}
-<a id="back-to-top" data-bs-toggle="tooltip" title="Back to Top" href="javascript:void(0)"><i class="fa fa-chevron-up"></i></a> 
+</div>
 
-{/* <!-- Script -->  */}
-<script src="/assets/vendor/jquery/jquery.min.js"></script> 
-<script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script> 
-{/* <!-- Style Switcher -->  */}
-<script src="/assets/js/switcher.min.js"></script> 
-<script src="/assets/js/theme.js"></script>
-
-            </div>
         )
     }
 }
-export default Dashboard
+
+export default Transaction;
