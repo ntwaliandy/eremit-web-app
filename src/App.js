@@ -15,8 +15,10 @@ import Profile from './components/Profile';
 import Security from './components/Security';
 import PaymentMethod from './components/PaymentMethods';
 import Notifications from './components/Notifications';
+import Otp from './components/Otp';
 
 function App() {
+  
   return (
     <Routes>
       <Route path='/' element= {<Home />} />
@@ -32,6 +34,7 @@ function App() {
       <Route path='/security' element={<Security /> } />
       <Route path='/payment-methods' element={<PaymentMethod /> } />
       <Route path='/notifications' element={<Notifications /> } />
+      <Route path='/otp' element={<Otp /> } />
 
     </Routes>
   )
