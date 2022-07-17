@@ -27,7 +27,7 @@ class Login extends Component {
   
   submitData = e => {
     e.preventDefault()
-    const url = "http://127.0.0.1:8000/login_user"
+    const url = "http://18.116.9.199:9000/login_user"
     const bodyData = {
       "password": this.state.password,
       "email": this.state.email

@@ -29,14 +29,14 @@ class Register extends Component {
 
     submitData = e => {
       e.preventDefault()
-      const url = "http://127.0.0.1:8000//add_user"
+      const url = "http://18.116.9.199:9000/add_user"
       const bodyData = {
         "first_name": this.state.first_name,
         "last_name": this.state.last_name,
         "email": this.state.email,
-        "telephone_number": this.state.phone,
+        "phone_number": this.state.phone,
         "password": this.state.pass,
-        "profile_picture": this.state.prof
+        "profile_pic": this.state.prof
       }
       const headerData = {
         "Content-Type": "application/json"
@@ -51,7 +51,7 @@ class Register extends Component {
       fetch(url, requestOptions)
       .then(results => results.json())
       .then((response) => {
-        console.log(response.message)
+        console.log(response.status)
         this.setState({
           message: response.status
         })

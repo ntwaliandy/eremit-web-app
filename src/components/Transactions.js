@@ -1,13 +1,34 @@
-import React, { Component} from "react";
+import React, { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 
-class Transaction extends Component {
-    render() {
+const Transaction = () => {
+  const location = useLocation();
+  const [data, setData] = useState([]);
+      useEffect(() => {
+        const temp = localStorage.getItem("data")
+        const loadedData = JSON.parse(temp)
+        const token = "Bearer " + loadedData.token
+        const bodyData = {
+          "wallet_id": location.state.walletId
+        }
+        const requiredOptions = {
+          method: "POST",
+          headers: {
+            "Authorization": token,
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(bodyData)
+        }
+        fetch("http://18.116.9.199:9000/transaction_base_on_wallet", requiredOptions)
+        .then((response) => response.json())
+        .then(res => {
+          console.log(res);
+          setData(res);
+        });
+      }, [])
         return (
          <div>
            
-        {/* <div id="preloader">
-        <div data-loader="dual-ring"></div>
-        </div> */}
 
 <div id="main-wrapper"> 
   
@@ -25,7 +46,7 @@ class Transaction extends Component {
               <ul class="navbar-nav me-auto">
                 <li><a href="/dashboard">Dashboard</a></li>
                 <li class="active"><a href="/transactions">Transactions</a></li>
-                <li><a href="/send-money">Send/Request</a></li>
+                <li><a href="/send-money">Send</a></li>
                 <li><a href="/help">Help</a></li>
               </ul>
             </div>
@@ -35,7 +56,7 @@ class Transaction extends Component {
           <nav class="login-signup navbar navbar-expand">
           <div class="col-auto d-flex align-items-center ms-auto">
                     <div class="dropdown"> <a class="text-muted btn-link" href="#" role="button" id="statements" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img class="rounded-circle" src="assets/images/profile-thumb-sm.jpg" alt="" /></a>
-                      <div class="dropdown-menu dropdown-menu-end" aria-labelledby="statements"> <a class="dropdown-item" href="/my-profile">My Profile</a> <a class="dropdown-item" href="#">Logout</a> </div>
+                      <div class="dropdown-menu dropdown-menu-end" aria-labelledby="statements"> <a class="dropdown-item" href="/my-profile">My Profile</a> <a class="dropdown-item" href="/login"onClick={() =>{ localStorage.removeItem('data') } }>Logout</a> </div>
                     </div>
                   </div>
           </nav>
@@ -45,32 +66,7 @@ class Transaction extends Component {
   </header>
   <div id="content" class="py-4">
     <div class="container">
-      <div class="row"> 
-        <aside class="col-lg-3"> 
-          <div class="bg-white shadow-sm rounded text-center p-3 mb-4">
-            <div class="profile-thumb mt-3 mb-4"> <img class="rounded-circle" src="assets/images/profile-thumb.jpg" alt="" />
-              <div class="profile-thumb-edit bg-primary text-white" data-bs-toggle="tooltip" title="Change Profile Picture"> <i class="fas fa-camera position-absolute"></i>
-                <input type="file" class="custom-file-input" id="customFile" />
-              </div>
-            </div>
-            <p class="text-3 fw-500 mb-2">Hello, Smith Rhodes</p>
-            <p class="mb-2"><a href="assets/settings-profile.html" class="text-5 text-light" data-bs-toggle="tooltip" title="Edit Profile"><i class="fas fa-edit"></i></a></p>
-          </div>
-          <div class="bg-white shadow-sm rounded text-center p-3 mb-4">
-            <div class="text-17 text-light my-3"><i class="fas fa-wallet"></i></div>
-            <h3 class="text-9 fw-400">$2956.00</h3>
-            <p class="mb-2 text-muted opacity-8">Available Balance</p>
-            <hr class="mx-n3" />
-            <div class="d-flex"><a href="assets/withdraw-money.html" class="btn-link me-auto">Withdraw</a> <a href="assets/deposit-money.html" class="btn-link ms-auto">Deposit</a></div>
-          </div>
-          <div class="bg-white shadow-sm rounded text-center p-3 mb-4">
-            <div class="text-17 text-light my-3"><i class="fas fa-comments"></i></div>
-            <h3 class="text-5 fw-400 my-4">Need Help?</h3>
-            <p class="text-muted opacity-8 mb-4">Have questions or concerns regrading your account?<br />
-              Our experts are here to help!.</p>
-            <div class="d-grid"><a href="/#" class="btn btn-primary">Chate with Us</a></div>
-		  </div>
-        </aside>
+      <div class="row">
         <div class="col-lg-9">
           <h2 class="fw-400 mb-3">Transactions</h2>
           <div class="row">
@@ -132,121 +128,24 @@ class Transaction extends Component {
               </div>
             </div>
             <div class="transaction-list">
-              <div class="transaction-item px-4 py-3" data-bs-toggle="modal" data-bs-target="/#transaction-detail">
-                <div class="row align-items-center flex-row">
-                  <div class="col-2 col-sm-1 text-center"> <span class="d-block text-4 fw-300">16</span> <span class="d-block text-1 fw-300 text-uppercase">APR</span> </div>
-                  <div class="col col-sm-7"> <span class="d-block text-4">HDFC Bank</span> <span class="text-muted">Withdraw to Bank account</span> </div>
-                  <div class="col-auto col-sm-2 d-none d-sm-block text-center text-3"> <span class="text-warning" data-bs-toggle="tooltip" title="In Progress"><i class="fas fa-ellipsis-h"></i></span> </div>
-                  <div class="col-3 col-sm-2 text-end text-4"> <span class="text-nowrap">- $562</span> <span class="text-2 text-uppercase">(USD)</span> </div>
-                </div>
-              </div>
-              <div class="transaction-item px-4 py-3" data-bs-toggle="modal" data-bs-target="/#transaction-detail">
-                <div class="row align-items-center flex-row">
-                  <div class="col-2 col-sm-1 text-center"> <span class="d-block text-4 fw-300">15</span> <span class="d-block text-1 fw-300 text-uppercase">APR</span> </div>
-                  <div class="col col-sm-7"> <span class="d-block text-4">Envato Pty Ltd</span> <span class="text-muted">Payment Received</span> </div>
-                  <div class="col-auto col-sm-2 d-none d-sm-block text-center text-3"> <span class="text-success" data-bs-toggle="tooltip" title="Completed"><i class="fas fa-check-circle"></i></span> </div>
-                  <div class="col-3 col-sm-2 text-end text-4"> <span class="text-nowrap">+ $562</span> <span class="text-2 text-uppercase">(USD)</span> </div>
-                </div>
-              </div>
-              <div class="transaction-item px-4 py-3" data-bs-toggle="modal" data-bs-target="/#transaction-detail">
-                <div class="row align-items-center flex-row">
-                  <div class="col-2 col-sm-1 text-center"> <span class="d-block text-4 fw-300">04</span> <span class="d-block text-1 fw-300 text-uppercase">APR</span> </div>
-                  <div class="col col-sm-7"> <span class="d-block text-4">HDFC Bank</span> <span class="text-muted">Withdraw to Bank account</span> </div>
-                  <div class="col-auto col-sm-2 d-none d-sm-block text-center text-3"> <span class="text-success" data-bs-toggle="tooltip" title="Completed"><i class="fas fa-check-circle"></i></span> </div>
-                  <div class="col-3 col-sm-2 text-end text-4"> <span class="text-nowrap">- $106</span> <span class="text-2 text-uppercase">(USD)</span> </div>
-                </div>
-              </div>
-              <div class="transaction-item px-4 py-3" data-bs-toggle="modal" data-bs-target="/#transaction-detail">
-                <div class="row align-items-center flex-row">
-                  <div class="col-2 col-sm-1 text-center"> <span class="d-block text-4 fw-300">28</span> <span class="d-block text-1 fw-300 text-uppercase">MAR</span> </div>
-                  <div class="col col-sm-7"> <span class="d-block text-4">Patrick Cary</span> <span class="text-muted">Refund</span> </div>
-                  <div class="col-auto col-sm-2 d-none d-sm-block text-center text-3"> <span class="text-success" data-bs-toggle="tooltip" title="Completed"><i class="fas fa-check-circle"></i></span> </div>
-                  <div class="col-3 col-sm-2 text-end text-4"> <span class="text-nowrap">+ $60</span> <span class="text-2 text-uppercase">(USD)</span> </div>
-                </div>
-              </div>
-              <div class="transaction-item px-4 py-3" data-bs-toggle="modal" data-bs-target="/#transaction-detail">
-                <div class="row align-items-center flex-row">
-                  <div class="col-2 col-sm-1 text-center"> <span class="d-block text-4 fw-300">28</span> <span class="d-block text-1 fw-300 text-uppercase">MAR</span> </div>
-                  <div class="col col-sm-7"> <span class="d-block text-4">Patrick Cary</span> <span class="text-muted">Payment Sent</span> </div>
-                  <div class="col-auto col-sm-2 d-none d-sm-block text-center text-3"> <span class="text-danger" data-bs-toggle="tooltip" title="Cancelled"><i class="fas fa-times-circle"></i></span> </div>
-                  <div class="col-3 col-sm-2 text-end text-4"> <span class="text-nowrap">- $60</span> <span class="text-2 text-uppercase">(USD)</span> </div>
-                </div>
-              </div>
-              <div class="transaction-item px-4 py-3" data-bs-toggle="modal" data-bs-target="/#transaction-detail">
-                <div class="row align-items-center flex-row">
-                  <div class="col-2 col-sm-1 text-center"> <span class="d-block text-4 fw-300">16</span> <span class="d-block text-1 fw-300 text-uppercase">FEB</span> </div>
-                  <div class="col col-sm-7"> <span class="d-block text-4">HDFC Bank</span> <span class="text-muted">Withdraw to Bank account</span> </div>
-                  <div class="col-auto col-sm-2 d-none d-sm-block text-center text-3"> <span class="text-success" data-bs-toggle="tooltip" title="Completed"><i class="fas fa-check-circle"></i></span> </div>
-                  <div class="col-3 col-sm-2 text-end text-4"> <span class="text-nowrap">- $1498</span> <span class="text-2 text-uppercase">(USD)</span> </div>
-                </div>
-              </div>
-              <div class="transaction-item px-4 py-3" data-bs-toggle="modal" data-bs-target="/#transaction-detail">
-                <div class="row align-items-center flex-row">
-                  <div class="col-2 col-sm-1 text-center"> <span class="d-block text-4 fw-300">15</span> <span class="d-block text-1 fw-300 text-uppercase">FEB</span> </div>
-                  <div class="col col-sm-7"> <span class="d-block text-4">Envato Pty Ltd</span> <span class="text-muted">Payment Received</span> </div>
-                  <div class="col-auto col-sm-2 d-none d-sm-block text-center text-3"> <span class="text-success" data-bs-toggle="tooltip" title="Completed"><i class="fas fa-check-circle"></i></span> </div>
-                  <div class="col-3 col-sm-2 text-end text-4"> <span class="text-nowrap">+ $1498</span> <span class="text-2 text-uppercase">(USD)</span> </div>
-                </div>
-              </div>
-            </div>
-            <div id="transaction-detail" class="modal fade" role="dialog" aria-hidden="true">
-              <div class="modal-dialog modal-dialog-centered transaction-details" role="document">
-                <div class="modal-content">
-                  <div class="modal-body">
-                    <div class="row g-0">
-                      <div class="col-sm-5 d-flex justify-content-center bg-primary rounded-start py-4">
-                        <div class="my-auto text-center">
-                          <div class="text-17 text-white my-3"><i class="fas fa-building"></i></div>
-                          <h3 class="text-4 text-white fw-400 my-3">Envato Pty Ltd</h3>
-                          <div class="text-8 fw-500 text-white my-4">$557.20</div>
-                          <p class="text-white">15 March 2021</p>
-                        </div>
-                      </div>
-                      <div class="col-sm-7">
-                        <h5 class="text-5 fw-400 m-3">Transaction Details
-                          <button type="button" class="btn-close text-2 float-end" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </h5>
-                        {/* <hr> */}
-                        <div class="px-3">
-                          <ul class="list-unstyled">
-                            <li class="mb-2">Payment Amount <span class="float-end text-3">$562.00</span></li>
-                            <li class="mb-2">Fee <span class="float-end text-3">-$4.80</span></li>
-                          </ul>
-                          <hr class="mb-2" />
-                          <p class="d-flex align-items-center fw-500 mb-0">Total Amount <span class="text-3 ms-auto">$557.20</span></p>
-						  <hr class="mb-4 mt-2" />
-                          <ul class="list-unstyled">
-                            <li class="fw-500">Paid By:</li>
-                            <li class="text-muted">Envato Pty Ltd</li>
-                          </ul>
-                          <ul class="list-unstyled">
-                            <li class="fw-500">Transaction ID:</li>
-                            <li class="text-muted">26566689645685976589</li>
-                          </ul>
-                          <ul class="list-unstyled">
-                            <li class="fw-500">Description:</li>
-                            <li class="text-muted">Envato March 2021 Member Payment</li>
-                          </ul>
-                          <ul class="list-unstyled">
-                            <li class="fw-500">Status:</li>
-                            <li class="text-muted">Completed<span class="text-success text-3 ms-1"><i class="fas fa-check-circle"></i></span></li>
-                          </ul>
-                        </div>
-                      </div>
+              
+
+            {
+              data.map((tr) => (
+                <div class="transaction-item px-4 py-3" data-bs-toggle="modal" data-bs-target="/#transaction-detail">
+                    <div class="row align-items-center flex-row">
+                      <div class="col-2 col-sm-1 text-center"> <p>{tr.date_time}</p> </div>
+                      <div class="col col-sm-7"> <p>From WalletID: {tr.from_account}</p> <span class="text-muted">To WalletID: {tr.to_account}</span> </div>
+                      <div class="col-auto col-sm-2 d-none d-sm-block text-center text-3"> <span class="text-warning" data-bs-toggle="tooltip" title="In Progress">{tr.status}</span> </div>
+                      <div class="col-3 col-sm-2 text-end text-4"> <span class="text-nowrap"></span> <span class="text-2 text-uppercase">{tr.amount} (USD)</span> </div>
                     </div>
-                  </div>
-                </div>
               </div>
+              ))
+            }
+
+
+
             </div>
-            <ul class="pagination justify-content-center mt-4 mb-0">
-              <li class="page-item disabled"> <a class="page-link" href="/#" tabIndex="-1"><i class="fas fa-angle-left"></i></a> </li>
-              <li class="page-item"><a class="page-link" href="/#">1</a></li>
-              <li class="page-item active"><a class="page-link" href="/#">2</a></li>
-              <li class="page-item"><a class="page-link" href="/#">3</a></li>
-              <li class="page-item d-flex align-content-center flex-wrap text-muted text-5 mx-1">......</li>
-              <li class="page-item"><a class="page-link" href="/#">15</a></li>
-              <li class="page-item"> <a class="page-link" href="/#"><i class="fas fa-angle-right"></i></a> </li>
-            </ul>
           </div>
         </div>
       </div>
@@ -294,7 +193,6 @@ class Transaction extends Component {
 </div>
 
         )
-    }
 }
 
 export default Transaction;

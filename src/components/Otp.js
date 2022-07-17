@@ -35,7 +35,7 @@ class Otp extends Component {
     submitData = e => {
       e.preventDefault()
      
-      const url = "http://127.0.0.1:8000/verify_otp"
+      const url = "http://18.116.9.199:9000/verify_otp"
       const bodyData = {
         "otp": this.state.otp,
         "email": this.state.email
