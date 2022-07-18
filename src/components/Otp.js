@@ -8,85 +8,80 @@ import { Navigate } from "react-router-dom";
 class Otp extends Component {
   
 
+   
+  state = {
+    email: "",
+    otp: "",
+    message: "",
+    data: ""
+    // message: [],
+    // status: ""
     
-    state = {
-      
-      email: "",
-      otp: "",
-      message: "", 
-      data: ""
-      // message: [],
-      // status: ""
-      
-    }
-
+  }
   
-    changedData = e => {
-      
-      const name = e.target.name
-      const value = e.target.value
-      this.setState({
-        ...this.state
-        [name] = value
-      })
-
-    }
-
-    submitData = e => {
-      e.preventDefault()
+  changedData = e => {
+    const name = e.target.name
+    const value = e.target.value
+    this.setState({
+      ...this.state
+      [name] = value
+    })
+  
+  }
+  
+  submitData = e => {
+    e.preventDefault()
+    const url = "http://18.116.9.199:9000/verify_otp"
+    const bodyData = {
+      "email": this.state.email,
+      "otp": this.state.otp
      
-      const url = "http://18.116.9.199:9000/verify_otp"
-      const bodyData = {
-        "otp": this.state.otp,
-        "email": this.state.email
-       
-      }
-      const headerData = {
-        "Content-Type": "application/json"
-      }
-
-      const requestOptions = {
-        method: "POST",
-        headers: headerData,
-        body: JSON.stringify(bodyData)
-      }
-
-      fetch(url, requestOptions)
-      .then(results => results.json())
-      .then((response) => {
-        console.log(response)
-        data = {
-          "token": response.token,
-          "user_id": response.data[0].user_id
-        }
-        const dataData = JSON.stringify(data)
-        localStorage.setItem('data', dataData)
-        this.setState({
-         
-          message: response.status 
-        })
-       
-      })
-
-      if (this.state.message === 100) {
-        this.setState({
-          // data: useNavigate("/dashboard")
-          data: <Navigate to="/dashboard" replace={true} />
-        })
-        return this.state.data
-      } else if (this.state.message === 403) {
-        this.setState({
-          data: "invalid credentials"
-          
-        })
-        return this.state.data
-      } else {
-        this.setState({
-          data: ""
-        })
-      }
-
     }
+    const headerData = {
+      "Content-Type": "application/json"
+    }
+  
+    const requestOptions = {
+      method: "POST",
+      headers: headerData,
+      body: JSON.stringify(bodyData)
+    }
+  
+    fetch(url, requestOptions)
+    .then(results => results.json())
+    .then((response) => {
+      console.log(response)
+
+      data = {
+        "token": response.token,
+        "user_id": response.data[0].user_id
+      }
+      const dataData = JSON.stringify(data)
+      localStorage.setItem('data', dataData)
+      this.setState({
+       
+        message: response.status
+      })
+    })
+    if (this.state.message === 100) {
+      this.setState({
+        
+        // data: useNavigate("/dashboard")
+        data: <Navigate to="/dashboard" replace={true} />
+        
+      })
+      return this.state.data
+    } else if (this.state.message === 403) {
+      this.setState({
+        data: "invalid credentials"
+      })
+      return this.state.data
+    } else {
+      this.setState({
+        data: ""
+      })
+    }
+  }
 
     render() {
         return (

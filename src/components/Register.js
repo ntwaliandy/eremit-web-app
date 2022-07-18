@@ -59,12 +59,12 @@ class Register extends Component {
       if (this.state.message === 100) {
         this.setState({
           // data: useNavigate("/dashboard")
-          data: <Navigate to="/otp" replace={true} />
+          message: <Navigate to="/otp" replace={true} />
         })
         return this.state.data
       } else if (this.state.message === 403) {
         this.setState({
-          data: "invalid credentials"
+          message: "invalid credentials"
         })
         return this.state.data
       } else {
@@ -126,8 +126,8 @@ class Register extends Component {
                 </div>
 
                 <div className="mb-3">
-                  <label for="telephoneNumber" className="form-label">phone number</label>
-                  <input type="text" className="form-control" id="telephoneNumber" name="phone" value={this.state.phone} required placeholder="Enter Your phone number" onChange={this.changedData} />
+                  <label for="phoneNumber" className="form-label">phone_number</label>
+                  <input type="text" className="form-control" id="phoneNumber" name="phone" value={this.state.phone} required placeholder="Enter Your phone number" onChange={this.changedData} />
                 </div>
 
                 <div className="mb-3">
@@ -140,10 +140,10 @@ class Register extends Component {
                 </div>
 
                 <div className="mb-3">
-                  <label for="profilePicture" className="form-label">profile pic</label>
-                  <input type="text" className="form-control" id="profilePicture" name="prof" value={this.state.prof} required placeholder="Enter Your phone number" onChange={this.changedData} />
+                  <label for="profilePic" className="form-label">profile_pic</label>
+                  <input type="text" className="form-control" id="profilePic" name="prof" value={this.state.prof} required placeholder="Enter Your phone number" onChange={this.changedData} />
                 </div>
-                <p>{this.state.data}</p>
+                <p>{this.state.message}</p>
                 <div className="d-grid mt-4 mb-3"><button className="btn btn-primary" type="submit" onClick={this.submitData}> Sign Up</button></div>
               </form>
               <p className="text-3 text-center text-muted">Already have an account? <a className="btn-link" href="/login">Log In</a></p>
