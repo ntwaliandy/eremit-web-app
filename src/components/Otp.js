@@ -1,89 +1,50 @@
-import { data, timers } from "jquery";
-import React, { Component } from "react";
-import { Navigate } from "react-router-dom";
+
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 
+function Otp() {
+let navigate = useNavigate();  
+const [email, setEmail] = useState("");
+const [otp, setOtp] = useState("");
+const [message, setMessage] = useState(""); 
 
-
-class Otp extends Component {
-  
-
-   
-  state = {
-    email: "",
-    otp: "",
-    message: "",
-    data: ""
-    // message: [],
-    // status: ""
-    
-  }
-  
-  changedData = e => {
-    const name = e.target.name
-    const value = e.target.value
-    this.setState({
-      ...this.state
-      [name] = value
-    })
-  
-  }
-  
-  submitData = e => {
-    e.preventDefault()
-    const url = "http://18.116.9.199:9000/verify_otp"
-    const bodyData = {
-      "email": this.state.email,
-      "otp": this.state.otp
-     
-    }
-    const headerData = {
-      "Content-Type": "application/json"
-    }
-  
-    const requestOptions = {
+let handleSubmit = async (e) => {
+  e.preventDefault();
+  try {
+    await fetch("http://18.116.9.199:9000/verify_otp", {
       method: "POST",
-      headers: headerData,
-      body: JSON.stringify(bodyData)
-    }
-  
-    fetch(url, requestOptions)
-    .then(results => results.json())
+      body: JSON.stringify({
+        email: email,
+        otp: otp,
+      }),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    }).then(results => results.json())
     .then((response) => {
       console.log(response)
-
-      data = {
+      const  data = {
         "token": response.token,
         "user_id": response.data[0].user_id
-      }
-      const dataData = JSON.stringify(data)
-      localStorage.setItem('data', dataData)
-      this.setState({
-       
-        message: response.status
-      })
-    })
-    if (this.state.message === 100) {
-      this.setState({
-        
-        // data: useNavigate("/dashboard")
-        data: <Navigate to="/dashboard" replace={true} />
-        
-      })
-      return this.state.data
-    } else if (this.state.message === 403) {
-      this.setState({
-        data: "invalid credentials"
-      })
-      return this.state.data
+       }
+       const dataData = JSON.stringify(data)
+       localStorage.setItem('data', dataData)
+    
+    if (response.status === 100) {
+      navigate("/dashboard",{replace: true});
+      
     } else {
-      this.setState({
-        data: ""
-      })
+      setMessage(response.message)
+  
     }
+    })
+  } catch (err) {
+    console.log(err);
   }
-
-    render() {
+};
+ 
+   
         return (
             <div>
                 {/* <!-- Preloader --> */}
@@ -123,21 +84,21 @@ class Otp extends Component {
           <div className="row g-0">
             <div className="col-11 col-lg-9 col-xl-8 mx-auto">
               <h3 className="fw-400 mb-4">verify otp</h3>
-              <form id="loginForm" onSubmit={this.submitData}>
+              <form id="loginForm" onSubmit={handleSubmit}>
 
               <div className="mb-3">
                   <label for="emailAddress" className="form-label">Email Address</label>
-                  <input type="email" className="form-control" id="emailAddress" name="email" value={this.state.email} required placeholder="Enter Your Email" onChange={this.changedData} />
+                  <input type="email" className="form-control" id="emailAddress" name="email" value={email} required placeholder="Enter Your Email" onChange={(e) => setEmail(e.target.value)} />
                 </div>
 
                 <div className="mb-3">
                   <label for="Otp" className="form-label">otp verification</label>
-                  <input type="text" className="form-control" id="Otp" name="otp" value={this.state.otp} required placeholder="Enter Your OTP from here" onChange={this.changedData} />
+                  <input type="text" className="form-control" id="Otp" name="otp" value={otp} required placeholder="Enter Your OTP from here" onChange={(e) => setOtp(e.target.value)} />
                 </div>
-                
-                <p>{this.state.data}</p>
+
                
-                <div className="d-grid mt-4 mb-3"><button className="btn btn-primary" type="submit" onClick={this.submitData}> verify otp</button></div>
+                <div className="d-grid mt-4 mb-3"><button className="btn btn-primary" type="submit"> verify otp</button></div>
+                <div className="message">{message ? <p>{message}</p> : null}</div>
               </form>
             </div>
           </div>
@@ -158,7 +119,7 @@ class Otp extends Component {
 <script src="assets/js/switcher.min.js"></script> 
 <script src="assets/js/theme.js"></script>
             </div>
-        )
+        );
     }
-}
-export default Otp  
+
+export default Otp;  

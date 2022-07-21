@@ -1,81 +1,53 @@
-import { data, timers } from "jquery";
-import React, { Component } from "react";
-import { Navigate } from "react-router-dom";
 
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
-
-class Register extends Component {
-
-    state = {
-      first_name: "",
-      last_name: "",
-      email: "",
-      phone: "",
-      pass: "",
-      prof: "",
-      message: "",
-      data: ""
-    }
-
-    changedData = e => {
-      const name = e.target.name
-      const value = e.target.value
-      this.setState({
-        ...this.state
-        [name] = value
-      })
-
-    }
-
-    submitData = e => {
-      e.preventDefault()
-      const url = "http://18.116.9.199:9000/add_user"
-      const bodyData = {
-        "first_name": this.state.first_name,
-        "last_name": this.state.last_name,
-        "email": this.state.email,
-        "phone_number": this.state.phone,
-        "password": this.state.pass,
-        "profile_pic": this.state.prof
-      }
-      const headerData = {
-        "Content-Type": "application/json"
-      }
-
-      const requestOptions = {
-        method: "POST",
-        headers: headerData,
-        body: JSON.stringify(bodyData)
-      }
-
-      fetch(url, requestOptions)
-      .then(results => results.json())
-      .then((response) => {
-        console.log(response.status)
-        this.setState({
-          message: response.status
+function Register() {
+let navigate = useNavigate();
+const [first_name, setFirst_name] = useState("");
+const [last_name, setLast_name] = useState("");
+const [email, setEmail] = useState("");
+const [phone_number, setphone_number] = useState("");
+const [password, setPassword] = useState("");
+const [profile_pic, setprofile_pic] = useState("");
+const [message, setMessage] = useState("");
+    
+    let handleSubmit = async (e) => {
+      e.preventDefault();
+      try {
+        await fetch("http://18.116.9.199:9000/add_user", {
+          method: "POST",
+          body: JSON.stringify({
+            first_name: first_name,
+            last_name: last_name,
+            email: email,
+            phone_number: phone_number,
+            password: password,
+            profile_pic: profile_pic,
+          }),
+          headers: {
+            "Content-Type": "application/json"
+          },
+        }).then(results => results.json())
+        .then((response) => {
+          console.log(response)
+          if ( response.status === 100) {
+            navigate("/otp", { replace: true});
+  
+          } else {
+            setMessage(response.message)
+          }
         })
-      })
-      if (this.state.message === 100) {
-        this.setState({
-          // data: useNavigate("/dashboard")
-          message: <Navigate to="/otp" replace={true} />
-        })
-        return this.state.data
-      } else if (this.state.message === 403) {
-        this.setState({
-          message: "invalid credentials"
-        })
-        return this.state.data
-      } else {
-        this.setState({
-          data: ""
-        })
+        
+      } catch (err) {
+        console.log(err);
       }
-    }
+    };
 
-    render() {
-        return (
+    
+
+    
+return (
             <div>
                 {/* <!-- Preloader --> */}
 {/* <div id="preloader">
@@ -114,37 +86,38 @@ class Register extends Component {
           <div className="row g-0">
             <div className="col-11 col-lg-9 col-xl-8 mx-auto">
               <h3 className="fw-400 mb-4">Sign Up</h3>
-              <form id="loginForm" onSubmit={this.submitData}>
+              <form id="loginForm" onSubmit={handleSubmit}>
                 <div className="mb-3">
-                  <label for="firstName" className="form-label">firstName</label>
-                  <input type="text" className="form-control" id="firstName" name="first_name" value={this.state.first_name} required placeholder="Enter Your Name" onChange={this.changedData} />
+                  <label for="first_name" className="form-label">first_name</label>
+                  <input type="text" className="form-control" id="first_name" name="first_name" value={first_name} required placeholder="Enter Your Name" onChange={(e) => setFirst_name(e.target.value)} />
                 </div>
 
                 <div className="mb-3">
-                  <label for="lastName" className="form-label">last Name</label>
-                  <input type="text" className="form-control" id="lastName" name="last_name" value={this.state.last_name} required placeholder="Enter Your last Name" onChange={this.changedData} />
+                  <label for="last_name" className="form-label">last_name</label>
+                  <input type="text" className="form-control" id="last_name" name="last_name" value={last_name} required placeholder="Enter Your last Name" onChange={(e) => setLast_name(e.target.value)} />
                 </div>
 
                 <div className="mb-3">
-                  <label for="phoneNumber" className="form-label">phone_number</label>
-                  <input type="text" className="form-control" id="phoneNumber" name="phone" value={this.state.phone} required placeholder="Enter Your phone number" onChange={this.changedData} />
+                  <label for="phone_number" className="form-label">phone_number</label>
+                  <input type="text" className="form-control" id="phone_number" name="phone_number" value={phone_number} required placeholder="Enter Your phone number" onChange={(e) => setphone_number(e.target.value)} />
                 </div>
 
                 <div className="mb-3">
                   <label for="emailAddress" className="form-label">Email Address</label>
-                  <input type="email" className="form-control" id="emailAddress" name="email" value={this.state.email} required placeholder="Enter Your Email" onChange={this.changedData} />
+                  <input type="email" className="form-control" id="emailAddress" name="email" value={email} required placeholder="Enter Your Email" onChange={(e) => setEmail(e.target.value)} />
                 </div> 
                 <div className="mb-3">
                   <label for="loginPassword" className="form-label">Password</label>
-                  <input type="password" className="form-control" id="loginPassword" name="pass" value={this.state.pass} required placeholder="Enter Password" onChange={this.changedData} />
+                  <input type="password" className="form-control" id="loginPassword" name="password" value={password} required placeholder="Enter Password" onChange={(e) => setPassword(e.target.value)} />
                 </div>
 
                 <div className="mb-3">
-                  <label for="profilePic" className="form-label">profile_pic</label>
-                  <input type="text" className="form-control" id="profilePic" name="prof" value={this.state.prof} required placeholder="Enter Your phone number" onChange={this.changedData} />
+                  <label for="profile_pic" className="form-label">profile_pic</label>
+                  <input type="text" className="form-control" id="profile_pic" name="profile_pic" value={profile_pic} required placeholder="Enter Your phone number" onChange={(e) => setprofile_pic(e.target.value)} />
                 </div>
-                <p>{this.state.message}</p>
-                <div className="d-grid mt-4 mb-3"><button className="btn btn-primary" type="submit" onClick={this.submitData}> Sign Up</button></div>
+                {/* <p>{this.state.message}</p> */}
+                <div className="d-grid mt-4 mb-3"><button className="btn btn-primary" type="submit"> Sign Up</button></div>
+                <div className="message">{message ? <p>{message}</p> : null}</div>
               </form>
               <p className="text-3 text-center text-muted">Already have an account? <a className="btn-link" href="/login">Log In</a></p>
             </div>
@@ -155,19 +128,9 @@ class Register extends Component {
     </div>
   </div>
 </div>
-{/* <!-- Back to Top
-============================================= -->  */}
-<a id="back-to-top" data-bs-toggle="tooltip" title="Back to Top" href="/#"><i className="fa fa-chevron-up"></i></a> 
 
-{/* <!-- Script -->  */}
-<script src="assets/vendor/jquery/jquery.min.js"></script> 
-<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script> 
-{/* <!-- Style Switcher -->  */}
-<script src="assets/js/switcher.min.js"></script> 
-<script src="assets/js/theme.js"></script>
 
-            </div>
-        )
-    }
+      </div>
+  );    
 }
-export default Register  
+export default Register;  

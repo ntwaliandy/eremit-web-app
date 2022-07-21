@@ -1,86 +1,56 @@
-import { data, timers } from "jquery";
-import React, { Component,  } from "react";
-import { Navigate } from "react-router-dom";
+
+import React, { useState  } from "react";
+import { useNavigate } from "react-router-dom";
 
 
-class Login extends Component {
+function Login() {
 
-  state = {
-    email: "",
-    password: "",
-    message: "",
-    data: ""
-    // message: [],
-    // status: ""
-    
-  }
-  
-  changedData = e => {
-    const name = e.target.name
-    const value = e.target.value
-    this.setState({
-      ...this.state
-      [name] = value
-    })
-  
-  }
-  
-  submitData = e => {
-    e.preventDefault()
-    const url = "http://18.116.9.199:9000/login_user"
-    const bodyData = {
-      "password": this.state.password,
-      "email": this.state.email
-     
-    }
-    const headerData = {
-      "Content-Type": "application/json"
-    }
-  
-    const requestOptions = {
+let navigate = useNavigate ();
+const[email, setEmail] = useState();
+const[password, setPassword] = useState();
+const[message, setMessage] = useState();
+// const[data, setData] = useState();
+
+let handleSubmit = async (e) => {
+  e.preventDefault();
+  try {
+    await fetch("http://18.116.9.199:9000/login_user", {
       method: "POST",
-      headers: headerData,
-      body: JSON.stringify(bodyData)
-    }
-  
-    fetch(url, requestOptions)
-    .then(results => results.json())
+      body: JSON.stringify({
+        email: email,
+        password: password,
+      }),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    }).then(results => results.json())
     .then((response) => {
       console.log(response)
-
-      data = {
-        "token": response.token,
-        "user_id": response.data[0].user_id
-      }
-      const dataData = JSON.stringify(data)
-      localStorage.setItem('data', dataData)
-      this.setState({
-       
-        message: response.status
-      })
-    })
-    if (this.state.message === 100) {
-      this.setState({
-        
-        // data: useNavigate("/dashboard")
-        data: <Navigate to="/dashboard" replace={true} />
-        
-      })
-      return this.state.data
-    } else if (this.state.message === 403) {
-      this.setState({
-        data: "invalid credentials"
-      })
-      return this.state.data
+    const  data = {
+              "token": response.token,
+              "user_id": response.data[0].user_id
+             }
+             const dataData = JSON.stringify(data)
+             localStorage.setItem('data', dataData)
+    
+    if (response.status === 100) {
+      navigate("/dashboard",{replace: true});
+      
     } else {
-      this.setState({
-        data: ""
-      })
+      setMessage(response.message)
+  
     }
+    })
+  } catch (err) {
+    console.log(err);
   }
-    render () {
-        return (
-            <div>
+};
+
+
+  
+
+return (
+<div>
                 {/* <!-- Preloader --> */}
 {/* <div id="preloader">
   <div data-loader="dual-ring"></div>
@@ -118,14 +88,14 @@ class Login extends Component {
           <div className="row g-0">
             <div className="col-11 col-lg-9 col-xl-8 mx-auto">
               <h3 className="fw-400 mb-4">Log In</h3>
-              <form id="loginForm" onSubmit={this.submitData}>
+              <form id="loginForm" onSubmit={handleSubmit}>
               <div className="mb-3">
                   <label for="emailAddress" className="form-label">Email Address</label>
-                  <input type="email" className="form-control" id="emailAddress" name="email" required placeholder="Enter Your Email" value={this.state.email} onChange={this.changedData} />
+                  <input type="email" className="form-control" id="emailAddress" name="email" required placeholder="Enter Your Email" value={email} onChange={(e) => setEmail(e.target.value)} />
                 </div>
                 <div className="mb-3">
                   <label for="loginPassword" className="form-label">Password</label>
-                  <input type="password" className="form-control" id="loginPassword" name="password" required placeholder="Enter Password" value={this.state.password} onChange={this.changedData} />
+                  <input type="password" className="form-control" id="loginPassword" name="password" required placeholder="Enter Password" value={password} onChange={(e) => setPassword(e.target.value)} />
                 </div>
                 <div className="row mb-3">
                   <div className="col-sm">
@@ -136,10 +106,11 @@ class Login extends Component {
                   </div>
                   <div className="col-sm text-end"><a className="btn-link" href="/#">Forgot Password ?</a></div>
                 </div> 
-                <p>{this.state.data}</p>
-                <div className="d-grid mb-3"><button className="btn btn-primary" type="submit" href="/" onClick={this.submitData}> Login</button>  </div>
+                
+                <div className="d-grid mb-3"><button className="btn btn-primary" type="submit"> Login</button>  </div>
+                <div className="message">{message ? <p>{message}</p> : null}</div>
               </form>
-              <p className="text-3 text-center text-muted">Don't have an account? <a className="btn-link" href="/dashboard">Sign Up</a></p>
+              <p className="text-3 text-center text-muted">Don't have an account? <a className="btn-link" href="/register">Sign Up</a></p>
             </div>
           </div>
         </div>
@@ -160,7 +131,7 @@ class Login extends Component {
 <script src="assets/js/theme.js"></script>
 
             </div>
-        )
+        );
     }
-}
-export default Login
+
+export default Login;
