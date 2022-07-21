@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const SendMoney = () =>  {
   const [userCurrencies, setUserCurrincies] = useState([]);
@@ -65,6 +67,10 @@ const SendMoney = () =>  {
           "phone": receiverNumber,
           "currency": currency_code
         }});
+      } else if (response.status === 403) {
+        toast(response.message)
+      } else {
+        toast("Invalid data types")
       }
     })
 
@@ -108,6 +114,7 @@ const SendMoney = () =>  {
       </div>
     </div>
   </header>
+  <ToastContainer />
   <div id="content" class="py-4">
     <div class="container">
     <div class="row mt-4 mb-5">

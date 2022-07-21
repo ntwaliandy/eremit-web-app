@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const ConfirmMoney = () =>  {
@@ -39,6 +41,10 @@ const ConfirmMoney = () =>  {
             "amount": location.state.amount,
             "currency": location.state.currency
           }})
+        } else if (response.status === 403) {
+          toast(response.message)
+        } else {
+          toast("invalid data types")
         }
     })
     }
@@ -78,6 +84,7 @@ const ConfirmMoney = () =>  {
       </div>
     </div>
   </header>
+  <ToastContainer />
   <div id="content" class="py-4">
     <div class="container"> 
       

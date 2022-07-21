@@ -14,6 +14,7 @@ import Help from './components/Help';
 import Profile from './components/Profile';
 import ConfirmMoney from './components/confirmMoney';
 import Success from './components/success';
+import Otp from './components/otp';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
       <Route path='/success' element={<Success />} />
       <Route path='/help' element={<Help /> } />
       <Route path='/my-profile' element={<Profile /> } />
+      <Route path='/otp' element={<Otp />} />
 
     </Routes>
   )
