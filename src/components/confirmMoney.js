@@ -1,80 +1,50 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 
-const SendMoney = () =>  {
-  const [userCurrencies, setUserCurrincies] = useState([]);
-  const [currency_code, setCurrencyCode] = useState("")
-  const [receiverNumber, setReceiverNumber] = useState("")
-  const [amount, setAmount] = useState("")
-  let navigate = useNavigate()
-  
 
-  useEffect(() => {
+const ConfirmMoney = () =>  {
+    const location = useLocation()
+    const navigate = useNavigate()
+    useEffect(() => {
+        console.log(location)
+    }, [])
+
+    const handleSubmit = e => {
+        e.preventDefault()
     const temp = localStorage.getItem("data")
     const loadedData = JSON.parse(temp)
-    const token = "Bearer " + loadedData.token
+    const token = loadedData.token
 
     const bodyData = {
-      "user_id": loadedData.user_id
+        "from_account": location.state.senderWalletId,
+        "to_account": location.state.receiverWalletId,
+        "trans_type": "P2P",
+        "amount": parseFloat(location.state.amount)
     }
-    const requiredDataOptions = {
-      method: "POST",
-      headers: {
-        "Authorization": token,
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(bodyData)
+    const requestedOptions = {
+        method: "POST",
+        headers: {
+            "Authorization": token,
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(bodyData)
     }
-    fetch("http://18.116.9.199:9000/user_wallet_details", requiredDataOptions)
-    .then(results => results.json())
+    fetch("http://18.116.9.199:9000/send", requestedOptions)
+    .then(result => result.json())
     .then((response) => {
-      console.log(response)
-      setUserCurrincies(response)
+        console.log(response);
+        if (response.status === 100) {
+          navigate("/success", { state: {
+            "phone": location.state.phone,
+            "amount": location.state.amount,
+            "currency": location.state.currency
+          }})
+        }
     })
-  }, [])
-
-  const handleOnSubmit = e => {
-    e.preventDefault()
-    const temp = localStorage.getItem("data")
-    const loadedData = JSON.parse(temp)
-    const senderId = loadedData.user_id
-    const bodData = {
-      "sender_id": senderId,
-      "currency_code": currency_code,
-      "receiver_phonenumber": receiverNumber,
-      "amount": parseFloat(amount)
     }
-
-    const requiredOptions = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(bodData)
-    }
-
-    fetch("http://18.116.9.199:9000/verify_currency", requiredOptions)
-    .then(results => results.json())
-    .then((response) => {
-      console.log(response)
-      if (response.status === 100) {
-        navigate("/confirm-money", { state: {
-          "senderWalletId": response.message.sender_walletId,
-          "receiverWalletId": response.message.receiver_walletId,
-          "amount": amount,
-          "phone": receiverNumber,
-          "currency": currency_code
-        }});
-      }
-    })
-
-  }
 
     return (
             <div>
-{/* <div id="preloader">
-  <div data-loader="dual-ring"></div>
-</div> */}
 <div id="main-wrapper"> 
   
 <header id="header">
@@ -109,17 +79,18 @@ const SendMoney = () =>  {
     </div>
   </header>
   <div id="content" class="py-4">
-    <div class="container">
-    <div class="row mt-4 mb-5">
+    <div class="container"> 
+      
+      <div class="row mt-4 mb-5">
         <div class="col-lg-11 mx-auto">
           <div class="row widget-steps">
-            <div class="col-4 step active">
+            <div class="col-4 step complete">
               <div class="step-name">Details</div>
               <div class="progress">
                 <div class="progress-bar"></div>
               </div>
-              <a href="#" class="step-dot"></a> </div>
-            <div class="col-4 step disabled">
+              <a href="send-money.html" class="step-dot"></a> </div>
+            <div class="col-4 step active">
               <div class="step-name">Confirm</div>
               <div class="progress">
                 <div class="progress-bar"></div>
@@ -134,47 +105,30 @@ const SendMoney = () =>  {
           </div>
         </div>
       </div>
-      <h2 class="fw-400 text-center mt-3">Send Money</h2>
-      <p class="lead text-center mb-4">Send your money on anytime, anywhere in the world.</p>
+      <h2 class="fw-400 text-center mt-3">Confirm Details</h2>
+      <p class="lead text-center mb-4">You are sending money to <span class="fw-500">{location.state.phone}</span></p>
       <div class="row">
         <div class="col-md-9 col-lg-7 col-xl-6 mx-auto">
           <div class="bg-white shadow-sm rounded p-3 pt-sm-4 pb-sm-5 px-sm-5 mb-4">
-            <h3 class="text-5 fw-400 mb-3 mb-sm-4">Personal Details</h3>
+            <h3 class="text-5 fw-400 mb-3 mb-sm-4">Payment Description</h3>
             <hr class="mx-n3 mx-sm-n5 mb-4" />
-            <form id="form-send-money" onSubmit={handleOnSubmit}>
-              <div class="mb-3">
-                <label for="emailID" class="form-label">Recipient phonenumber</label>
-                <input type="text" value={receiverNumber} name="receiverNumber" class="form-control" data-bv-field="emailid" id="emailID" onChange={e => setReceiverNumber(e.target.value)} required placeholder="Enter receiver's phone number" />
+            <form id="form-send-money" onSubmit={handleSubmit}>
+              <div class="mb-4 mb-sm-5">
+                <label for="description" class="form-label">Description</label>
+                <textarea class="form-control" rows="4" id="description" required placeholder="Payment Description"></textarea>
               </div>
-              <div class="mb-3">
-                <label for="youSend" class="form-label">You Send</label>
-                <div class="input-group">
-                  <span class="input-group-text"></span>
-                  <input type="text" class="form-control" data-bv-field="youSend" id="youSend" name="amount"  onChange={e => setAmount(e.target.value)} value={amount} placeholder="Enter amount" />
-                  <span class="input-group-text p-0">
-                    <select id="youSendCurrency" data-style="form-select bg-transparent border-0" data-container="body" name="currency_code" onChange={e => setCurrencyCode(e.target.value)} data-live-search="true" class="selectpicker form-control bg-transparent" required="">
-                    <option data-icon="currency-flag currency-flag-usd me-1" data-subtext="United States dollar" value="">currency</option>
-                      { 
-                        userCurrencies.map((cr) => (
-                          <option data-icon="currency-flag currency-flag-usd me-1" data-subtext="United States dollar"  value={cr.currency_code}>{cr.currency_code}</option>
-                        )) 
-                      }
-                      
-                      
-                    </select>
-                    </span>
-                </div>
-              </div>
-              <p class="text-muted text-center">Receiver gets <span class="fw-500">{amount} {currency_code}</span></p>
+              <hr class="mx-n3 mx-sm-n5 mb-3 mb-sm-4" />
+              <h3 class="text-5 fw-400 mb-3 mb-sm-4">Confirm Details</h3>
+              <hr class="mx-n3 mx-sm-n5 mb-4" />
+              <p class="mb-1">Send Amount <span class="text-3 float-end">{location.state.amount} {location.state.currency}</span></p>
+              <p class="mb-1">Total fees <span class="text-3 float-end">0 {location.state.currency}</span></p>
               <hr />
-              <p>Total Fees<span class="float-end">0 {currency_code}</span></p>
-              <hr />
-              <p class="text-4 fw-500">Total To Pay<span class="float-end">{amount} {currency_code}</span></p>
-              <div class="d-grid"><button class="btn btn-primary">Continue</button></div>
+              <p class="text-4 fw-500">Total<span class="float-end">{location.state.amount} {location.state.currency}</span></p>
+              <div class="d-grid"><button class="btn btn-primary">Send Money</button></div>
             </form>
+          </div>
         </div>
       </div>
-    </div>
   </div>
   <footer id="footer">
     <div class="container">
@@ -223,4 +177,4 @@ const SendMoney = () =>  {
         )
 }
 
-export default SendMoney
+export default ConfirmMoney
