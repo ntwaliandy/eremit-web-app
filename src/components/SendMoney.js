@@ -2,12 +2,14 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Spinner } from "react-bootstrap";
 
 const SendMoney = () =>  {
   const [userCurrencies, setUserCurrincies] = useState([]);
   const [currency_code, setCurrencyCode] = useState("")
   const [receiverNumber, setReceiverNumber] = useState("")
   const [amount, setAmount] = useState("")
+  const [isLoading, SetLoading] = useState(false)
   let navigate = useNavigate()
   
 
@@ -36,6 +38,7 @@ const SendMoney = () =>  {
   }, [])
 
   const handleOnSubmit = e => {
+    SetLoading(true)
     e.preventDefault()
     const temp = localStorage.getItem("data")
     const loadedData = JSON.parse(temp)
@@ -60,6 +63,7 @@ const SendMoney = () =>  {
     .then((response) => {
       console.log(response)
       if (response.status === 100) {
+        SetLoading(false)
         navigate("/confirm-money", { state: {
           "senderWalletId": response.message.sender_walletId,
           "receiverWalletId": response.message.receiver_walletId,
@@ -67,10 +71,14 @@ const SendMoney = () =>  {
           "phone": receiverNumber,
           "currency": currency_code
         }});
+        
       } else if (response.status === 403) {
+        SetLoading(false)
         toast(response.message)
       } else {
+        SetLoading(false)
         toast("Invalid data types")
+
       }
     })
 
@@ -177,7 +185,11 @@ const SendMoney = () =>  {
               <p>Total Fees<span class="float-end">0 {currency_code}</span></p>
               <hr />
               <p class="text-4 fw-500">Total To Pay<span class="float-end">{amount} {currency_code}</span></p>
-              <div class="d-grid"><button class="btn btn-primary">Continue</button></div>
+              <div class="d-grid"> 
+                { 
+                  isLoading ? <button class="btn btn-primary"><Spinner animation="border" variant="warning" /></button> : <button class="btn btn-primary">Continue</button>
+                }
+              </div>
             </form>
         </div>
       </div>

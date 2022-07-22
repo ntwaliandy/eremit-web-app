@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { Spinner } from "react-bootstrap";
 
 class Profile extends Component {
 
@@ -15,6 +18,7 @@ class Profile extends Component {
     confirm_password: "",
     allCuurencies: [],
     currency_code: "",
+    isLoading: false
   }
 
   
@@ -77,6 +81,7 @@ class Profile extends Component {
   }
 
   UpdateUserhandleSubmit = e => {
+    this.setState({isLoading: true})
     const temp = localStorage.getItem("data")
     const loadedData = JSON.parse(temp)
     const token = "Bearer " + loadedData.token
@@ -100,12 +105,14 @@ class Profile extends Component {
     .then((response) => response.json())
     .then(personDetail => {
       console.log(personDetail)
-      this.setState({ updateMessage: personDetail.message });
+      this.setState({ isLoading: false })
+      toast(personDetail.message)
     });
 
   }
 
   UpdatePasshandleSubmit = e => {
+    this.setState({ isLoading: true })
     const temp = localStorage.getItem("data")
     const loadedData = JSON.parse(temp)
     const token = "Bearer " + loadedData.token
@@ -128,7 +135,8 @@ class Profile extends Component {
     .then((response) => response.json())
     .then(personDetail => {
       console.log(personDetail)
-      this.setState({ updateMessage: personDetail.message });
+      this.setState({ isLoading: false })
+      toast(personDetail.message)
     });
 
   }
@@ -139,6 +147,7 @@ class Profile extends Component {
   }
 
 curencySubmit = e => {
+  this.setState({ isLoading: true })
   e.preventDefault()
   const temp = localStorage.getItem("data")
   const loadedData = JSON.parse(temp)
@@ -161,7 +170,8 @@ curencySubmit = e => {
     .then((response) => response.json())
     .then(personDetail => {
       console.log(personDetail)
-        this.setState({ updateMessage: personDetail.message });
+      this.setState({ isLoading: false })
+      toast(personDetail.message)
       
     });
 
@@ -206,6 +216,7 @@ curencySubmit = e => {
       </div>
     </div>
   </header>
+  <ToastContainer />
   <div class="bg-primary">
     <div class="container d-flex justify-content-center">
       <ul class="nav nav-pills alternate nav-lg border-bottom-0">
@@ -280,10 +291,14 @@ curencySubmit = e => {
                         <input type="text" value={this.state.email} class="form-control" name="email" data-bv-field="lastName" id="lastName" required placeholder="Email" onChange={this.UpdateUserhandleChange} />
                       </div>
 					          </div>
-                    <center><p>{this.state.updateMessage}</p></center>
 					  
                       <div class="row g-3">
-                        <div class="col-12 mt-4 d-grid"><input type="submit" class="btn btn-primary" value="submit" /></div>
+                        <div class="col-12 mt-4 d-grid">
+                          { 
+                            this.state.isLoading ? <button class="btn btn-primary"><Spinner animation="border" variant="warning" /></button> : <button class="btn btn-primary">Submit</button>
+                          }
+                          
+                        </div>
                     </div>
                     
                   </form>
@@ -323,8 +338,11 @@ curencySubmit = e => {
                       <label for="confirmPassword" class="form-label">Confirm New Password</label>
                       <input type="text" class="form-control" value={this.state.confirm_password} name="confirm_password" data-bv-field="confirmgpassword" id="confirmPassword" required="" placeholder="Enter Confirm New Password" onChange={this.UpdateUserhandleChange} />
                     </div>
-                    <p>{this.state.updateMessage}</p>
-                    <div class="d-grid mt-4"><button class="btn btn-primary" type="submit">Update Password</button></div>
+                    <div class="d-grid mt-4">
+                      { 
+                        this.state.isLoading ? <button class="btn btn-primary"><Spinner animation="border" variant="warning" /></button> : <button class="btn btn-primary">Update Password</button>
+                      }
+                    </div>
                   </form>
                 </div>
               </div>
@@ -360,8 +378,11 @@ curencySubmit = e => {
                     
                     </select>
                     </div>
-                    {this.state.updateMessage}
-                    <div class="d-grid mt-4"><button class="btn btn-primary" type="submit">Create</button></div>
+                    <div class="d-grid mt-4">
+                      { 
+                        this.state.isLoading ? <button class="btn btn-primary"><Spinner animation="border" variant="warning" /></button> : <button class="btn btn-primary">Create</button>
+                      }
+                    </div>
                   </form>
                 </div>
               </div>
