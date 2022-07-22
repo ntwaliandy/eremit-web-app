@@ -131,7 +131,7 @@ const Transaction = () => {
               
 
             {
-              data.map((tr) => (
+              data && data.map((tr) => (
                 <div class="transaction-item px-4 py-3" data-bs-toggle="modal" data-bs-target="/#transaction-detail">
                     <div class="row align-items-center flex-row">
                       <div class="col-2 col-sm-1 text-center"> <p>{tr.date_time}</p> </div>
@@ -140,7 +140,7 @@ const Transaction = () => {
                       <div class="col-3 col-sm-2 text-end text-4"> <span class="text-nowrap"></span> <span class="text-2 text-uppercase">{tr.amount} (USD)</span> </div>
                     </div>
               </div>
-              ))
+              )) 
             }
 
 
