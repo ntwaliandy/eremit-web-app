@@ -295,7 +295,7 @@ curencySubmit = e => {
                       <div class="row g-3">
                         <div class="col-12 mt-4 d-grid">
                           { 
-                            this.state.isLoading ? <button class="btn btn-primary"><Spinner animation="border" variant="warning" /></button> : <button class="btn btn-primary">Submit</button>
+                            this.state.isLoading ? <button class="btn btn-primary"><Spinner animation="border" variant="light" /></button> : <button class="btn btn-primary">Submit</button>
                           }
                           
                         </div>
@@ -340,7 +340,7 @@ curencySubmit = e => {
                     </div>
                     <div class="d-grid mt-4">
                       { 
-                        this.state.isLoading ? <button class="btn btn-primary"><Spinner animation="border" variant="warning" /></button> : <button class="btn btn-primary">Update Password</button>
+                        this.state.isLoading ? <button class="btn btn-primary"><Spinner animation="border" variant="light" /></button> : <button class="btn btn-primary">Update Password</button>
                       }
                     </div>
                   </form>
@@ -380,7 +380,7 @@ curencySubmit = e => {
                     </div>
                     <div class="d-grid mt-4">
                       { 
-                        this.state.isLoading ? <button class="btn btn-primary"><Spinner animation="border" variant="warning" /></button> : <button class="btn btn-primary">Create</button>
+                        this.state.isLoading ? <button class="btn btn-primary"><Spinner animation="border" variant="light" /></button> : <button class="btn btn-primary">Create</button>
                       }
                     </div>
                   </form>

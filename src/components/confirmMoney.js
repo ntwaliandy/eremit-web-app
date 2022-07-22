@@ -139,7 +139,7 @@ const ConfirmMoney = () =>  {
               <p class="text-4 fw-500">Total<span class="float-end">{location.state.amount} {location.state.currency}</span></p>
               <div class="d-grid">
                 { 
-                  isLoading ? <button class="btn btn-primary"><Spinner animation="border" variant="warning" /></button> : <button class="btn btn-primary">Send</button>
+                  isLoading ? <button class="btn btn-primary"><Spinner animation="border" variant="light" /></button> : <button class="btn btn-primary">Send</button>
                 }
               </div>
             </form>

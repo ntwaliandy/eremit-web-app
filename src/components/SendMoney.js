@@ -187,7 +187,7 @@ const SendMoney = () =>  {
               <p class="text-4 fw-500">Total To Pay<span class="float-end">{amount} {currency_code}</span></p>
               <div class="d-grid"> 
                 { 
-                  isLoading ? <button class="btn btn-primary"><Spinner animation="border" variant="warning" /></button> : <button class="btn btn-primary">Continue</button>
+                  isLoading ? <button class="btn btn-primary"><Spinner animation="border" variant="light" /></button> : <button class="btn btn-primary">Continue</button>
                 }
               </div>
             </form>
