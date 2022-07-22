@@ -67,7 +67,7 @@ const Transaction = () => {
   <div id="content" class="py-4">
     <div class="container">
       <div class="row">
-        <div class="col-lg-9">
+        <div class="col-lg-16">
           <h2 class="fw-400 mb-3">Transactions</h2>
           <div class="row">
             <div class="col mb-2">
@@ -122,7 +122,7 @@ const Transaction = () => {
             <div class="transaction-title py-2 px-4">
               <div class="row">
                 <div class="col-2 col-sm-1 text-center"><span class="">Date</span></div>
-                <div class="col col-sm-7">Description</div>
+                <div class="col col-sm-7 text-center">Description</div>
                 <div class="col-auto col-sm-2 d-none d-sm-block text-center">Status</div>
                 <div class="col-3 col-sm-2 text-end">Amount</div>
               </div>

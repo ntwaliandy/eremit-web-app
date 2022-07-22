@@ -9,7 +9,6 @@ function Otp() {
 let navigate = useNavigate();  
 const [email, setEmail] = useState("");
 const [otp, setOtp] = useState("");
-const [message, setMessage] = useState("");
 const [isLoading, SetLoading] = useState(false);
 
 let handleSubmit = async (e) => {
@@ -38,7 +37,7 @@ let handleSubmit = async (e) => {
       SetLoading(false)
       navigate("/dashboard",{replace: true});
       
-    } else if (response.status == 403){
+    } else if (response.status === 403){
       SetLoading(false)
       toast(response.message)
   
