@@ -3,6 +3,8 @@ import { useState } from "react";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Spinner } from "react-bootstrap";
+import PhoneInput from 'react-phone-input-2'
+import 'react-phone-number-input/style.css';
 
 function Register() {
 let navigate = useNavigate();
@@ -12,7 +14,6 @@ const [email, setEmail] = useState("");
 const [phone_number, setphone_number] = useState("");
 const [password, setPassword] = useState("");
 const [profile_pic, setprofile_pic] = useState("");
-const [message, setMessage] = useState("");
 const [isLoading, SetLoading] = useState(false);
     
     let handleSubmit = async (e) => {
@@ -109,9 +110,14 @@ return (
                 </div>
 
                 <div className="mb-3">
-                  <label for="phone_number" className="form-label">phone_number</label>
-                  <input type="text" className="form-control" id="phone_number" name="phone_number" value={phone_number} required placeholder="Enter Your phone number" onChange={(e) => setphone_number(e.target.value)} />
-                </div>
+                  <PhoneInput
+                    specialLabel="receiver phonenumber"
+                    placeholder="Enter receiver's phone number"
+                    class="form-control"
+                    defaultCountry="UG"
+                    value={phone_number}
+                    onChange={setphone_number} />
+              </div>
 
                 <div className="mb-3">
                   <label for="emailAddress" className="form-label">Email Address</label>

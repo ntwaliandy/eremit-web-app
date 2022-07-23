@@ -7,6 +7,7 @@ import { Spinner } from "react-bootstrap";
 
 const ConfirmMoney = () =>  {
   const [isLoading, SetLoading] = useState(false)
+  const [reason, setReason] = useState("")
     const location = useLocation()
     const navigate = useNavigate()
     useEffect(() => {
@@ -24,6 +25,7 @@ const ConfirmMoney = () =>  {
         "from_account": location.state.senderWalletId,
         "to_account": location.state.receiverWalletId,
         "trans_type": "P2P",
+        "reason": reason,
         "amount": parseFloat(location.state.amount)
     }
     const requestedOptions = {
@@ -128,7 +130,7 @@ const ConfirmMoney = () =>  {
             <form id="form-send-money" onSubmit={handleSubmit}>
               <div class="mb-4 mb-sm-5">
                 <label for="description" class="form-label">Description</label>
-                <textarea class="form-control" rows="4" id="description" required placeholder="Payment Description"></textarea>
+                <input type="text" value={reason} class="form-control" onChange={e => setReason(e.target.value)} rows="4" id="description" required placeholder="Payment Reason" />
               </div>
               <hr class="mx-n3 mx-sm-n5 mb-3 mb-sm-4" />
               <h3 class="text-5 fw-400 mb-3 mb-sm-4">Confirm Details</h3>
