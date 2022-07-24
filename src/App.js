@@ -13,6 +13,9 @@ import SendMoney from './components/SendMoney';
 import Help from './components/Help';
 import Profile from './components/Profile';
 import Otp from './components/Otp';
+import ForgotPassword from './components/ForgotPassword';
+import PasswordCode from './components/PasswordCode.js';
+import SettingPasswrod from './components/SettingPassword'
 
 function App() {
   return (
@@ -28,6 +31,10 @@ function App() {
       <Route path='/send-money' element={<SendMoney /> } />
       <Route path='/help' element={<Help /> } />
       <Route path='/my-profile' element={<Profile /> } />
+      <Route path='/forgot_password' element={<ForgotPassword /> } />
+      <Route path='/password_otp' element={<PasswordCode /> } />
+      <Route path='/setting_password' element={<SettingPasswrod /> } />
+
 
     </Routes>
   )

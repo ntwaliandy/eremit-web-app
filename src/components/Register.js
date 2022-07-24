@@ -14,8 +14,9 @@ const [message, setMessage] = useState("");
     
     let handleSubmit = async (e) => {
       e.preventDefault();
+      e.stopPropagation()
       try {
-        await fetch("http://18.116.9.199:9000/add_user", {
+        await fetch("http://127.0.0.1:9000/add_user", {
           method: "POST",
           body: JSON.stringify({
             first_name: first_name,
@@ -128,7 +129,13 @@ return (
     </div>
   </div>
 </div>
-
+<script src="path/to/intlTelInput.js"></script>
+<script>
+  var input = document.querySelector("#phone_number");
+  window.intlTelInput(input, {
+    // any initialisation options go here
+  });
+</script>
 
       </div>
   );    

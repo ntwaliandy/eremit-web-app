@@ -3,6 +3,7 @@ import React, { useState  } from "react";
 import { useNavigate } from "react-router-dom";
 
 
+
 function Login() {
 
 let navigate = useNavigate ();
@@ -13,8 +14,9 @@ const[message, setMessage] = useState();
 
 let handleSubmit = async (e) => {
   e.preventDefault();
+  e.stopPropagation()
   try {
-    await fetch("http://18.116.9.199:9000/login_user", {
+    await fetch("http://127.0.0.1:9000/login_user", {
       method: "POST",
       body: JSON.stringify({
         email: email,
@@ -104,7 +106,7 @@ return (
                       <label className="form-check-label" for="remember-me">Remember Me</label>
                     </div>
                   </div>
-                  <div className="col-sm text-end"><a className="btn-link" href="/#">Forgot Password ?</a></div>
+                  <div className="col-sm text-end"><a className="btn-link" href="/forgot_password">Forgot Password ?</a></div>
                 </div> 
                 
                 <div className="d-grid mb-3"><button className="btn btn-primary" type="submit"> Login</button>  </div>

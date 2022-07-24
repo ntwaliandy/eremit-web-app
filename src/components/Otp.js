@@ -12,7 +12,7 @@ const [message, setMessage] = useState("");
 let handleSubmit = async (e) => {
   e.preventDefault();
   try {
-    await fetch("http://18.116.9.199:9000/verify_otp", {
+    await fetch("http://127.0.0.1:9000/verify_otp", {
       method: "POST",
       body: JSON.stringify({
         email: email,
@@ -46,7 +46,7 @@ let handleSubmit = async (e) => {
  
    
         return (
-            <div>
+<div>
                 {/* <!-- Preloader --> */}
 {/* <div id="preloader">
   <div data-loader="dual-ring"></div>
@@ -118,7 +118,7 @@ let handleSubmit = async (e) => {
 {/* <!-- Style Switcher -->  */}
 <script src="assets/js/switcher.min.js"></script> 
 <script src="assets/js/theme.js"></script>
-            </div>
+</div>
         );
     }
 
