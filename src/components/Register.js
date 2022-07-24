@@ -16,7 +16,7 @@ const [message, setMessage] = useState("");
       e.preventDefault();
       e.stopPropagation()
       try {
-        await fetch("http://127.0.0.1:9000/add_user", {
+        await fetch("http://18.116.9.199:9000/add_user", {
           method: "POST",
           body: JSON.stringify({
             first_name: first_name,

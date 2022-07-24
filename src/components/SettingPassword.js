@@ -18,7 +18,7 @@ useEffect(() => (
     let handleSubmit = async (e) => {
       e.preventDefault();
       try {
-        await fetch("http://127.0.0.1:9000/setting_password", {
+        await fetch("http://18.116.9.199:9000/setting_password", {
           method: "PUT",
           body: JSON.stringify({
             email: Location.state.email,

@@ -21,7 +21,7 @@ class Dashboard extends Component {
       },
       body: JSON.stringify(userId)
     }
-    fetch("http://127.0.0.1:8000/user_wallet_details", requiredOptions)
+    fetch("http://18.116.9.199:9000/user_wallet_details", requiredOptions)
     .then((response) => response.json())
     .then(res => {
       console.log(res)
