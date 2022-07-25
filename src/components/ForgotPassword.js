@@ -10,7 +10,7 @@ const [message, setMessage] = useState("");
 
 let handleSubmit = async (e) => {
   e.preventDefault();
-  e.stopPropagation()
+  
   try {
     await fetch("http://18.116.9.199:9000/forgot_password", {
       method: "POST",
