@@ -1,5 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { Spinner } from "react-bootstrap";
+import PhoneInput from 'react-phone-input-2'
+import 'react-phone-number-input/style.css';
 
 function Register() {
 let navigate = useNavigate();
@@ -9,13 +14,17 @@ const [email, setEmail] = useState("");
 const [phone_number, setphone_number] = useState("");
 const [password, setPassword] = useState("");
 const [profile_pic, setprofile_pic] = useState("");
-const [message, setMessage] = useState("");
+const [isLoading, SetLoading] = useState(false);
     
     let handleSubmit = async (e) => {
+      SetLoading(true)
       e.preventDefault();
       try {
         await fetch("http://18.116.9.199:9000/add_user", {
           method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
           body: JSON.stringify({
             first_name: first_name,
             last_name: last_name,
@@ -24,17 +33,20 @@ const [message, setMessage] = useState("");
             password: password,
             profile_pic: profile_pic,
           }),
-          headers: {
-            "Content-Type": "application/json"
-          },
         }).then(results => results.json())
         .then((response) => {
           console.log(response)
-          if ( response.status === 100) {
+          if (response.status === 100) {
+            toast(response.message)
+            SetLoading(false)
             navigate("/otp", { replace: true});
   
+          } else if (response.status === 403){
+            SetLoading(false)
+            toast(response.message)
           } else {
-            setMessage(response.message)
+            SetLoading(false)
+            toast("invalid data types")
           }
         })
         
@@ -54,6 +66,7 @@ return (
 </div> */}
 {/* <!-- Preloader End --> */}
 <div id="main-wrapper">
+<ToastContainer />
   <div className="container-fluid px-0">
     <div className="row g-0 min-vh-100">
       <div className="col-md-6"> 
@@ -97,9 +110,14 @@ return (
                 </div>
 
                 <div className="mb-3">
-                  <label for="phone_number" className="form-label">phone_number</label>
-                  <input type="text" className="form-control" id="phone_number" name="phone_number" value={phone_number} required placeholder="Enter Your phone number" onChange={(e) => setphone_number(e.target.value)} />
-                </div>
+                  <PhoneInput
+                    specialLabel="receiver phonenumber"
+                    placeholder="Enter receiver's phone number"
+                    class="form-control"
+                    defaultCountry="UG"
+                    value={phone_number}
+                    onChange={setphone_number} />
+              </div>
 
                 <div className="mb-3">
                   <label for="emailAddress" className="form-label">Email Address</label>
@@ -115,8 +133,11 @@ return (
                   <input type="text" className="form-control" id="profile_pic" name="profile_pic" value={profile_pic} required placeholder="Enter Your phone number" onChange={(e) => setprofile_pic(e.target.value)} />
                 </div>
                 {/* <p>{this.state.message}</p> */}
-                <div className="d-grid mt-4 mb-3"><button className="btn btn-primary" type="submit"> Sign Up</button></div>
-                <div className="message">{message ? <p>{message}</p> : null}</div>
+                <div className="d-grid mt-4 mb-3">
+                  { 
+                    isLoading ? <button class="btn btn-primary"><Spinner animation="border" variant="light" /></button> : <button class="btn btn-primary">Register</button>
+                  }
+                </div>
               </form>
               <p className="text-3 text-center text-muted">Already have an account? <a className="btn-link" href="/login">Log In</a></p>
             </div>

@@ -91,7 +91,7 @@ class Dashboard extends Component {
                 this.state.wallets.map((pr, i) => (
                   <div class="col-sm-6 col-md-3" key={i}>
                 <div class="border rounded text-center px-3 py-4"> <span class="d-block text-10 text-light mt-2 mb-3">{pr.currency_code} WALLET</span> <span class="text-5 d-block text-success mt-4 mb-3">{pr.balance} {pr.currency_code}</span>
-                   <Link to="/transactions" state={{ walletId: pr.wallet_id}}><p class="mb-0">View Transactions</p></Link>
+                   <Link to="/transactions" state={{ walletId: pr.wallet_id, currency: pr.currency_code}}><p class="mb-0">View Transactions</p></Link>
                 </div>
               </div>
                 ))

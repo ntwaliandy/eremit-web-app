@@ -2,9 +2,12 @@ import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Spinner } from "react-bootstrap";
 
 
 const ConfirmMoney = () =>  {
+  const [isLoading, SetLoading] = useState(false)
+  const [reason, setReason] = useState("")
     const location = useLocation()
     const navigate = useNavigate()
     useEffect(() => {
@@ -12,6 +15,7 @@ const ConfirmMoney = () =>  {
     }, [])
 
     const handleSubmit = e => {
+      SetLoading(true)
         e.preventDefault()
     const temp = localStorage.getItem("data")
     const loadedData = JSON.parse(temp)
@@ -21,6 +25,7 @@ const ConfirmMoney = () =>  {
         "from_account": location.state.senderWalletId,
         "to_account": location.state.receiverWalletId,
         "trans_type": "P2P",
+        "reason": reason,
         "amount": parseFloat(location.state.amount)
     }
     const requestedOptions = {
@@ -36,14 +41,17 @@ const ConfirmMoney = () =>  {
     .then((response) => {
         console.log(response);
         if (response.status === 100) {
+          SetLoading(false)
           navigate("/success", { state: {
             "phone": location.state.phone,
             "amount": location.state.amount,
             "currency": location.state.currency
           }})
         } else if (response.status === 403) {
+          SetLoading(false)
           toast(response.message)
         } else {
+          SetLoading(false)
           toast("invalid data types")
         }
     })
@@ -96,7 +104,7 @@ const ConfirmMoney = () =>  {
               <div class="progress">
                 <div class="progress-bar"></div>
               </div>
-              <a href="send-money.html" class="step-dot"></a> </div>
+              <a href="/send-money" class="step-dot"></a> </div>
             <div class="col-4 step active">
               <div class="step-name">Confirm</div>
               <div class="progress">
@@ -122,7 +130,7 @@ const ConfirmMoney = () =>  {
             <form id="form-send-money" onSubmit={handleSubmit}>
               <div class="mb-4 mb-sm-5">
                 <label for="description" class="form-label">Description</label>
-                <textarea class="form-control" rows="4" id="description" required placeholder="Payment Description"></textarea>
+                <input type="text" value={reason} class="form-control" onChange={e => setReason(e.target.value)} rows="4" id="description" required placeholder="Payment Reason" />
               </div>
               <hr class="mx-n3 mx-sm-n5 mb-3 mb-sm-4" />
               <h3 class="text-5 fw-400 mb-3 mb-sm-4">Confirm Details</h3>
@@ -131,7 +139,11 @@ const ConfirmMoney = () =>  {
               <p class="mb-1">Total fees <span class="text-3 float-end">0 {location.state.currency}</span></p>
               <hr />
               <p class="text-4 fw-500">Total<span class="float-end">{location.state.amount} {location.state.currency}</span></p>
-              <div class="d-grid"><button class="btn btn-primary">Send Money</button></div>
+              <div class="d-grid">
+                { 
+                  isLoading ? <button class="btn btn-primary"><Spinner animation="border" variant="light" /></button> : <button class="btn btn-primary">Send</button>
+                }
+              </div>
             </form>
           </div>
         </div>

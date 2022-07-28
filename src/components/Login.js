@@ -1,16 +1,20 @@
 import React, { useState  } from "react";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { Spinner } from "react-bootstrap";
 
 
 function Login() {
 
 let navigate = useNavigate ();
-const[email, setEmail] = useState();
-const[password, setPassword] = useState();
-const[message, setMessage] = useState();
-// const[data, setData] = useState();
+const [email, setEmail] = useState();
+const [password, setPassword] = useState();
+const [message, setMessage] = useState();
+const [isLoading, SetLoading] = useState(false);
 
 let handleSubmit = async (e) => {
+  SetLoading(true)
   e.preventDefault();
   try {
     await fetch("http://18.116.9.199:9000/login_user", {
@@ -25,19 +29,24 @@ let handleSubmit = async (e) => {
     }).then(results => results.json())
     .then((response) => {
       console.log(response)
-    const  data = {
-              "token": response.token,
-              "user_id": response.data[0].user_id
-             }
-             const dataData = JSON.stringify(data)
-             localStorage.setItem('data', dataData)
-    
+  
     if (response.status === 100) {
+      const  data = {
+        "token": response.token,
+        "user_id": response.data[0].user_id
+}
+      const dataData = JSON.stringify(data)
+      localStorage.setItem('data', dataData)
+      SetLoading(false)
       navigate("/dashboard",{replace: true});
       
-    } else {
-      setMessage(response.message)
+    } else if (response.status === 403){
+      SetLoading(false)
+      toast(response.message)
   
+    } else {
+      SetLoading(false)
+      toast("technical error")
     }
     })
   } catch (err) {
@@ -50,11 +59,7 @@ let handleSubmit = async (e) => {
 
 return (
 <div>
-                {/* <!-- Preloader --> */}
-{/* <div id="preloader">
-  <div data-loader="dual-ring"></div>
-</div> */}
-{/* <!-- Preloader End --> */}
+<ToastContainer />
 <div id="main-wrapper">
   <div className="container-fluid px-0">
     <div className="row g-0 min-vh-100"> 
@@ -79,6 +84,7 @@ return (
           </div>
         </div>
       </div>
+      
       {/* <!-- Welcome Text End -->  */}
       {/* <!-- Login Form
       ============================================= --> */}
@@ -103,11 +109,14 @@ return (
                       <label className="form-check-label" for="remember-me">Remember Me</label>
                     </div>
                   </div>
-                  <div className="col-sm text-end"><a className="btn-link" href="/#">Forgot Password ?</a></div>
+                  <div className="col-sm text-end"><a className="btn-link" href="/forgot_password">Forgot Password ?</a></div>
                 </div> 
                 
-                <div className="d-grid mb-3"><button className="btn btn-primary" type="submit"> Login</button>  </div>
-                <div className="message">{message ? <p>{message}</p> : null}</div>
+                <div className="d-grid mb-3">
+                  { 
+                    isLoading ? <button class="btn btn-primary"><Spinner animation="border" variant="light" /></button> : <button class="btn btn-primary">Login</button>
+                  }
+                </div>
               </form>
               <p className="text-3 text-center text-muted">Don't have an account? <a className="btn-link" href="/register">Sign Up</a></p>
             </div>

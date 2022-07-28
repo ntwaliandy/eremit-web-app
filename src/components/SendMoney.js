@@ -2,12 +2,16 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Spinner } from "react-bootstrap";
+import PhoneInput from 'react-phone-input-2'
+import 'react-phone-number-input/style.css';
 
 const SendMoney = () =>  {
   const [userCurrencies, setUserCurrincies] = useState([]);
   const [currency_code, setCurrencyCode] = useState("")
   const [receiverNumber, setReceiverNumber] = useState("")
   const [amount, setAmount] = useState("")
+  const [isLoading, SetLoading] = useState(false)
   let navigate = useNavigate()
   
 
@@ -36,6 +40,7 @@ const SendMoney = () =>  {
   }, [])
 
   const handleOnSubmit = e => {
+    SetLoading(true)
     e.preventDefault()
     const temp = localStorage.getItem("data")
     const loadedData = JSON.parse(temp)
@@ -60,6 +65,7 @@ const SendMoney = () =>  {
     .then((response) => {
       console.log(response)
       if (response.status === 100) {
+        SetLoading(false)
         navigate("/confirm-money", { state: {
           "senderWalletId": response.message.sender_walletId,
           "receiverWalletId": response.message.receiver_walletId,
@@ -67,10 +73,15 @@ const SendMoney = () =>  {
           "phone": receiverNumber,
           "currency": currency_code
         }});
+        
       } else if (response.status === 403) {
+        SetLoading(false)
         toast(response.message)
+        console.log(receiverNumber)
       } else {
+        SetLoading(false)
         toast("Invalid data types")
+
       }
     })
 
@@ -149,9 +160,14 @@ const SendMoney = () =>  {
             <h3 class="text-5 fw-400 mb-3 mb-sm-4">Personal Details</h3>
             <hr class="mx-n3 mx-sm-n5 mb-4" />
             <form id="form-send-money" onSubmit={handleOnSubmit}>
-              <div class="mb-3">
-                <label for="emailID" class="form-label">Recipient phonenumber</label>
-                <input type="text" value={receiverNumber} name="receiverNumber" class="form-control" data-bv-field="emailid" id="emailID" onChange={e => setReceiverNumber(e.target.value)} required placeholder="Enter receiver's phone number" />
+              <div className="mb-3">
+              <PhoneInput
+                specialLabel="receiver phonenumber"
+                placeholder="Enter receiver's phone number"
+                class="form-control"
+                defaultCountry="UG"
+                value={receiverNumber}
+                onChange={setReceiverNumber} />
               </div>
               <div class="mb-3">
                 <label for="youSend" class="form-label">You Send</label>
@@ -172,12 +188,17 @@ const SendMoney = () =>  {
                     </span>
                 </div>
               </div>
+              
               <p class="text-muted text-center">Receiver gets <span class="fw-500">{amount} {currency_code}</span></p>
               <hr />
               <p>Total Fees<span class="float-end">0 {currency_code}</span></p>
               <hr />
               <p class="text-4 fw-500">Total To Pay<span class="float-end">{amount} {currency_code}</span></p>
-              <div class="d-grid"><button class="btn btn-primary">Continue</button></div>
+              <div class="d-grid"> 
+                { 
+                  isLoading ? <button class="btn btn-primary"><Spinner animation="border" variant="light" /></button> : <button class="btn btn-primary">Continue</button>
+                }
+              </div>
             </form>
         </div>
       </div>
