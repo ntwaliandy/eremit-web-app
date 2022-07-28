@@ -109,7 +109,7 @@ return (
                       <label className="form-check-label" for="remember-me">Remember Me</label>
                     </div>
                   </div>
-                  <div className="col-sm text-end"><a className="btn-link" href="/#">Forgot Password ?</a></div>
+                  <div className="col-sm text-end"><a className="btn-link" href="/forgot_password">Forgot Password ?</a></div>
                 </div> 
                 
                 <div className="d-grid mb-3">
