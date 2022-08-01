@@ -23,7 +23,7 @@ class Contact extends Component {
       <div class="header-column justify-content-start"> 
         {/* <!-- Logo
           ============================= --> */}
-        <div class="logo me-3"> <a class="d-flex" href="/" title="Payyed - HTML Template"><img src="assets/images/logo.png" alt="Payyed" /></a> </div>
+        <div class="logo me-3"> <a class="d-flex" href="/eremit" title="Payyed - HTML Template"><img src="assets/images/logo.png" alt="Payyed" /></a> </div>
         {/* <!-- Logo end -->  */}
         {/* <!-- Collapse Button
           ============================== --> */}
@@ -37,8 +37,8 @@ class Contact extends Component {
             <ul class="navbar-nav me-auto">
               {/* <!-- <li><a href="landing-page-send.html">Send</a></li>
               <li><a href="landing-page-receive.html">Receive</a></li> --> */}
-              <li><a href="/about">About Us</a></li>
-              <li><a href="/contact">Contact Us</a></li>
+              <li><a href="/eremit/#/about">About Us</a></li>
+              <li><a href="/eremit/#/contact">Contact Us</a></li>
               </ul>
               </div>
               </nav>
@@ -50,8 +50,8 @@ class Contact extends Component {
           ============================== --> */}
         <nav class="login-signup navbar navbar-expand">
           <ul class="navbar-nav">
-            <li><a href="/login">Login</a> </li>
-            <li class="align-items-center h-auto ms-sm-3"><a class="btn btn-primary" href="/register">Sign Up</a></li>
+            <li><a href="/eremit/#/login">Login</a> </li>
+            <li class="align-items-center h-auto ms-sm-3"><a class="btn btn-primary" href="/eremit/#/register">Sign Up</a></li>
           </ul>
         </nav>
         {/* <!-- Login & Signup Link end -->  */}
@@ -68,7 +68,7 @@ class Contact extends Component {
     <div class="row text-center">
       <div class="col-12">
         <ul class="breadcrumb mb-0">
-          <li><a href="/home">Home</a></li>
+          <li><a href="/eremit">Home</a></li>
           <li class="active">Contact Us</li>
         </ul>
       </div>

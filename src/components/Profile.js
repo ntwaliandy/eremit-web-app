@@ -190,16 +190,16 @@ curencySubmit = e => {
       <div class="header-row">
         <div class="header-column justify-content-start"> 
           
-          <div class="logo me-3"> <a class="d-flex" href="/#" title="Payyed - HTML Template"><img src="assets/images/logo.png" alt="Payyed" /></a> </div>
+          <div class="logo me-3"> <a class="d-flex" href="/eremit" title="Payyed - HTML Template"><img src="assets/images/logo.png" alt="Payyed" /></a> </div>
           
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#header-nav"> <span></span> <span></span> <span></span> </button>
           
           <nav class="primary-menu navbar navbar-expand-lg">
             <div id="header-nav" class="collapse navbar-collapse">
               <ul class="navbar-nav me-auto">
-                <li><a href="/dashboard">Dashboard</a></li>
-                <li class="active"><a href="/send-money">Send</a></li>
-                <li><a href="/help">Help</a></li>
+                <li><a href="/eremit/#/dashboard">Dashboard</a></li>
+                <li class="active"><a href="/eremit/#/send-money">Send</a></li>
+                <li><a href="/eremit/#/help">Help</a></li>
               </ul>
             </div>
           </nav>
@@ -208,7 +208,7 @@ curencySubmit = e => {
           <nav class="login-signup navbar navbar-expand">
           <div class="col-auto d-flex align-items-center ms-auto">
                     <div class="dropdown"> <a class="text-muted btn-link" href="#" role="button" id="statements" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img class="rounded-circle" src="assets/images/profile-thumb-sm.jpg" alt="" /></a>
-                      <div class="dropdown-menu dropdown-menu-end" aria-labelledby="statements"> <a class="dropdown-item" href="/my-profile">My Profile</a> <a class="dropdown-item" href="/login"onClick={() =>{ localStorage.removeItem('data') } }>Logout</a> </div>
+                      <div class="dropdown-menu dropdown-menu-end" aria-labelledby="statements"> <a class="dropdown-item" href="/eremit/#/my-profile">My Profile</a> <a class="dropdown-item" href="/eremit/#/login"onClick={() =>{ localStorage.removeItem('data') } }>Logout</a> </div>
                     </div>
                   </div>
           </nav>
@@ -220,7 +220,7 @@ curencySubmit = e => {
   <div class="bg-primary">
     <div class="container d-flex justify-content-center">
       <ul class="nav nav-pills alternate nav-lg border-bottom-0">
-        <li class="nav-item"> <a class="nav-link active" href="/my-profile">Account</a></li>
+        <li class="nav-item"> <a class="nav-link active" href="/eremit/#/my-profile">Account</a></li>
       </ul>
     </div>
   </div>

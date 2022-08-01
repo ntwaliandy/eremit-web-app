@@ -23,7 +23,7 @@ class About extends Component {
         <div class="header-column justify-content-start"> 
           {/* <!-- Logo
           ============================= --> */}
-          <div class="logo me-3"> <a class="d-flex" href="/" title="Payyed - HTML Template"><img src="assets/images/logo.png" alt="Payyed" /></a> </div>
+          <div class="logo me-3"> <a class="d-flex" href="/eremit" title="Payyed - HTML Template"><img src="assets/images/logo.png" alt="Payyed" /></a> </div>
           {/* <!-- Logo end -->  */}
           {/* <!-- Collapse Button
           ============================== --> */}
@@ -37,8 +37,8 @@ class About extends Component {
               <ul class="navbar-nav me-auto">
                 {/* <!-- <li><a href="landing-page-send.html">Send</a></li>
                 <li><a href="landing-page-receive.html">Receive</a></li> --> */}
-				<li class="active"><a href="/about">About Us</a></li>
-                <li><a href="/contact">Contact Us</a></li>
+				<li class="active"><a href="/eremit/#/about">About Us</a></li>
+                <li><a href="/eremit/#/contact">Contact Us</a></li>
                 </ul>
                 </div>
                 </nav>
@@ -50,8 +50,8 @@ class About extends Component {
           ============================== --> */}
           <nav class="login-signup navbar navbar-expand">
             <ul class="navbar-nav">
-              <li><a href="/login">Login</a> </li>
-              <li class="align-items-center h-auto ms-sm-3"><a class="btn btn-primary" href="/register">Sign Up</a></li>
+              <li><a href="/eremit/#/login">Login</a> </li>
+              <li class="align-items-center h-auto ms-sm-3"><a class="btn btn-primary" href="/eremit/#/register">Sign Up</a></li>
             </ul>
           </nav>
           {/* <!-- Login & Signup Link end -->  */}
@@ -73,7 +73,7 @@ class About extends Component {
           <div class="col-12 text-center">
             <h1 class="text-11 fw-500 text-white mb-3">About Payyed</h1>
             <p class="text-5 text-white lh-base mb-4">Our mission is to help you save on transfer fees and exchange rates!</p>
-            <a href="/register" class="btn btn-primary m-2">Open a Free Account</a> <a class="btn btn-outline-light video-btn m-2" href="#" data-src="https://www.youtube.com/embed/7e90gBu4pas" data-bs-toggle="modal" data-bs-target="#videoModal"><span class="me-2"><i class="fas fa-play-circle"></i></span>See How it Works</a> </div>
+            <a href="/eremit/#/register" class="btn btn-primary m-2">Open a Free Account</a> <a class="btn btn-outline-light video-btn m-2" href="#" data-src="https://www.youtube.com/embed/7e90gBu4pas" data-bs-toggle="modal" data-bs-target="#videoModal"><span class="me-2"><i class="fas fa-play-circle"></i></span>See How it Works</a> </div>
         </div>
       </div>
     </div>

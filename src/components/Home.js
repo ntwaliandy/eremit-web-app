@@ -23,7 +23,7 @@ class Home extends Component {
         <div class="header-column justify-content-start"> 
           {/* <!-- Logo
           ============================= --> */}
-          <div class="logo me-3"> <a class="d-flex" href="/" title="Payyed - HTML Template"><img src="assets/images/logo.png" width="121" height="33"  alt="Payyed" /></a> </div>
+          <div class="logo me-3"> <a class="d-flex" href="/eremit" title="Payyed - HTML Template"><img src="assets/images/logo.png" width="121" height="33"  alt="Payyed" /></a> </div>
             {/* <!-- Logo end -->  */}
             {/* <!-- Collapse Button
             ============================== --> */}
@@ -34,8 +34,8 @@ class Home extends Component {
           <nav class="primary-menu navbar navbar-expand-lg">
             <div id="header-nav" class="collapse navbar-collapse">
               <ul class="navbar-nav me-auto">
-                <li><a href="/about">About Us</a></li>
-                <li><a href="/contact">Contact Us</a></li>
+                <li><a href="/eremit/#/about">About Us</a></li>
+                <li><a href="/eremit/#/contact">Contact Us</a></li>
               </ul>
             </div>
           </nav> 
@@ -46,8 +46,8 @@ class Home extends Component {
           ============================== --> */}
           <nav class="login-signup navbar navbar-expand">
             <ul class="navbar-nav">
-              <li><a href="/login">Login</a> </li>
-              <li class="align-items-center h-auto ms-sm-3"><a class="btn btn-primary" href="/register">Sign Up</a></li>
+              <li><a href="/eremit/#/login">Login</a> </li>
+              <li class="align-items-center h-auto ms-sm-3"><a class="btn btn-primary" href="/eremit/#/register">Sign Up</a></li>
             </ul>
           </nav>
           {/* <!-- Login & Signup Link end -->  */}
@@ -73,7 +73,7 @@ class Home extends Component {
               <h2 class="text-16 text-white">Send & Receive Money</h2>
               <p class="text-5 text-white mb-4">Quickly and easily send, receive and request money online with Payyed.<br class="d-none d-lg-block" />
                 Over 180 countries and 120 currencies supported.</p>
-              <a href="/register" class="btn btn-primary m-2">Open a Free Account</a> 
+              <a href="/eremit/#/register" class="btn btn-primary m-2">Open a Free Account</a> 
              
               </div>
              
@@ -276,7 +276,7 @@ class Home extends Component {
                 <li><i class="fas fa-check me-2"></i>Receive & Send Payments from worldwide</li>
                 <li><i class="fas fa-check me-2"></i>Your funds will be transferred to your local bank account</li>
               </ul>
-              <a href="/register" class="btn btn-outline-primary shadow-none mt-2">Open a Free Account</a>
+              <a href="/eremit/#/register" class="btn btn-outline-primary shadow-none mt-2">Open a Free Account</a>
           </div>
 		  </div>
         </div>

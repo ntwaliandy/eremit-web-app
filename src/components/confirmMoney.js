@@ -66,16 +66,16 @@ const ConfirmMoney = () =>  {
       <div class="header-row">
         <div class="header-column justify-content-start"> 
           
-          <div class="logo me-3"> <a class="d-flex" href="/#" title="Payyed - HTML Template"><img src="assets/images/logo.png" alt="Payyed" /></a> </div>
+          <div class="logo me-3"> <a class="d-flex" href="/eremit" title="Payyed - HTML Template"><img src="assets/images/logo.png" alt="Payyed" /></a> </div>
           
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#header-nav"> <span></span> <span></span> <span></span> </button>
           
           <nav class="primary-menu navbar navbar-expand-lg">
             <div id="header-nav" class="collapse navbar-collapse">
               <ul class="navbar-nav me-auto">
-                <li><a href="/dashboard">Dashboard</a></li>
-                <li class="active"><a href="/send-money">Send</a></li>
-                <li><a href="/help">Help</a></li>
+                <li><a href="/eremit/#/dashboard">Dashboard</a></li>
+                <li class="active"><a href="/eremit/#/send-money">Send</a></li>
+                <li><a href="/eremit/#/help">Help</a></li>
               </ul>
             </div>
           </nav>
@@ -104,7 +104,7 @@ const ConfirmMoney = () =>  {
               <div class="progress">
                 <div class="progress-bar"></div>
               </div>
-              <a href="/send-money" class="step-dot"></a> </div>
+              <a href="/eremit/#/send-money" class="step-dot"></a> </div>
             <div class="col-4 step active">
               <div class="step-name">Confirm</div>
               <div class="progress">

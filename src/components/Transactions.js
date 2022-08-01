@@ -45,10 +45,10 @@ const Transaction = ({props}) => {
           <nav class="primary-menu navbar navbar-expand-lg">
             <div id="header-nav" class="collapse navbar-collapse">
               <ul class="navbar-nav me-auto">
-                <li><a href="/dashboard">Dashboard</a></li>
-                <li class="active"><a href="/transactions">Transactions</a></li>
-                <li><a href="/send-money">Send</a></li>
-                <li><a href="/help">Help</a></li>
+                <li><a href="/eremit/#/dashboard">Dashboard</a></li>
+                <li class="active"><a href="/eremit/#/transactions">Transactions</a></li>
+                <li><a href="/eremit/#/send-money">Send</a></li>
+                <li><a href="/eremit/#/help">Help</a></li>
               </ul>
             </div>
           </nav>

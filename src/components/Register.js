@@ -78,7 +78,7 @@ return (
           <div className="hero-content mx-auto w-100 h-100 d-flex flex-column">
             <div className="row g-0">
               <div className="col-10 col-lg-9 mx-auto">
-                <div className="logo mt-5 mb-5 mb-md-0"> <a className="d-flex" href="/" title="Payyed - HTML Template"><img src="assets/images/logo-light.png" alt="Payyed" /></a> </div>
+                <div className="logo mt-5 mb-5 mb-md-0"> <a className="d-flex" href="/eremit" title="Payyed - HTML Template"><img src="assets/images/logo-light.png" alt="Payyed" /></a> </div>
               </div>
             </div>
             <div className="row g-0 my-auto">
@@ -139,7 +139,7 @@ return (
                   }
                 </div>
               </form>
-              <p className="text-3 text-center text-muted">Already have an account? <a className="btn-link" href="/login">Log In</a></p>
+              <p className="text-3 text-center text-muted">Already have an account? <a className="btn-link" href="/eremit/#/login">Log In</a></p>
             </div>
           </div>
         </div>
