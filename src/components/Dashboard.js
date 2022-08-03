@@ -55,6 +55,7 @@ class Dashboard extends Component {
               <ul class="navbar-nav me-auto">
                 <li class="active"><a href="/eremit/#/dashboard">Dashboard</a></li>
                 <li><a href="/eremit/#/send-money">Send</a></li>
+                <li><a href="/eremit/#/deposit">Deposit/Withdraw</a></li>
                 <li><a href="/eremit/#/help">Help</a></li>
               </ul>
             </div>

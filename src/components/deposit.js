@@ -1,100 +1,61 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import { Spinner } from "react-bootstrap";
 import PhoneInput from 'react-phone-input-2'
 import 'react-phone-number-input/style.css';
+import { Spinner } from "react-bootstrap";
 
-const SendMoney = () =>  {
-  const [userCurrencies, setUserCurrincies] = useState([]);
-  const [currency_code, setCurrencyCode] = useState("")
-  const [receiverNumber, setReceiverNumber] = useState("")
-  const [amount, setAmount] = useState("")
-  const [isLoading, SetLoading] = useState(false)
-  let navigate = useNavigate()
-  
 
-  useEffect(() => {
+
+const Deposit = () => {
+    const navigate = useNavigate()
+    const [userPhonenumber, setUserPhonenumber] = useState("")
+    const [userCurrencies, setUserCurrincies] = useState([]);
+    const [currency_code, setCurrencyCode] = useState("")
+    const [transType, setTransType] = useState("")
+    const [amount, setAmount] = useState("")
+    const [isLoading, SetLoading] = useState(false)
+
     const temp = localStorage.getItem("data")
     const loadedData = JSON.parse(temp)
-    const token = "Bearer " + loadedData.token
+    const userId = loadedData.user_id
+    const token = 'Bearer ' + loadedData.token
+    useEffect(() => {
+ 
+        const bodyData = {
+            "user_id": userId
+          }
+          const requiredDataOptions = {
+            method: "POST",
+            headers: {
+              "Authorization": token,
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify(bodyData)
+          }
+          fetch("http://18.116.9.199:9000/user_wallet_details", requiredDataOptions)
+          .then(results => results.json())
+          .then((response) => {
+            console.log(response)
+            setUserCurrincies(response)
+          })
+    }, [])
 
-    const bodyData = {
-      "user_id": loadedData.user_id
-    }
-    const requiredDataOptions = {
-      method: "POST",
-      headers: {
-        "Authorization": token,
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(bodyData)
-    }
-    fetch("http://18.116.9.199:9000/user_wallet_details", requiredDataOptions)
-    .then(results => results.json())
-    .then((response) => {
-      console.log(response)
-      setUserCurrincies(response)
-    })
-  }, [])
-
-  const handleOnSubmit = e => {
-    SetLoading(true)
-    e.preventDefault()
-    const temp = localStorage.getItem("data")
-    const loadedData = JSON.parse(temp)
-    const senderId = loadedData.user_id
-    const bodData = {
-      "sender_id": senderId,
-      "currency_code": currency_code,
-      "receiver_phonenumber": receiverNumber,
-      "amount": parseFloat(amount)
-    }
-
-    const requiredOptions = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(bodData)
-    }
-
-    fetch("http://18.116.9.199:9000/verify_currency", requiredOptions)
-    .then(results => results.json())
-    .then((response) => {
-      console.log(response)
-      if (response.status === 100) {
-        SetLoading(false)
-        navigate("/confirm-money", { state: {
-          "senderWalletId": response.message.sender_walletId,
-          "receiverWalletId": response.message.receiver_walletId,
-          "amount": amount,
-          "phone": receiverNumber,
-          "currency": currency_code
-        }});
-        
-      } else if (response.status === 403) {
-        SetLoading(false)
-        toast(response.message)
-        console.log(receiverNumber)
-      } else {
-        SetLoading(false)
-        toast("Invalid data types")
-
+    const handleOnSubmit = e => {
+        e.preventDefault()
+        SetLoading(true)
+        navigate("/confirm-deposit", { state: {
+            "userId": userId,
+            "currency": currency_code,
+            "amount": amount,
+            "phone": userPhonenumber,
+            "trans": transType
+        }})
       }
-    })
+    return ( 
+        <>
+            <div id="main-wrapper"> 
 
-  }
-
-    return (
-            <div>
-{/* <div id="preloader">
-  <div data-loader="dual-ring"></div>
-</div> */}
-<div id="main-wrapper"> 
-  
-<header id="header">
+            <header id="header">
     <div class="container">
       <div class="header-row">
         <div class="header-column justify-content-start"> 
@@ -126,10 +87,18 @@ const SendMoney = () =>  {
       </div>
     </div>
   </header>
-  <ToastContainer />
+  <div class="bg-white">
+    <div class="container d-flex justify-content-center">
+      <ul class="nav nav-tabs nav-lg border-bottom-0">
+        <li class="nav-item"> <a class="nav-link active" href="/eremit/#/deposit">Deposit</a></li>
+        <li class="nav-item"> <a class="nav-link" href="#">Withdraw</a></li>
+      </ul>
+    </div>
+  </div>
   <div id="content" class="py-4">
-    <div class="container">
-    <div class="row mt-4 mb-5">
+    <div class="container"> 
+      
+      <div class="row mt-4 mb-5">
         <div class="col-lg-11 mx-auto">
           <div class="row widget-steps">
             <div class="col-4 step active">
@@ -153,30 +122,28 @@ const SendMoney = () =>  {
           </div>
         </div>
       </div>
-      <h2 class="fw-400 text-center mt-3">Send Money</h2>
-      <p class="lead text-center mb-4">Send your money on anytime, anywhere in the world.</p>
+      <h2 class="fw-400 text-center mt-3 mb-4">Deposit Money</h2>
       <div class="row">
         <div class="col-md-9 col-lg-7 col-xl-6 mx-auto">
-          <div class="bg-white shadow-sm rounded p-3 pt-sm-4 pb-sm-5 px-sm-5 mb-4">
-            <h3 class="text-5 fw-400 mb-3 mb-sm-4">Personal Details</h3>
-            <hr class="mx-n3 mx-sm-n5 mb-4" />
+          <div class="bg-white shadow-sm rounded p-3 pt-sm-5 pb-sm-5 px-sm-5 mb-4"> 
+            
+            
             <form id="form-send-money" onSubmit={handleOnSubmit}>
-              <div className="mb-3">
-              <PhoneInput
-                specialLabel="receiver phonenumber"
-                placeholder="Enter receiver's phone number"
-                class="form-control"
-                defaultCountry="UG"
-                value={receiverNumber}
-                onChange={setReceiverNumber} />
+            <div className="mb-3">
+                  <PhoneInput
+                    specialLabel="Phone Number"
+                    placeholder="Enter your phone number"
+                    class="form-control"
+                    defaultCountry="UG"
+                    value={userPhonenumber}
+                    onChange={setUserPhonenumber} />
               </div>
               <div class="mb-3">
-                <label for="youSend" class="form-label">You Send</label>
+                <label for="youSend">Amount</label>
                 <div class="input-group">
-                  <span class="input-group-text"></span>
-                  <input type="text" class="form-control" data-bv-field="youSend" id="youSend" name="amount"  onChange={e => setAmount(e.target.value)} value={amount} placeholder="Enter amount" />
+                  <input type="text" class="form-control" data-bv-field="youSend" id="youSend" value={amount} onChange={e => setAmount(e.target.value)} placeholder="" />
                   <span class="input-group-text p-0">
-                    <select id="youSendCurrency" data-style="form-select bg-transparent border-0" data-container="body" name="currency_code" onChange={e => setCurrencyCode(e.target.value)} data-live-search="true" class="selectpicker form-control bg-transparent" required="">
+                  <select id="youSendCurrency" data-style="form-select bg-transparent border-0" data-container="body" name="currency_code" onChange={e => setCurrencyCode(e.target.value)} data-live-search="true" class="selectpicker form-control bg-transparent" required="">
                     <option data-icon="currency-flag currency-flag-usd me-1" data-subtext="United States dollar" value="">currency</option>
                       { 
                         userCurrencies.map((cr) => (
@@ -189,18 +156,21 @@ const SendMoney = () =>  {
                     </span>
                 </div>
               </div>
-              
-              <p class="text-muted text-center">Receiver gets <span class="fw-500">{amount} {currency_code}</span></p>
-              <hr />
-              <p>Total Fees<span class="float-end">0 {currency_code}</span></p>
-              <hr />
-              <p class="text-4 fw-500">Total To Pay<span class="float-end">{amount} {currency_code}</span></p>
-              <div class="d-grid"> 
-                { 
+              <div class="mb-3">
+                <label for="paymentMethod" class="form-label">Payment Method</label>
+                <select id="cardType" class="form-select" required onChange={e => setTransType(e.target.value)}>
+                  <option value="">Select Payment Method</option>
+                  <option value="From_MM">From Mobile Money UG</option>
+                </select>
+              </div><hr />
+              <p class="text-4 fw-500">You'll deposit <span class="float-end">{amount} {currency_code}</span></p>
+              <div class="d-grid">
+              { 
                   isLoading ? <button class="btn btn-primary"><Spinner animation="border" variant="light" /></button> : <button class="btn btn-primary">Continue</button>
                 }
               </div>
             </form>
+          </div>
         </div>
       </div>
     </div>
@@ -243,13 +213,10 @@ const SendMoney = () =>  {
       </div>
     </div>
   </footer>
+  
 </div>
-<a id="back-to-top" data-bs-toggle="tooltip" title="Back to Top" href=""><i class="fa fa-chevron-up"></i></a> 
-
-
-            </div>
-            </div>
-        )
+        </>
+     );
 }
 
-export default SendMoney
+export default Deposit;

@@ -18,9 +18,10 @@ class Help extends Component {
           <nav class="primary-menu navbar navbar-expand-lg">
             <div id="header-nav" class="collapse navbar-collapse">
               <ul class="navbar-nav me-auto">
-                <li><a href="/eremit/#/dashboard">Dashboard</a></li>
+                <li class="active"><a href="/eremit/#/dashboard">Dashboard</a></li>
                 <li><a href="/eremit/#/send-money">Send</a></li>
-                <li class="active"><a href="/eremit/#/help">Help</a></li>
+                <li><a href="/eremit/#/deposit">Deposit/Withdraw</a></li>
+                <li><a href="/eremit/#/help">Help</a></li>
               </ul>
             </div>
           </nav>
@@ -29,7 +30,7 @@ class Help extends Component {
           <nav class="login-signup navbar navbar-expand">
           <div class="col-auto d-flex align-items-center ms-auto">
                     <div class="dropdown"> <a class="text-muted btn-link" href="#" role="button" id="statements" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img class="rounded-circle" src="assets/images/profile-thumb-sm.jpg" alt="" /></a>
-                      <div class="dropdown-menu dropdown-menu-end" aria-labelledby="statements"> <a class="dropdown-item" href="/eremit/#/my-profile">My Profile</a> <a class="dropdown-item" href="#">Logout</a> </div>
+                      <div class="dropdown-menu dropdown-menu-end" aria-labelledby="statements"> <a class="dropdown-item" href="/eremit/#/my-profile">My Profile</a> <a class="dropdown-item" href="/eremit/#/login"onClick={() =>{ localStorage.removeItem('data') } }>Logout</a> </div>
                     </div>
                   </div>
           </nav>
