@@ -13,14 +13,13 @@ const [last_name, setLast_name] = useState("");
 const [email, setEmail] = useState("");
 const [phone_number, setphone_number] = useState("");
 const [password, setPassword] = useState("");
-const [profile_pic, setprofile_pic] = useState("");
 const [isLoading, SetLoading] = useState(false);
     
     let handleSubmit = async (e) => {
       SetLoading(true)
       e.preventDefault();
       try {
-        await fetch("http://18.116.9.199:9000/add_user", {
+        await fetch("http://127.0.0.1:9000/add_user", {
           method: "POST",
           headers: {
             "Content-Type": "application/json"
@@ -31,7 +30,6 @@ const [isLoading, SetLoading] = useState(false);
             email: email,
             phone_number: phone_number,
             password: password,
-            profile_pic: profile_pic,
           }),
         }).then(results => results.json())
         .then((response) => {
@@ -78,13 +76,13 @@ return (
           <div className="hero-content mx-auto w-100 h-100 d-flex flex-column">
             <div className="row g-0">
               <div className="col-10 col-lg-9 mx-auto">
-                <div className="logo mt-5 mb-5 mb-md-0"> <a className="d-flex" href="/eremit" title="Payyed - HTML Template"><img src="assets/images/logo-light.png" alt="Payyed" /></a> </div>
+                <div className="logo mt-5 mb-5 mb-md-0"> <a className="d-flex" href="/eremit" title="eRemit - HTML Template"><img src="assets/images/logo2.png" alt="eRemit" /></a> </div>
               </div>
             </div>
             <div className="row g-0 my-auto">
               <div className="col-10 col-lg-9 mx-auto">
                 <h1 className="text-11 text-white mb-4">Get Verified!</h1>
-                <p className="text-4 text-white lh-base mb-5">Every day, Payyed makes thousands of customers happy.</p>
+                <p className="text-4 text-white lh-base mb-5">Every day, eremit makes thousands of customers happy.</p>
               </div>
             </div>
           </div>
@@ -100,19 +98,19 @@ return (
               <h3 className="fw-400 mb-4">Sign Up</h3>
               <form id="loginForm" onSubmit={handleSubmit}>
                 <div className="mb-3">
-                  <label for="first_name" className="form-label">first_name</label>
-                  <input type="text" className="form-control" id="first_name" name="first_name" value={first_name} required placeholder="Enter Your Name" onChange={(e) => setFirst_name(e.target.value)} />
+                  <label for="first_name" className="form-label">First Name</label>
+                  <input type="text" className="form-control" id="first_name" name="first_name" value={first_name} required placeholder="Enter Your first Name" onChange={(e) => setFirst_name(e.target.value)} />
                 </div>
 
                 <div className="mb-3">
-                  <label for="last_name" className="form-label">last_name</label>
+                  <label for="last_name" className="form-label">Last Name</label>
                   <input type="text" className="form-control" id="last_name" name="last_name" value={last_name} required placeholder="Enter Your last Name" onChange={(e) => setLast_name(e.target.value)} />
                 </div>
 
                 <div className="mb-3">
                   <PhoneInput
-                    specialLabel="receiver phonenumber"
-                    placeholder="Enter receiver's phone number"
+                    specialLabel="Phone Number"
+                    placeholder="256 770 000 000"
                     class="form-control"
                     defaultCountry="UG"
                     value={phone_number}
@@ -121,16 +119,11 @@ return (
 
                 <div className="mb-3">
                   <label for="emailAddress" className="form-label">Email Address</label>
-                  <input type="email" className="form-control" id="emailAddress" name="email" value={email} required placeholder="Enter Your Email" onChange={(e) => setEmail(e.target.value)} />
+                  <input type="email" className="form-control" id="emailAddress" name="email" value={email} required placeholder="example@gmail.com" onChange={(e) => setEmail(e.target.value)} />
                 </div> 
                 <div className="mb-3">
                   <label for="loginPassword" className="form-label">Password</label>
-                  <input type="password" className="form-control" id="loginPassword" name="password" value={password} required placeholder="Enter Password" onChange={(e) => setPassword(e.target.value)} />
-                </div>
-
-                <div className="mb-3">
-                  <label for="profile_pic" className="form-label">profile_pic</label>
-                  <input type="text" className="form-control" id="profile_pic" name="profile_pic" value={profile_pic} required placeholder="Enter Your phone number" onChange={(e) => setprofile_pic(e.target.value)} />
+                  <input type="password" className="form-control" id="loginPassword" name="password" value={password} required placeholder="Enter strong Password" onChange={(e) => setPassword(e.target.value)} />
                 </div>
                 {/* <p>{this.state.message}</p> */}
                 <div className="d-grid mt-4 mb-3">

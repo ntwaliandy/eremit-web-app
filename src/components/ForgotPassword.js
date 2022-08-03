@@ -65,7 +65,7 @@ let handleSubmit = async (e) => {
             <form id="loginForm" onSubmit={handleSubmit}>
               <div class="mb-3">
                 <label for="emailAddress" class="form-label">Email Address</label>
-                <input type="email" class="form-control" id="emailAddress" required="" placeholder="Enter Your Email" value={email} onChange={(e) => setEmail(e.target.value)}  />
+                <input type="email" class="form-control" id="emailAddress" required="" placeholder="example@gmail.com" value={email} onChange={(e) => setEmail(e.target.value)}  />
               </div>
               
                 
@@ -76,7 +76,7 @@ let handleSubmit = async (e) => {
               </div>
               
             </form>
-            <p class="text-3 text-muted text-center mb-0">remembered your password? <a class="btn-link" href="/login">Login</a></p>
+            <p class="text-3 text-muted text-center mb-0">remembered your password? <a class="btn-link" href="/eremit/#/login">Login</a></p>
           </div>
         </div>
       </div>

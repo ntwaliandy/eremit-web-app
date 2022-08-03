@@ -15,7 +15,7 @@ let handleSubmit = async (e) => {
   SetLoading(true)
   e.preventDefault();
   try {
-    await fetch("http://18.116.9.199:9000/verify_otp", {
+    await fetch("http://127.0.0.1:9000/verify_otp", {
       method: "POST",
       body: JSON.stringify({
         email: email,
@@ -67,13 +67,13 @@ let handleSubmit = async (e) => {
           <div className="hero-content mx-auto w-100 h-100 d-flex flex-column">
             <div className="row g-0">
               <div className="col-10 col-lg-9 mx-auto">
-                <div className="logo mt-5 mb-5 mb-md-0"> <a className="d-flex" href="/" title="Payyed - HTML Template"><img src="assets/images/logo-light.png" alt="Payyed" /></a> </div>
+                <div className="logo mt-5 mb-5 mb-md-0"> <a className="d-flex" href="/" title="Payyed - HTML Template"><img src="assets/images/logo2.png" alt="Payyed" /></a> </div>
               </div>
             </div>
             <div className="row g-0 my-auto">
               <div className="col-10 col-lg-9 mx-auto">
-                <h1 className="text-11 text-white mb-4">Get Verified! with your otp from here</h1>
-                <p className="text-4 text-white lh-base mb-5">Every day, Payyed makes thousands of customers happy.</p>
+                <h1 className="text-11 text-white mb-4">Get Verified! enter the digit code sent to your email to proceed with registration</h1>
+                <p className="text-4 text-white lh-base mb-5">Every day, eRemit makes thousands of customers happy.</p>
               </div>
             </div>
           </div>
@@ -118,12 +118,7 @@ let handleSubmit = async (e) => {
 ============================================= -->  */}
 <a id="back-to-top" data-bs-toggle="tooltip" title="Back to Top" href="/#"><i className="fa fa-chevron-up"></i></a> 
 
-{/* <!-- Script -->  */}
-<script src="assets/vendor/jquery/jquery.min.js"></script> 
-<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script> 
-{/* <!-- Style Switcher -->  */}
-<script src="assets/js/switcher.min.js"></script> 
-<script src="assets/js/theme.js"></script>
+
             </div>
         );
     }

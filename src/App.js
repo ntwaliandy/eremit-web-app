@@ -18,6 +18,7 @@ import Otp from './components/otp';
 import ForgotPassword from './components/ForgotPassword';
 import PasswordCode from './components/PasswordCode.js';
 import SettingPasswrod from './components/SettingPassword';
+import LogOtp from './components/LogOtp';
 import Deposit from './components/deposit';
 import ConfirmDeposit from './components/confirmDeposit';
 
@@ -40,6 +41,8 @@ function App() {
       <Route path='/forgot_password' element={<ForgotPassword /> } />
       <Route path='/password_otp' element={<PasswordCode /> } />
       <Route path='/setting_password' element={<SettingPasswrod /> } />
+      <Route path='/login_otp' element={<LogOtp /> } />
+      
       <Route path='/deposit' element={<Deposit />} />
       <Route path='confirm-deposit' element={<ConfirmDeposit />} />
 

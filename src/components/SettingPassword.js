@@ -66,7 +66,7 @@ return (
           <div class="bg-white shadow-md rounded p-3 pt-sm-4 pb-sm-5 px-sm-5">
             <h3 class="fw-400 text-center mb-4">Reset your password</h3>
             <hr class="mx-n3 mx-sm-n5" />
-            <p class="lead text-center">Insert your new ermeit password</p>
+            <p class="lead text-center">Insert your new eremit password</p>
             <form id="signupForm" onSubmit={handleSubmit} >
 
             {/* <div className="mb-3">
@@ -89,7 +89,7 @@ return (
                   }
                 </div>
             </form>
-            <p class="text-3 text-muted text-center mb-0">for further support visit the help center <a class="btn-link" href="/help">help</a></p>
+            <p class="text-3 text-muted text-center mb-0">for further support visit the help center <a class="btn-link" href="//eremit/#/help">help</a></p>
           </div>
         </div>
       </div>

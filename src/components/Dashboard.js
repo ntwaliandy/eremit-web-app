@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 class Dashboard extends Component {
   state = {
     wallets: [],
+    transactions: [],
   }
   componentDidMount() {
     const temp = localStorage.getItem("data")
@@ -21,12 +22,29 @@ class Dashboard extends Component {
       },
       body: JSON.stringify(userId)
     }
-    fetch("http://18.116.9.199:9000/user_wallet_details", requiredOptions)
+    fetch("http://127.0.0.1:9000/user_wallet_details", requiredOptions)
     .then((response) => response.json())
     .then(res => {
       console.log(res)
       this.setState({ wallets: res });
     });
+
+    const requiredOptions1 = {
+      method: "POST",
+      headers: {
+        "Authorization": token,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(userId)
+    }
+    fetch("http://127.0.0.1:9000/user_transactions", requiredOptions1)
+    .then((response) => response.json())
+    .then(res => {
+      console.log(res)
+      console.log(res.wallet_id)
+      this.setState({ transactions: res.message });
+    });
+
   }
     render(){
         return(
@@ -46,7 +64,7 @@ class Dashboard extends Component {
       <div class="header-row">
         <div class="header-column justify-content-start"> 
           
-          <div class="logo me-3"> <a class="d-flex" href="/eremit" title="Payyed - HTML Template"><img src="assets/images/logo.png" alt="Payyed" /></a> </div>
+          <div class="logo me-3"> <a class="d-flex" href="/eremit" title="eRemit - HTML Template"><img src="assets/images/logo2.png" alt="eRemit" /></a> </div>
           
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#header-nav"> <span></span> <span></span> <span></span> </button>
           
@@ -117,63 +135,157 @@ class Dashboard extends Component {
             {/* <!-- Title End -->  */}
             {/* <!-- Transaction List
             =============================== --> */}
-            <div class="transaction-list">
-              <div class="transaction-item px-4 py-3" data-bs-toggle="modal" data-bs-target="#transaction-detail">
-                <div class="row align-items-center flex-row">
-                  <div class="col-2 col-sm-1 text-center"> <span class="d-block text-4 fw-300">16</span> <span class="d-block text-1 fw-300 text-uppercase">APR</span> </div>
-                  <div class="col col-sm-7"> <span class="d-block text-4">HDFC Bank</span> <span class="text-muted">Withdraw to Bank account</span> </div>
-                  <div class="col-auto col-sm-2 d-none d-sm-block text-center text-3"> <span class="text-warning" data-bs-toggle="tooltip" title="In Progress"><i class="fas fa-ellipsis-h"></i></span> </div>
-                  <div class="col-3 col-sm-2 text-end text-4"> <span class="text-nowrap">- $562</span> <span class="text-2 text-uppercase">(USD)</span> </div>
+            <div class="transaction-list"> 
+            {/* {
+                this.state.transactions.map((mr, i) => (
+                  
+              <div class="transaction-item px-4 py-3" data-bs-toggle="modal" data-bs-target="#transaction-detail" key={i}>
+              
+                <div class="row align-items-center flex-row" >
+                  <div class="col-2 col-sm-1 text-center"> <span class="d-block text-4 fw-300">16</span> <span class="d-block text-1 fw-300 text-uppercase">{mr.date_time}</span> </div>
+                  <div class="col col-sm-7"> <span class="d-block text-4">{mr.from_account}</span> <span class="text-muted">{mr.to_account}</span> </div>
+                  <div class="col-auto col-sm-2 d-none d-sm-block text-center text-3"> <span class="text-warning" data-bs-toggle="tooltip" title="In Progress"><i class="fas fa-check-circle"></i></span>{mr.status} </div>
+                  <div class="col-3 col-sm-2 text-end text-4"> <span class="text-nowrap">{mr.amount}{mr.currency_code}</span> <span class="text-2 text-uppercase"></span> </div>
+                </div>
+                
+              
+              </div>
+              ))
+            } */}
+
+{ 
+  this.state.transactions.map(mr => {
+    for (let i = 0; i < this.state.wallets.length; i++) {
+     if (mr.from_account == this.state.wallets[i].wallet_id && mr.status == 'credit') {
+      return (
+        <>
+  <div class="transaction-item px-4 py-3" data-bs-toggle="modal" data-bs-target={"#transaction-detail" + mr.id}>
+                    <div class="row align-items-center flex-row">
+                      <div class="col-2 col-sm-1 text-center"> <p>{mr.date_time}</p> </div>
+                      <div class="col col-sm-7">  <span class="text-muted">{mr.reason}</span> </div>
+                      <div class="col-auto col-sm-2 d-none d-sm-block text-center text-3"> <span class="text-success" data-bs-toggle="tooltip" title="In Progress"><i class="fas fa-check-circle"></i> </span>sent </div>
+                      <div class="col-3 col-sm-2 text-end text-4"> <span class="text-nowrap"></span> <span class="text-2 text-uppercase">{mr.amount} ({mr.currency_code})</span> </div>
+                    </div>
+                  </div>
+                  <div id={"transaction-detail" + mr.id} class="modal fade" role="dialog" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered transaction-details" role="document">
+                <div class="modal-content">
+                  <div class="modal-body">
+                    <div class="row g-0">
+                      <div class="col-sm-5 d-flex justify-content-center bg-primary rounded-start py-4">
+                        <div class="my-auto text-center">
+                          <div class="text-17 text-white my-3"><i class="fas fa-building"></i></div>
+                          <h3 class="text-4 text-white fw-400 my-3">EREMIT Ltd</h3>
+                          <div class="text-8 fw-500 text-white my-4">{mr.amount} {mr.currency_code}</div>
+                          <p class="text-white">{mr.date_time}</p>
+                        </div>
+                      </div>
+                      <div class="col-sm-7">
+                        <h5 class="text-5 fw-400 m-3">Transaction Details
+                          <button type="button" class="btn-close text-2 float-end" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </h5>
+                        <hr />
+                        <div class="px-3">
+                          <ul class="list-unstyled">
+                            <li class="mb-2">Payment Amount <span class="float-end text-3">{mr.amount} {mr.currency_code}</span></li>
+                            <li class="mb-2">Fee <span class="float-end text-3">0.0 {mr.currency_code}</span></li>
+                          </ul>
+                          <hr class="mb-2" />
+                          <p class="d-flex align-items-center fw-500 mb-0">Total Amount <span class="text-3 ms-auto">{mr.amount} {mr.currency_code} </span></p>
+						  <hr class="mb-4 mt-2" />
+                          <ul class="list-unstyled">
+                            <li class="fw-500">sent to:</li>
+                            <li class="text-muted">{mr.to_account}</li>
+                          </ul>
+                          <ul class="list-unstyled">
+                            <li class="fw-500">Transaction ID:</li>
+                            <li class="text-muted">{mr.transaction_id}</li>
+                          </ul>
+                          <ul class="list-unstyled">
+                            <li class="fw-500">Description:</li>
+                            <li class="text-muted">{mr.reason}</li>
+                          </ul>
+                          <ul class="list-unstyled">
+                            <li class="fw-500">Status:</li>
+                            <li class="text-muted">Completed<span class="text-success text-3 ms-1"><i class="fas fa-check-circle"></i></span></li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div class="transaction-item px-4 py-3" data-bs-toggle="modal" data-bs-target="#transaction-detail">
-                <div class="row align-items-center flex-row">
-                  <div class="col-2 col-sm-1 text-center"> <span class="d-block text-4 fw-300">15</span> <span class="d-block text-1 fw-300 text-uppercase">APR</span> </div>
-                  <div class="col col-sm-7"> <span class="d-block text-4">Envato Pty Ltd</span> <span class="text-muted">Payment Received</span> </div>
-                  <div class="col-auto col-sm-2 d-none d-sm-block text-center text-3"> <span class="text-success" data-bs-toggle="tooltip" title="Completed"><i class="fas fa-check-circle"></i></span> </div>
-                  <div class="col-3 col-sm-2 text-end text-4"> <span class="text-nowrap">+ $562</span> <span class="text-2 text-uppercase">(USD)</span> </div>
+            </div>
+  </>
+      )
+     } else if(mr.to_account == this.state.wallets[i].wallet_id && mr.status == 'debit') {
+      return (
+        <>
+  <div class="transaction-item px-4 py-3" data-bs-toggle="modal" data-bs-target={"#transaction-detail" + mr.id}>
+                    <div class="row align-items-center flex-row">
+                      <div class="col-2 col-sm-1 text-center"> <p>{mr.date_time}</p> </div>
+                      <div class="col col-sm-7"> <p>Tansaction ID:</p> <span class="text-muted">{mr.reason}</span> </div>
+                      <div class="col-auto col-sm-2 d-none d-sm-block text-center text-3"> <span class="text-success" data-bs-toggle="tooltip" title="In Progress"><i class="fas fa-check-circle"></i> </span>received </div>
+                      <div class="col-3 col-sm-2 text-end text-4"> <span class="text-nowrap"></span> <span class="text-2 text-uppercase">{mr.amount} ({mr.currency_code})</span> </div>
+                    </div>
+                  </div>
+                  <div id={"transaction-detail" + mr.id} class="modal fade" role="dialog" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered transaction-details" role="document">
+                <div class="modal-content">
+                  <div class="modal-body">
+                    <div class="row g-0">
+                      <div class="col-sm-5 d-flex justify-content-center bg-primary rounded-start py-4">
+                        <div class="my-auto text-center">
+                          <div class="text-17 text-white my-3"><i class="fas fa-building"></i></div>
+                          <h3 class="text-4 text-white fw-400 my-3">EREMIT Ltd</h3>
+                          <div class="text-8 fw-500 text-white my-4">{mr.amount} {mr.currency_code}</div>
+                          <p class="text-white">{mr.date_time}</p>
+                        </div>
+                      </div>
+                      <div class="col-sm-7">
+                        <h5 class="text-5 fw-400 m-3">Transaction Details
+                          <button type="button" class="btn-close text-2 float-end" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </h5>
+                        <hr />
+                        <div class="px-3">
+                          <ul class="list-unstyled">
+                            <li class="mb-2">Payment Amount <span class="float-end text-3">{mr.amount} {mr.currency_code}</span></li>
+                            <li class="mb-2">Fee <span class="float-end text-3">0.0 {mr.currency_code}</span></li>
+                          </ul>
+                          <hr class="mb-2" />
+                          <p class="d-flex align-items-center fw-500 mb-0">Total Amount <span class="text-3 ms-auto">{mr.amount} {mr.currency_code} </span></p>
+						  <hr class="mb-4 mt-2" />
+                          <ul class="list-unstyled">
+                            <li class="fw-500">sent to:</li>
+                            <li class="text-muted">{mr.to_account}</li>
+                          </ul>
+                          <ul class="list-unstyled">
+                            <li class="fw-500">Transaction ID:</li>
+                            <li class="text-muted">{mr.transaction_id}</li>
+                          </ul>
+                          <ul class="list-unstyled">
+                            <li class="fw-500">Description:</li>
+                            <li class="text-muted">{mr.reason}</li>
+                          </ul>
+                          <ul class="list-unstyled">
+                            <li class="fw-500">Status:</li>
+                            <li class="text-muted">Completed<span class="text-success text-3 ms-1"><i class="fas fa-check-circle"></i></span></li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div class="transaction-item px-4 py-3" data-bs-toggle="modal" data-bs-target="#transaction-detail">
-                <div class="row align-items-center flex-row">
-                  <div class="col-2 col-sm-1 text-center"> <span class="d-block text-4 fw-300">04</span> <span class="d-block text-1 fw-300 text-uppercase">APR</span> </div>
-                  <div class="col col-sm-7"> <span class="d-block text-4">HDFC Bank</span> <span class="text-muted">Withdraw to Bank account</span> </div>
-                  <div class="col-auto col-sm-2 d-none d-sm-block text-center text-3"> <span class="text-success" data-bs-toggle="tooltip" title="Completed"><i class="fas fa-check-circle"></i></span> </div>
-                  <div class="col-3 col-sm-2 text-end text-4"> <span class="text-nowrap">- $106</span> <span class="text-2 text-uppercase">(USD)</span> </div>
-                </div>
-              </div>
-              <div class="transaction-item px-4 py-3" data-bs-toggle="modal" data-bs-target="#transaction-detail">
-                <div class="row align-items-center flex-row">
-                  <div class="col-2 col-sm-1 text-center"> <span class="d-block text-4 fw-300">28</span> <span class="d-block text-1 fw-300 text-uppercase">MAR</span> </div>
-                  <div class="col col-sm-7"> <span class="d-block text-4">Patrick Cary</span> <span class="text-muted">Refund</span> </div>
-                  <div class="col-auto col-sm-2 d-none d-sm-block text-center text-3"> <span class="text-success" data-bs-toggle="tooltip" title="Completed"><i class="fas fa-check-circle"></i></span> </div>
-                  <div class="col-3 col-sm-2 text-end text-4"> <span class="text-nowrap">+ $60</span> <span class="text-2 text-uppercase">(USD)</span> </div>
-                </div>
-              </div>
-              <div class="transaction-item px-4 py-3" data-bs-toggle="modal" data-bs-target="#transaction-detail">
-                <div class="row align-items-center flex-row">
-                  <div class="col-2 col-sm-1 text-center"> <span class="d-block text-4 fw-300">28</span> <span class="d-block text-1 fw-300 text-uppercase">MAR</span> </div>
-                  <div class="col col-sm-7"> <span class="d-block text-4">Patrick Cary</span> <span class="text-muted">Payment Sent</span> </div>
-                  <div class="col-auto col-sm-2 d-none d-sm-block text-center text-3"> <span class="text-danger" data-bs-toggle="tooltip" title="Cancelled"><i class="fas fa-times-circle"></i></span> </div>
-                  <div class="col-3 col-sm-2 text-end text-4"> <span class="text-nowrap">- $60</span> <span class="text-2 text-uppercase">(USD)</span> </div>
-                </div>
-              </div>
-              <div class="transaction-item px-4 py-3" data-bs-toggle="modal" data-bs-target="#transaction-detail">
-                <div class="row align-items-center flex-row">
-                  <div class="col-2 col-sm-1 text-center"> <span class="d-block text-4 fw-300">16</span> <span class="d-block text-1 fw-300 text-uppercase">FEB</span> </div>
-                  <div class="col col-sm-7"> <span class="d-block text-4">HDFC Bank</span> <span class="text-muted">Withdraw to Bank account</span> </div>
-                  <div class="col-auto col-sm-2 d-none d-sm-block text-center text-3"> <span class="text-success" data-bs-toggle="tooltip" title="Completed"><i class="fas fa-check-circle"></i></span> </div>
-                  <div class="col-3 col-sm-2 text-end text-4"> <span class="text-nowrap">- $1498</span> <span class="text-2 text-uppercase">(USD)</span> </div>
-                </div>
-              </div>
-              <div class="transaction-item px-4 py-3" data-bs-toggle="modal" data-bs-target="#transaction-detail">
-                <div class="row align-items-center flex-row">
-                  <div class="col-2 col-sm-1 text-center"> <span class="d-block text-4 fw-300">15</span> <span class="d-block text-1 fw-300 text-uppercase">FEB</span> </div>
-                  <div class="col col-sm-7"> <span class="d-block text-4">Envato Pty Ltd</span> <span class="text-muted">Payment Received</span> </div>
-                  <div class="col-auto col-sm-2 d-none d-sm-block text-center text-3"> <span class="text-success" data-bs-toggle="tooltip" title="Completed"><i class="fas fa-check-circle"></i></span> </div>
-                  <div class="col-3 col-sm-2 text-end text-4"> <span class="text-nowrap">+ $1498</span> <span class="text-2 text-uppercase">(USD)</span> </div>
-                </div>
-              </div>
+            </div>
+  </>
+      )
+     }
+      
+   }
+  })
+}
+            
             </div>
             {/* <!-- Transaction List End -->  */}
             {/* <!-- Transaction Item Details Modal
@@ -265,7 +377,7 @@ class Dashboard extends Component {
       <div class="footer-copyright pt-3 pt-lg-2 mt-2">
         <div class="row">
           <div class="col-lg">
-            <p class="text-center text-lg-start mb-2 mb-lg-0">Copyright &copy; 2022 <a href="#">Payyed</a>. All Rights Reserved.</p>
+            <p class="text-center text-lg-start mb-2 mb-lg-0">Copyright &copy; 2022 <a href="#">eRemit</a>. All Rights Reserved.</p>
           </div>
           <div class="col-lg d-lg-flex align-items-center justify-content-lg-end">
             <ul class="nav justify-content-center">

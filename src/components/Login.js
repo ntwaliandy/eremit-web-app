@@ -10,14 +10,13 @@ function Login() {
 let navigate = useNavigate ();
 const [email, setEmail] = useState();
 const [password, setPassword] = useState();
-const [message, setMessage] = useState();
 const [isLoading, SetLoading] = useState(false);
 
 let handleSubmit = async (e) => {
   SetLoading(true)
   e.preventDefault();
   try {
-    await fetch("http://18.116.9.199:9000/login_user", {
+    await fetch("http://127.0.0.1:9000/login_user", {
       method: "POST",
       body: JSON.stringify({
         email: email,
@@ -31,14 +30,9 @@ let handleSubmit = async (e) => {
       console.log(response)
   
     if (response.status === 100) {
-      const  data = {
-        "token": response.token,
-        "user_id": response.data[0].user_id
-}
-      const dataData = JSON.stringify(data)
-      localStorage.setItem('data', dataData)
+      
       SetLoading(false)
-      navigate("/dashboard",{replace: true});
+      navigate("/login_otp", {state: {"email": email}});
       
     } else if (response.status === 403){
       SetLoading(false)
@@ -72,7 +66,7 @@ return (
           <div className="hero-content mx-auto w-100 h-100 d-flex flex-column">
             <div className="row g-0">
               <div className="col-10 col-lg-9 mx-auto">
-                <div className="logo mt-5 mb-5 mb-md-0"> <a className="d-flex" href="/eremit" title="Payyed - HTML Template"><img src="assets/images/logo-light.png" alt="Payyed" /></a> </div>
+                <div className="logo mt-5 mb-5 mb-md-0"> <a className="d-flex" href="/eremit" title="eRemit - HTML Template"><img src="assets/images/logo2.png" alt="eremit" /></a> </div>
               </div>
             </div>
             <div className="row g-0 my-auto">
@@ -96,7 +90,7 @@ return (
               <form id="loginForm" onSubmit={handleSubmit}>
               <div className="mb-3">
                   <label for="emailAddress" className="form-label">Email Address</label>
-                  <input type="email" className="form-control" id="emailAddress" name="email" required placeholder="Enter Your Email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                  <input type="email" className="form-control" id="emailAddress" name="email" required placeholder="example@gmail.com" value={email} onChange={(e) => setEmail(e.target.value)} />
                 </div>
                 <div className="mb-3">
                   <label for="loginPassword" className="form-label">Password</label>
@@ -131,12 +125,7 @@ return (
 ============================================= -->  */}
 <a id="back-to-top" data-bs-toggle="tooltip" title="Back to Top" href="/#"><i className="fa fa-chevron-up"></i></a> 
 
-{/* <!-- Script -->  */}
-<script src="assets/vendor/jquery/jquery.min.js"></script> 
-<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script> 
-{/* <!-- Style Switcher -->  */}
-<script src="assets/js/switcher.min.js"></script> 
-<script src="assets/js/theme.js"></script>
+
 
             </div>
         );
