@@ -154,11 +154,10 @@ const ConfirmMoney = () =>  {
       <div class="row">
         <div class="col-lg d-lg-flex align-items-center">
           <ul class="nav justify-content-center justify-content-lg-start text-3">
-            <li class="nav-item"> <a class="nav-link active" href="#">About Us</a></li>
-            <li class="nav-item"> <a class="nav-link" href="#">Support</a></li>
-            <li class="nav-item"> <a class="nav-link" href="#">Help</a></li>
-            <li class="nav-item"> <a class="nav-link" href="#">Careers</a></li>
-            <li class="nav-item"> <a class="nav-link" href="#">Affiliate</a></li>
+            <li class="nav-item"> <a class="nav-link active" href="/eremit/#/about">About Us</a></li>
+            <li class="nav-item"> <a class="nav-link" href="/eremit/#/contact">Support</a></li>
+            <li class="nav-item"> <a class="nav-link" href="/eremit/#/help">Help</a></li>
+            
             <li class="nav-item"> <a class="nav-link" href="#">Fees</a></li>
           </ul>
         </div>

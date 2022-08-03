@@ -1,12 +1,12 @@
-
+import React from 'react'
 import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Spinner } from "react-bootstrap";
 
-function PasswordCode() {
-let navigate = useNavigate();
+function LogOtp() {
+    let navigate = useNavigate();
 const Location = useLocation()
 const [email, setEmail] = useState()
 const [otp, setOtp] = useState("");
@@ -23,7 +23,7 @@ let handleSubmit = async (e) => {
   e.preventDefault();
   e.stopPropagation()
   try {
-    await fetch("http://18.116.9.199:9000/password_otp", {
+    await fetch("http://127.0.0.1:9000/login_otp", {
       method: "POST",
       body: JSON.stringify({
         "email": Location.state.email,
@@ -37,8 +37,14 @@ let handleSubmit = async (e) => {
       console.log(response)
     
     if (response.status === 100) {
-      SetLoading(false)
-      navigate("/setting_password",{state: {"email":Location.state.email}});
+        const  data = {
+            "token": response.token,
+            "user_id": response.data[0].user_id
+           }
+           const dataData = JSON.stringify(data)
+           localStorage.setItem('data', dataData)
+          SetLoading(false)
+          navigate("/dashboard",{replace: true});
       
     } else {
       SetLoading(false)
@@ -50,10 +56,9 @@ let handleSubmit = async (e) => {
     console.log(err);
   }
 };
-    
-return (
-            <div>
-              <ToastContainer />
+  return (
+    <div>
+        <ToastContainer />
       {/* <!-- Content
   ============================================= --> */}
   <div id="content">
@@ -61,10 +66,10 @@ return (
       <div class="row">
         <div class="col-md-9 col-lg-7 col-xl-5 mx-auto">
           <div class="bg-white shadow-md rounded p-3 pt-sm-4 pb-sm-5 px-sm-5">
-            <h3 class="fw-400 text-center mb-4">Security code to reset password</h3>
+            <h3 class="fw-400 text-center mb-4">Security code to login</h3>
             <hr class="mx-n3 mx-sm-n5" />
             <p class="lead text-center">Insert the security code sent to your email
-            inorder to proceed with the password reset
+            inorder to proceed with logging in
             </p>
             <form id="loginForm" onSubmit={handleSubmit}>
             <div className="mb-3">
@@ -86,8 +91,10 @@ return (
       </div>
     </div>
   </div>
-  {/* <!-- Content end -->  */}      
-      </div>
-  );    
+  {/* <!-- Content end -->  */}
+      
+    </div>
+  )
 }
-export default PasswordCode;
+
+export default LogOtp

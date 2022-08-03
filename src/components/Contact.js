@@ -23,7 +23,7 @@ class Contact extends Component {
       <div class="header-column justify-content-start"> 
         {/* <!-- Logo
           ============================= --> */}
-        <div class="logo me-3"> <a class="d-flex" href="/eremit" title="Payyed - HTML Template"><img src="assets/images/logo.png" alt="Payyed" /></a> </div>
+        <div class="logo me-3"> <a class="d-flex" href="/eremit/#/about" title="eRemit - HTML Template"><img src="assets/images/logo2.png" alt="eRemit" /></a> </div>
         {/* <!-- Logo end -->  */}
         {/* <!-- Collapse Button
           ============================== --> */}
@@ -68,7 +68,7 @@ class Contact extends Component {
     <div class="row text-center">
       <div class="col-12">
         <ul class="breadcrumb mb-0">
-          <li><a href="/eremit">Home</a></li>
+          <li><a href="/eremit/#/">Home</a></li>
           <li class="active">Contact Us</li>
         </ul>
       </div>
@@ -89,7 +89,7 @@ class Contact extends Component {
         <div class="bg-white shadow-md rounded h-100 p-3">
           <div class="featured-box text-center">
             <div class="featured-box-icon text-primary mt-4"> <i class="fas fa-map-marker-alt"></i></div>
-            <h3>Payyed Inc.</h3>
+            <h3>eRemit Inc.</h3>
             <p>4th Floor, Plot No.22, Above Public Park<br />
               145 Murphy Canyon Rd.<br />
               Suite 100-18<br />
@@ -112,14 +112,14 @@ class Contact extends Component {
           <div class="featured-box text-center">
             <div class="featured-box-icon text-primary mt-4"> <i class="fas fa-envelope"></i> </div>
             <h3>Business Inquiries</h3>
-            <p>info@payyed.com</p>
+            <p>info@eRemit.com</p>
           </div>
         </div>
       </div>
     </div>
 	<div class="text-center py-5">
           <h2 class="text-8">Get in touch</h2>
-          <p class="lead">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+          <p class="lead">you can also reach us via our social media handles.</p>
           <div class="d-flex flex-column">
             <ul class="social-icons social-icons-lg social-icons-colored justify-content-center">
               <li class="social-icons-facebook"><a data-bs-toggle="tooltip" href="http://www.facebook.com/" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a></li>
@@ -151,9 +151,9 @@ class Contact extends Component {
       <div class="row">
         <div class="col-lg d-lg-flex align-items-center">
           <ul class="nav justify-content-center justify-content-lg-start text-3">
-            <li class="nav-item"> <a class="nav-link active" href="#">About Us</a></li>
-            <li class="nav-item"> <a class="nav-link" href="#">Support</a></li>
-            <li class="nav-item"> <a class="nav-link" href="#">Help</a></li>
+            <li class="nav-item"> <a class="nav-link active" href="/eremit/#/about">About Us</a></li>
+            <li class="nav-item"> <a class="nav-link" href="/eremit/#/contact">Support</a></li>
+            <li class="nav-item"> <a class="nav-link" href="/eremit/#/help">Help</a></li>
           </ul>
         </div>
         <div class="col-lg d-lg-flex justify-content-lg-end mt-3 mt-lg-0">
@@ -168,7 +168,7 @@ class Contact extends Component {
       <div class="footer-copyright pt-3 pt-lg-2 mt-2">
         <div class="row">
           <div class="col-lg">
-            <p class="text-center text-lg-start mb-2 mb-lg-0">Copyright &copy; 2022 <a href="#">Payyed</a>. All Rights Reserved.</p>
+            <p class="text-center text-lg-start mb-2 mb-lg-0">Copyright &copy; 2022 <a href="/eremit/#/">eRemit</a>. All Rights Reserved.</p>
           </div>
           <div class="col-lg d-lg-flex align-items-center justify-content-lg-end">
             <ul class="nav justify-content-center">
@@ -190,13 +190,7 @@ class Contact extends Component {
 <a id="back-to-top" data-bs-toggle="tooltip" title="Back to Top" href="javascript:void(0)"><i class="fa fa-chevron-up"></i></a>
 
 
-{/* <!-- Script -->  */}
-<script src="assets/vendor/jquery/jquery.min.js"></script> 
-<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script> 
-<script src="assets/vendor/owl.carousel/owl.carousel.min.js"></script> 
-{/* <!-- Style Switcher -->  */}
-<script src="assets/js/switcher.min.js"></script> 
-<script src="assets/js/theme.js"></script>
+
 </div>
 
             </div>

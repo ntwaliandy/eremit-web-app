@@ -23,7 +23,7 @@ class About extends Component {
         <div class="header-column justify-content-start"> 
           {/* <!-- Logo
           ============================= --> */}
-          <div class="logo me-3"> <a class="d-flex" href="/eremit" title="Payyed - HTML Template"><img src="assets/images/logo.png" alt="Payyed" /></a> </div>
+          <div class="logo me-3"> <a class="d-flex" href="/eremit/#/" title="eRemit - HTML Template"><img src="assets/images/logo2.png" alt="eRemit" /></a> </div>
           {/* <!-- Logo end -->  */}
           {/* <!-- Collapse Button
           ============================== --> */}
@@ -71,9 +71,9 @@ class About extends Component {
       <div class="container">
         <div class="row">
           <div class="col-12 text-center">
-            <h1 class="text-11 fw-500 text-white mb-3">About Payyed</h1>
+            <h1 class="text-11 fw-500 text-white mb-3">About eRemit</h1>
             <p class="text-5 text-white lh-base mb-4">Our mission is to help you save on transfer fees and exchange rates!</p>
-            <a href="/eremit/#/register" class="btn btn-primary m-2">Open a Free Account</a> <a class="btn btn-outline-light video-btn m-2" href="#" data-src="https://www.youtube.com/embed/7e90gBu4pas" data-bs-toggle="modal" data-bs-target="#videoModal"><span class="me-2"><i class="fas fa-play-circle"></i></span>See How it Works</a> </div>
+            <a href="/eremit/#/register" class="btn btn-primary m-2">Open a Free Account</a>  </div>
         </div>
       </div>
     </div>
@@ -93,7 +93,7 @@ class About extends Component {
           <div class="col-lg-6 d-flex">
             <div class="my-auto px-0 px-lg-5 mx-2">
               <h2 class="text-9 mb-4">Who we are</h2>
-              <p class="text-4">Quidam lisque persius interesset his et, in quot quidam persequeris vim, ad mea essent possim iriure. Lisque persius interesset his et, in quot quidam persequeris vim, ad mea essent possim iriure. lisque persius interesset his et, in quot quidam mea essent possim iriure.</p>
+              <p class="text-4">eRemit is the faster, more secure way to send and receive money online. It lets you pay for your favorite things at millions of online stores in the U.S. and across 203 global markets—all without the hassle of converting currency. So it’s just as easy to know how much you’re spending as it is to spend it. It's free to sign up for an eRemit account to send and receive money to other eRemit users.</p>
             </div>
           </div>
           <div class="col-lg-6 my-auto text-center"> <img class="img-fluid shadow-lg rounded-3" src="assets/images/who-we-are.jpg" alt="" /> </div>
@@ -117,11 +117,11 @@ class About extends Component {
             <div class="my-auto px-0 px-lg-5">
               <h2 class="text-9 mb-4">Our Values</h2>
               <h4 class="text-4 fw-500">Our Mission</h4>
-              <p class="tex-3">Quidam lisque persius interesset his et, in quot quidam persequeris vim, ad mea essent possim iriure. Lisque persius interesset his et, in quot quidam persequeris vim, ad mea essent possim iriure. lisque persius interesset his et, in quot quidam mea essent possim iriure.</p>
-              <h4 class="text-4 fw-500 mb-2">Our Vision</h4>
-              <p class="tex-3">Persequeris quidam lisque persius interesset his et, in quot quidam vim, ad mea essent possim iriure. Lisque persius interesset his et, in quot quidam persequeris vim, ad mea essent possim iriure. lisque persius interesset his et, in quot quidam.</p>
-              <h4 class="text-4 fw-500 mb-2">Our Goal</h4>
-              <p class="tex-3">Lisque persius interesset his et, in quot quidam persequeris vim, ad mea essent possim iriure. Lisque persius interesset his et, in quot quidam persequeris vim, ad mea essent possim iriure. lisque persius interesset his et, in quot quidam mea essent possim iriure.</p>
+              <p class="tex-3">We’re on a mission to make a cashless World</p>
+              <h4 class="text-4 fw-500 mb-2">Our goal</h4>
+              <p class="tex-3">To make international money transfer fast, simple and secure so Whichever method you choose only takes a few steps to send money online with us</p>
+              <h4 class="text-4 fw-500 mb-2">Our vision</h4>
+              <p class="tex-3"> Ready to change the world?</p>
             </div>
           </div>
         </div>
@@ -134,7 +134,7 @@ class About extends Component {
     <section class="section">
       <div class="container">
         <h2 class="text-9 text-center">Leadership</h2>
-        <p class="lead text-center mb-5">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+        <p class="lead text-center mb-5">We pride ourselves on hiring a diverse team from different cultural and professional backgrounds. With 1000+ employees around the world, there are more than 30 nationalities in our  headquarters alone. We also have regional hubs around the world.</p>
         <div class="row g-4">
           <div class="col-sm-6 col-md-3 text-center">
             <div class="team rounded d-inline-block"> <img class="img-fluid rounded" alt="" src="assets/images/team/leader.jpg" />
@@ -190,7 +190,7 @@ class About extends Component {
     <section class="section bg-white">
       <div class="container">
         <h2 class="text-9 text-center">Our Investors</h2>
-        <p class="lead text-center mb-5">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+        <p class="lead text-center mb-5">We are Backed by some of the world’s best investors</p>
         <div class="brands-grid separator-border">
           <div class="row align-items-center text-center">
             <div class="col-6 col-sm-4 col-lg-2"><a href=""><img class="img-fluid" src="assets/images/partner/partner-1.png" alt="Brands" /></a></div>
@@ -215,8 +215,8 @@ class About extends Component {
     ============================================= --> */}
     <section class="section">
       <div class="container">
-        <h2 class="text-9 text-center">What people are saying about Payyed</h2>
-        <p class="lead text-center mb-4">A payments experience people love to talk about</p>
+        <h2 class="text-9 text-center">What people are saying about eRemit</h2>
+        <p class="lead text-center mb-4">A payment experience that everyone would like to explore</p>
         <div class="owl-carousel owl-theme" data-autoplay="true" data-nav="true" data-loop="true" data-margin="30" data-slideby="2" data-stagepadding="5" data-items-xs="1" data-items-sm="1" data-items-md="2" data-items-lg="2">
           <div class="item">
             <div class="testimonial rounded text-center p-4">
@@ -245,7 +245,7 @@ class About extends Component {
           <div class="item">
             <div class="testimonial rounded text-center p-4">
               <p class="text-9 text-muted opacity-2 mb-0"><i class="fa fa-quote-left"></i></p>
-			  <p class="text-4">“It's a real good idea to manage your money by payyed. The rates are fair and you can carry out the transactions without worrying!”</p>
+			  <p class="text-4">“It's a real good idea to manage your money by eRemit. The rates are fair and you can carry out the transactions without worrying!”</p>
               <strong class="d-block fw-500">Mauri Lindberg</strong> <span class="text-muted">Freelancer from Australia</span> </div>
           </div>
           <div class="item">
@@ -308,9 +308,9 @@ class About extends Component {
       <div class="row">
         <div class="col-lg d-lg-flex align-items-center">
           <ul class="nav justify-content-center justify-content-lg-start text-3">
-            <li class="nav-item"> <a class="nav-link active" href="#">About Us</a></li>
-            <li class="nav-item"> <a class="nav-link" href="#">Support</a></li>
-            <li class="nav-item"> <a class="nav-link" href="#">Help</a></li>
+            <li class="nav-item"> <a class="nav-link active" href="/eremit/#/about">About Us</a></li>
+            <li class="nav-item"> <a class="nav-link" href="/eremit/#/contact">Support</a></li>
+            <li class="nav-item"> <a class="nav-link" href="/eremit/#/help">Help</a></li>
           </ul>
         </div>
         <div class="col-lg d-lg-flex justify-content-lg-end mt-3 mt-lg-0">
@@ -325,7 +325,7 @@ class About extends Component {
       <div class="footer-copyright pt-3 pt-lg-2 mt-2">
         <div class="row">
           <div class="col-lg">
-            <p class="text-center text-lg-start mb-2 mb-lg-0">Copyright &copy; 2022 <a href="#">Payyed</a>. All Rights Reserved.</p>
+            <p class="text-center text-lg-start mb-2 mb-lg-0">Copyright &copy; 2022 <a href="/eremit/#/eRemit">eRemit</a>. All Rights Reserved.</p>
           </div>
           <div class="col-lg d-lg-flex align-items-center justify-content-lg-end">
             <ul class="nav justify-content-center">

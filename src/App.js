@@ -18,6 +18,7 @@ import Otp from './components/otp';
 import ForgotPassword from './components/ForgotPassword';
 import PasswordCode from './components/PasswordCode.js';
 import SettingPasswrod from './components/SettingPassword';
+import LogOtp from './components/LogOtp';
 
 function App() {
   return (
@@ -38,6 +39,8 @@ function App() {
       <Route path='/forgot_password' element={<ForgotPassword /> } />
       <Route path='/password_otp' element={<PasswordCode /> } />
       <Route path='/setting_password' element={<SettingPasswrod /> } />
+      <Route path='/login_otp' element={<LogOtp /> } />
+      
 
     </Routes>
   )
