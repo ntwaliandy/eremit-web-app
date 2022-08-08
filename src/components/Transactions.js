@@ -20,7 +20,7 @@ const Transaction = ({props}) => {
           },
           body: JSON.stringify(bodyData)
         }
-        fetch("http://127.0.0.1:9000/transaction_base_on_wallet", requiredOptions)
+        fetch("http://18.116.9.199:9000/transaction_base_on_wallet", requiredOptions)
         .then((response) => response.json())
         .then(res => {
           console.log(res)
@@ -38,7 +38,7 @@ const Transaction = ({props}) => {
       <div class="header-row">
         <div class="header-column justify-content-start"> 
           
-          <div class="logo me-3"> <a class="d-flex" href="/eremit" title="Payyed - HTML Template"><img src="assets/images/logo.png" alt="Payyed" /></a> </div>
+          <div class="logo me-3"> <a class="d-flex" href="/eremit" title="eRemit - HTML Template"><img src="assets/images/logo2.png" alt="eRemit" /></a> </div>
           
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#header-nav"> <span></span> <span></span> <span></span> </button>
           

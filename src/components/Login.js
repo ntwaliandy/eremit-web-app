@@ -16,7 +16,7 @@ let handleSubmit = async (e) => {
   SetLoading(true)
   e.preventDefault();
   try {
-    await fetch("http://127.0.0.1:9000/login_user", {
+    await fetch("http://18.116.9.199:9000/login_user", {
       method: "POST",
       body: JSON.stringify({
         email: email,

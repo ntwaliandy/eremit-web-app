@@ -22,7 +22,7 @@ class Dashboard extends Component {
       },
       body: JSON.stringify(userId)
     }
-    fetch("http://127.0.0.1:9000/user_wallet_details", requiredOptions)
+    fetch("http://18.116.9.199:9000/user_wallet_details", requiredOptions)
     .then((response) => response.json())
     .then(res => {
       console.log(res)
@@ -37,7 +37,7 @@ class Dashboard extends Component {
       },
       body: JSON.stringify(userId)
     }
-    fetch("http://127.0.0.1:9000/user_transactions", requiredOptions1)
+    fetch("http://18.116.9.199:9000/user_transactions", requiredOptions1)
     .then((response) => response.json())
     .then(res => {
       console.log(res)
@@ -176,7 +176,7 @@ class Dashboard extends Component {
                         <div class="my-auto text-center">
                           <div class="text-17 text-white my-3"><i class="fas fa-building"></i></div>
                           <h3 class="text-4 text-white fw-400 my-3">EREMIT Ltd</h3>
-                          <div class="text-8 fw-500 text-white my-4">{mr.amount} {mr.currency_code}</div>
+                          <div class="text-8 fw-500 text-white my-4">{mr.amount} {this.state.wallets[i].currency}</div>
                           <p class="text-white">{mr.date_time}</p>
                         </div>
                       </div>
@@ -224,7 +224,7 @@ class Dashboard extends Component {
   <div class="transaction-item px-4 py-3" data-bs-toggle="modal" data-bs-target={"#transaction-detail" + mr.id}>
                     <div class="row align-items-center flex-row">
                       <div class="col-2 col-sm-1 text-center"> <p>{mr.date_time}</p> </div>
-                      <div class="col col-sm-7"> <p>Tansaction ID:</p> <span class="text-muted">{mr.reason}</span> </div>
+                      <div class="col col-sm-7"> <span class="text-muted">{mr.reason}</span> </div>
                       <div class="col-auto col-sm-2 d-none d-sm-block text-center text-3"> <span class="text-success" data-bs-toggle="tooltip" title="In Progress"><i class="fas fa-check-circle"></i> </span>received </div>
                       <div class="col-3 col-sm-2 text-end text-4"> <span class="text-nowrap"></span> <span class="text-2 text-uppercase">{mr.amount} ({mr.currency_code})</span> </div>
                     </div>
@@ -256,8 +256,8 @@ class Dashboard extends Component {
                           <p class="d-flex align-items-center fw-500 mb-0">Total Amount <span class="text-3 ms-auto">{mr.amount} {mr.currency_code} </span></p>
 						  <hr class="mb-4 mt-2" />
                           <ul class="list-unstyled">
-                            <li class="fw-500">sent to:</li>
-                            <li class="text-muted">{mr.to_account}</li>
+                            <li class="fw-500">received from:</li>
+                            <li class="text-muted">{mr.from_account}</li>
                           </ul>
                           <ul class="list-unstyled">
                             <li class="fw-500">Transaction ID:</li>
