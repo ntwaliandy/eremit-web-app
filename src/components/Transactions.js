@@ -20,7 +20,7 @@ const Transaction = ({props}) => {
           },
           body: JSON.stringify(bodyData)
         }
-        fetch("http://127.0.0.1:9000/transaction_base_on_wallet", requiredOptions)
+        fetch("http://18.116.9.199:9000/transaction_base_on_wallet", requiredOptions)
         .then((response) => response.json())
         .then(res => {
           console.log(res)
@@ -38,7 +38,7 @@ const Transaction = ({props}) => {
       <div class="header-row">
         <div class="header-column justify-content-start"> 
           
-          <div class="logo me-3"> <a class="d-flex" href="/eremit" title="Payyed - HTML Template"><img src="assets/images/logo.png" alt="Payyed" /></a> </div>
+          <div class="logo me-3"> <a class="d-flex" href="/eremit" title="eRemit - HTML Template"><img src="assets/images/logo2.png" alt="eRemit" /></a> </div>
           
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#header-nav"> <span></span> <span></span> <span></span> </button>
           
@@ -139,7 +139,7 @@ const Transaction = ({props}) => {
                   <div class="transaction-item px-4 py-3" data-bs-toggle="modal" data-bs-target={"#transaction-detail" + tr.id}>
                     <div class="row align-items-center flex-row">
                       <div class="col-2 col-sm-1 text-center"> <p>{tr.date_time}</p> </div>
-                      <div class="col col-sm-7"> <p>Tansaction ID:</p> <span class="text-muted">{tr.transaction_id}</span> </div>
+                      <div class="col col-sm-7"> <span class="text-muted">{tr.reason}</span> </div>
                       <div class="col-auto col-sm-2 d-none d-sm-block text-center text-3"> <span class="text-success" data-bs-toggle="tooltip" title="In Progress"><i class="fas fa-check-circle"></i> </span>sent </div>
                       <div class="col-3 col-sm-2 text-end text-4"> <span class="text-nowrap"></span> <span class="text-2 text-uppercase">{tr.amount} ({location.state.currency})</span> </div>
                     </div>
@@ -201,7 +201,7 @@ const Transaction = ({props}) => {
                     <div class="transaction-item px-4 py-3" data-bs-toggle="modal" data-bs-target={"#transaction-detail" + tr.id}>
                     <div class="row align-items-center flex-row">
                       <div class="col-2 col-sm-1 text-center"> <p>{tr.date_time}</p> </div>
-                      <div class="col col-sm-7"> <p>Transaction ID: </p> <span class="text-muted">{tr.transaction_id}</span> </div>
+                      <div class="col col-sm-7">  <span class="text-muted">{tr.reason}</span> </div>
                       <div class="col-auto col-sm-2 d-none d-sm-block text-center text-3"> <span class="text-success" data-bs-toggle="tooltip" title="In Progress"><i class="fas fa-check-circle"></i> </span> received</div>
                       <div class="col-3 col-sm-2 text-end text-4"> <span class="text-nowrap"></span> <span class="text-2 text-uppercase">{tr.amount} ({location.state.currency})</span> </div>
                     </div>
