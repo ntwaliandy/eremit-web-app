@@ -159,7 +159,7 @@ class Dashboard extends Component {
      if (mr.from_account == this.state.wallets[i].wallet_id && mr.status == 'credit') {
       return (
         <>
-  <div class="transaction-item px-4 py-3" data-bs-toggle="modal" data-bs-target={"#transaction-detail" + mr.id}>
+  <div class="transaction-item px-4 py-3" data-bs-toggle="modal" data-bs-target={"#transaction-detail" + mr.transaction_id}>
                     <div class="row align-items-center flex-row">
                       <div class="col-2 col-sm-1 text-center"> <p>{mr.date_time}</p> </div>
                       <div class="col col-sm-7">  <span class="text-muted">{mr.reason}</span> </div>
@@ -167,7 +167,7 @@ class Dashboard extends Component {
                       <div class="col-3 col-sm-2 text-end text-4"> <span class="text-nowrap"></span> <span class="text-2 text-uppercase">{mr.amount} ({mr.currency_code})</span> </div>
                     </div>
                   </div>
-                  <div id={"transaction-detail" + mr.id} class="modal fade" role="dialog" aria-hidden="true">
+                  <div id={"transaction-detail" + mr.transaction_id} class="modal fade" role="dialog" aria-hidden="true">
               <div class="modal-dialog modal-dialog-centered transaction-details" role="document">
                 <div class="modal-content">
                   <div class="modal-body">
@@ -221,7 +221,7 @@ class Dashboard extends Component {
      } else if(mr.to_account == this.state.wallets[i].wallet_id && mr.status == 'debit') {
       return (
         <>
-  <div class="transaction-item px-4 py-3" data-bs-toggle="modal" data-bs-target={"#transaction-detail" + mr.id}>
+  <div class="transaction-item px-4 py-3" data-bs-toggle="modal" data-bs-target={"#transaction-detail" + mr.transaction_id}>
                     <div class="row align-items-center flex-row">
                       <div class="col-2 col-sm-1 text-center"> <p>{mr.date_time}</p> </div>
                       <div class="col col-sm-7"> <span class="text-muted">{mr.reason}</span> </div>
@@ -229,7 +229,7 @@ class Dashboard extends Component {
                       <div class="col-3 col-sm-2 text-end text-4"> <span class="text-nowrap"></span> <span class="text-2 text-uppercase">{mr.amount} ({mr.currency_code})</span> </div>
                     </div>
                   </div>
-                  <div id={"transaction-detail" + mr.id} class="modal fade" role="dialog" aria-hidden="true">
+                  <div id={"transaction-detail" + mr.transaction_id} class="modal fade" role="dialog" aria-hidden="true">
               <div class="modal-dialog modal-dialog-centered transaction-details" role="document">
                 <div class="modal-content">
                   <div class="modal-body">
