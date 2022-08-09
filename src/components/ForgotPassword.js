@@ -59,7 +59,7 @@ let handleSubmit = async (e) => {
             <h3 class="fw-400 text-center mb-4">Recover your password</h3>
             <hr class="mx-n3 mx-sm-n5" />
             <p class="lead text-center">you can request a password reset below.
-            we will snd you security code to your email address, please make sure it is 
+            we will send you security code to your email address, please make sure it is 
             correct
             </p>
             <form id="loginForm" onSubmit={handleSubmit}>
