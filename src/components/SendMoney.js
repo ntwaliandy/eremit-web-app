@@ -154,7 +154,7 @@ const SendMoney = () =>  {
         </div>
       </div>
       <h2 class="fw-400 text-center mt-3">Send Money</h2>
-      <p class="lead text-center mb-4">Send your money on anytime, anywhere in the world.</p>
+      <p class="lead text-center mb-4">Send your money anytime, anywhere in the world.</p>
       <div class="row">
         <div class="col-md-9 col-lg-7 col-xl-6 mx-auto">
           <div class="bg-white shadow-sm rounded p-3 pt-sm-4 pb-sm-5 px-sm-5 mb-4">
@@ -163,7 +163,7 @@ const SendMoney = () =>  {
             <form id="form-send-money" onSubmit={handleOnSubmit}>
               <div className="mb-3">
               <PhoneInput
-                specialLabel="receiver phonenumber"
+                specialLabel="Receiver Phonenumber"
                 placeholder="Enter receiver's phone number"
                 class="form-control"
                 defaultCountry="UG"
