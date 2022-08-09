@@ -76,7 +76,7 @@ return (
           <div className="hero-content mx-auto w-100 h-100 d-flex flex-column">
             <div className="row g-0">
               <div className="col-10 col-lg-9 mx-auto">
-                <div className="logo mt-5 mb-5 mb-md-0"> <a className="d-flex" href="/eremit" title="eRemit - HTML Template"><img src="assets/images/logo2.png" alt="eRemit" /></a> </div>
+                <div className="logo mt-5 mb-5 mb-md-0"> <a className="d-flex" href="/eremit" title="eRemit - HTML Template"><img src="assets/images/logo6.png" alt="eRemit" /></a> </div>
               </div>
             </div>
             <div className="row g-0 my-auto">
