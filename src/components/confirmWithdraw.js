@@ -5,7 +5,7 @@ import { Spinner } from "react-bootstrap";
 import { useLocation, useNavigate } from "react-router";
 
 
-const ConfirmDeposit = () => {
+const ConfirmWithdraw = () => {
     const navigate = useNavigate()
     const location = useLocation()
     const [isLoading, SetLoading] = useState(false)
@@ -38,8 +38,11 @@ const ConfirmDeposit = () => {
           if (response.status === 100) {
             SetLoading(false)
             console.log(response)
-            window.location.replace(response.message.meta.authorization.redirect)
-            toast("success")
+            navigate("/withdraw-success", { state: {
+                "amount": location.state.amount,
+                "currency": location.state.currency,
+                "phone": location.state.phone,
+            }})
           } else if (response.status === 403) {
             SetLoading(false)
             toast(response.message)
@@ -91,8 +94,8 @@ const ConfirmDeposit = () => {
   <div class="bg-white">
     <div class="container d-flex justify-content-center">
       <ul class="nav nav-tabs nav-lg border-bottom-0">
-        <li class="nav-item"> <a class="nav-link active" href="/eremit/#/deposit">Deposit</a></li>
-        <li class="nav-item"> <a class="nav-link" href="/eremit/#/withdraw">Withdraw</a></li>
+        <li class="nav-item"> <a class="nav-link" href="/eremit/#/deposit">Deposit</a></li>
+        <li class="nav-item"> <a class="nav-link active" href="/eremit/#/withdraw">Withdraw</a></li>
       </ul>
     </div>
   </div>
@@ -107,7 +110,7 @@ const ConfirmDeposit = () => {
               <div class="progress">
                 <div class="progress-bar"></div>
               </div>
-              <a href="/eremit/#/deposit" class="step-dot"></a> </div>
+              <a href="/eremit/#/withdraw" class="step-dot"></a> </div>
             <div class="col-4 step active">
               <div class="step-name">Confirm</div>
               <div class="progress">
@@ -131,9 +134,9 @@ const ConfirmDeposit = () => {
               <hr class="mx-n3 mx-sm-n5 mb-4" />
               <h3 class="text-5 fw-400 mb-4">Details</h3>
               <hr class="mx-n3 mx-sm-n5 mb-4" />
-              <p class="mb-1">Deposit From <span class="text-3 float-end">{location.state.phone}</span></p>
-              <p class="mb-1">Deposit Amount <span class="text-3 float-end">{location.state.amount} {location.state.currency}</span></p>
-              <p class="mb-1">Deposit To <span class="text-3 float-end">eREMIT {location.state.currency} WALLET</span></p>
+              <p class="mb-1">Withdraw To <span class="text-3 float-end">{location.state.phone}</span></p>
+              <p class="mb-1">Withdraw Amount <span class="text-3 float-end">{location.state.amount} {location.state.currency}</span></p>
+              <p class="mb-1">Withdraw From <span class="text-3 float-end">eREMIT {location.state.currency} WALLET</span></p>
               <hr />
               <p class="text-4 fw-500">Total<span class="float-end">{location.state.amount} {location.state.currency}</span></p>
               <div class="d-grid">
@@ -188,4 +191,4 @@ const ConfirmDeposit = () => {
     )
 }
 
-export default ConfirmDeposit;
+export default ConfirmWithdraw;

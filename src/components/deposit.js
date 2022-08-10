@@ -60,7 +60,7 @@ const Deposit = () => {
       <div class="header-row">
         <div class="header-column justify-content-start"> 
           
-          <div class="logo me-3"> <a class="d-flex" href="/eremit" title="eRemit - HTML Template"><img src="assets/images/logo2.png" alt="eRemit" /></a> </div>
+          <div class="logo me-3"> <a class="d-flex" href="/eremit/#/dashboard" title="eRemit - HTML Template"><img src="assets/images/logo2.png" alt="eRemit" /></a> </div>
           
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#header-nav"> <span></span> <span></span> <span></span> </button>
           
@@ -91,7 +91,7 @@ const Deposit = () => {
     <div class="container d-flex justify-content-center">
       <ul class="nav nav-tabs nav-lg border-bottom-0">
         <li class="nav-item"> <a class="nav-link active" href="/eremit/#/deposit">Deposit</a></li>
-        <li class="nav-item"> <a class="nav-link" href="#/">Withdraw</a></li>
+        <li class="nav-item"> <a class="nav-link" href="/eremit/#/withdraw">Withdraw</a></li>
       </ul>
     </div>
   </div>

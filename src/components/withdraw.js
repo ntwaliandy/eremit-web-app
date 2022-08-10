@@ -1,67 +1,66 @@
 import React, { useState, useEffect } from "react";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from "react-router";
+import PhoneInput from 'react-phone-input-2'
+import 'react-phone-number-input/style.css';
 import { Spinner } from "react-bootstrap";
-import { useLocation, useNavigate } from "react-router";
 
 
-const ConfirmDeposit = () => {
+
+const Withdraw = () => {
     const navigate = useNavigate()
-    const location = useLocation()
+    const [userPhonenumber, setUserPhonenumber] = useState("")
+    const [userCurrencies, setUserCurrincies] = useState([]);
+    const [currency_code, setCurrencyCode] = useState("")
+    const [transType, setTransType] = useState("")
+    const [amount, setAmount] = useState("")
     const [isLoading, SetLoading] = useState(false)
+
+    const temp = localStorage.getItem("data")
+    const loadedData = JSON.parse(temp)
+    const userId = loadedData.user_id
+    const token = 'Bearer ' + loadedData.token
     useEffect(() => {
-        console.log(location)
-    }, [])
-    const handleOnSubmit = e => {
-        SetLoading(true)
-        e.preventDefault()
-        const bodData = {
-          "user_id": location.state.userId,
-          "currency": location.state.currency,
-          "phone_number": location.state.phone,
-          "amount": parseFloat(location.state.amount),
-          "trans_type": location.state.trans
-        }
-    
-        const requiredOptions = {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify(bodData)
-        }
-    
-        fetch("http://18.116.9.199:9000/deposit", requiredOptions)
-        .then(results => results.json())
-        .then((response) => {
-          console.log(response)
-          if (response.status === 100) {
-            SetLoading(false)
-            console.log(response)
-            window.location.replace(response.message.meta.authorization.redirect)
-            toast("success")
-          } else if (response.status === 403) {
-            SetLoading(false)
-            toast(response.message)
-          } else {
-            SetLoading(false)
-            toast("Invalid data types")
-    
+ 
+        const bodyData = {
+            "user_id": userId
           }
-        })
-    
+          const requiredDataOptions = {
+            method: "POST",
+            headers: {
+              "Authorization": token,
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify(bodyData)
+          }
+          fetch("http://18.116.9.199:9000/user_wallet_details", requiredDataOptions)
+          .then(results => results.json())
+          .then((response) => {
+            console.log(response)
+            setUserCurrincies(response)
+          })
+    }, [])
+
+    const handleOnSubmit = e => {
+        e.preventDefault()
+        SetLoading(true)
+        navigate("/confirm-withdraw", { state: {
+            "userId": userId,
+            "currency": currency_code,
+            "amount": amount,
+            "phone": userPhonenumber,
+            "trans": transType
+        }})
       }
-    return (
+    return ( 
         <>
             <div id="main-wrapper"> 
-            <ToastContainer />
 
             <header id="header">
     <div class="container">
       <div class="header-row">
         <div class="header-column justify-content-start"> 
           
-          <div class="logo me-3"> <a class="d-flex" href="/eremit" title="Payyed - HTML Template"><img src="assets/images/logo.png" alt="Payyed" /></a> </div>
+          <div class="logo me-3"> <a class="d-flex" href="/eremit/#/dashboard" title="eRemit - HTML Template"><img src="assets/images/logo2.png" alt="eRemit" /></a> </div>
           
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#header-nav"> <span></span> <span></span> <span></span> </button>
           
@@ -91,24 +90,24 @@ const ConfirmDeposit = () => {
   <div class="bg-white">
     <div class="container d-flex justify-content-center">
       <ul class="nav nav-tabs nav-lg border-bottom-0">
-        <li class="nav-item"> <a class="nav-link active" href="/eremit/#/deposit">Deposit</a></li>
-        <li class="nav-item"> <a class="nav-link" href="/eremit/#/withdraw">Withdraw</a></li>
+        <li class="nav-item"> <a class="nav-link" href="/eremit/#/deposit">Deposit</a></li>
+        <li class="nav-item"> <a class="nav-link active" href="/eremit/#/withdraw">Withdraw</a></li>
       </ul>
     </div>
   </div>
   <div id="content" class="py-4">
     <div class="container"> 
-
+      
       <div class="row mt-4 mb-5">
         <div class="col-lg-11 mx-auto">
           <div class="row widget-steps">
-            <div class="col-4 step complete">
+            <div class="col-4 step active">
               <div class="step-name">Details</div>
               <div class="progress">
                 <div class="progress-bar"></div>
               </div>
-              <a href="/eremit/#/deposit" class="step-dot"></a> </div>
-            <div class="col-4 step active">
+              <a href="#" class="step-dot"></a> </div>
+            <div class="col-4 step disabled">
               <div class="step-name">Confirm</div>
               <div class="progress">
                 <div class="progress-bar"></div>
@@ -123,22 +122,46 @@ const ConfirmDeposit = () => {
           </div>
         </div>
       </div>
-      <h2 class="fw-400 text-center mt-3 mb-4">Deposit Money</h2>
+      <h2 class="fw-400 text-center mt-3 mb-4">Withdraw Money</h2>
       <div class="row">
         <div class="col-md-9 col-lg-7 col-xl-6 mx-auto">
-          <div class="bg-white shadow-sm rounded p-3 pt-sm-4 pb-sm-5 px-sm-5 mb-4">
+          <div class="bg-white shadow-sm rounded p-3 pt-sm-5 pb-sm-5 px-sm-5 mb-4"> 
+            
+            
             <form id="form-send-money" onSubmit={handleOnSubmit}>
-              <hr class="mx-n3 mx-sm-n5 mb-4" />
-              <h3 class="text-5 fw-400 mb-4">Details</h3>
-              <hr class="mx-n3 mx-sm-n5 mb-4" />
-              <p class="mb-1">Deposit From <span class="text-3 float-end">{location.state.phone}</span></p>
-              <p class="mb-1">Deposit Amount <span class="text-3 float-end">{location.state.amount} {location.state.currency}</span></p>
-              <p class="mb-1">Deposit To <span class="text-3 float-end">eREMIT {location.state.currency} WALLET</span></p>
-              <hr />
-              <p class="text-4 fw-500">Total<span class="float-end">{location.state.amount} {location.state.currency}</span></p>
+                <div class="mb-4 mb-sm-5">
+                <label for="description" class="form-label">Telephone Number</label>
+                <input type="text" value={userPhonenumber} class="form-control" onChange={e => setUserPhonenumber(e.target.value)} rows="4" id="description" required placeholder="0770001112" />
+              </div>
+              <div class="mb-3">
+                <label for="youSend">Amount</label>
+                <div class="input-group">
+                  <input type="text" class="form-control" data-bv-field="youSend" id="youSend" value={amount} onChange={e => setAmount(e.target.value)} placeholder="" />
+                  <span class="input-group-text p-0">
+                  <select id="youSendCurrency" data-style="form-select bg-transparent border-0" data-container="body" name="currency_code" onChange={e => setCurrencyCode(e.target.value)} data-live-search="true" class="selectpicker form-control bg-transparent" required="">
+                    <option data-icon="currency-flag currency-flag-usd me-1" data-subtext="United States dollar" value="">currency</option>
+                      { 
+                        userCurrencies.map((cr) => (
+                          <option data-icon="currency-flag currency-flag-usd me-1" data-subtext="United States dollar"  value={cr.currency_code}>{cr.currency_code}</option>
+                        )) 
+                      }
+                      
+                      
+                    </select>
+                    </span>
+                </div>
+              </div>
+              <div class="mb-3">
+                <label for="paymentMethod" class="form-label">Payment Method</label>
+                <select id="cardType" class="form-select" required onChange={e => setTransType(e.target.value)}>
+                  <option value="">Select Payment Method</option>
+                  <option value="To_MM">To Mobile Money UG</option>
+                </select>
+              </div><hr />
+              <p class="text-4 fw-500">You'll Withdraw Minus Charges <span class="float-end">{amount} {currency_code}</span></p>
               <div class="d-grid">
               { 
-                  isLoading ? <button class="btn btn-primary"><Spinner animation="border" variant="light" /></button> : <button class="btn btn-primary">Confirm</button>
+                  isLoading ? <button class="btn btn-primary"><Spinner animation="border" variant="light" /></button> : <button class="btn btn-primary">Continue</button>
                 }
               </div>
             </form>
@@ -185,7 +208,7 @@ const ConfirmDeposit = () => {
   
 </div>
         </>
-    )
+     );
 }
 
-export default ConfirmDeposit;
+export default Withdraw;

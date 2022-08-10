@@ -21,6 +21,10 @@ import SettingPasswrod from './components/SettingPassword';
 import LogOtp from './components/LogOtp';
 import Deposit from './components/deposit';
 import ConfirmDeposit from './components/confirmDeposit';
+import Withdraw from './components/withdraw';
+import ConfirmWithdraw from './components/confirmWithdraw';
+import WithdrawSuccess from './components/withdrawSuccess';
+
 
 function App() {
   return (
@@ -45,6 +49,10 @@ function App() {
       
       <Route path='/deposit' element={<Deposit />} />
       <Route path='confirm-deposit' element={<ConfirmDeposit />} />
+
+      <Route path='/withdraw' element={<Withdraw />} />
+      <Route path='/confirm-withdraw' element={<ConfirmWithdraw />} />
+      <Route path='/withdraw-success' element={<WithdrawSuccess />} />
 
     </Routes>
   )
