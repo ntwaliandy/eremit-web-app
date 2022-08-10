@@ -10,6 +10,7 @@ class Profile extends Component {
     first_name: "",
     last_name: "",
     email: "",
+    username: "",
     phone: "",
     password: "",
     updateMessage: "",
@@ -186,19 +187,20 @@ curencySubmit = e => {
                 <div id="main-wrapper"> 
   
                 <header id="header">
-      <div class="container">
+    <div class="container">
       <div class="header-row">
         <div class="header-column justify-content-start"> 
           
-          <div class="logo me-3"> <a class="d-flex" href="/eremit" title="eRemit - HTML Template"><img src="assets/images/logo2.png" alt="eRemit" /></a> </div>
+          <div class="logo me-3"> <a class="d-flex" href="/eremit/#/dashboard" title="eRemit - HTML Template"><img src="assets/images/logo2.png" alt="eRemit" /></a> </div>
           
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#header-nav"> <span></span> <span></span> <span></span> </button>
           
           <nav class="primary-menu navbar navbar-expand-lg">
             <div id="header-nav" class="collapse navbar-collapse">
               <ul class="navbar-nav me-auto">
-                <li><a href="/eremit/#/dashboard">Dashboard</a></li>
-                <li class="active"><a href="/eremit/#/send-money">Send</a></li>
+                <li class="active"><a href="/eremit/#/dashboard">Dashboard</a></li>
+                <li><a href="/eremit/#/send-money">Send</a></li>
+                <li><a href="/eremit/#/deposit">Deposit/Withdraw</a></li>
                 <li><a href="/eremit/#/help">Help</a></li>
               </ul>
             </div>
@@ -243,6 +245,10 @@ curencySubmit = e => {
             <div class="row gx-3 align-items-center" key={pr.last_name}>
               <p class="col-sm-3 text-muted text-sm-end mb-0 mb-sm-3">Last Name:</p>
               <p class="col-sm-9 text-3">{pr.last_name}</p>
+            </div>
+            <div class="row gx-3 align-items-center" key={pr.username}>
+              <p class="col-sm-3 text-muted text-sm-end mb-0 mb-sm-3">Username:</p>
+              <p class="col-sm-9 text-3">{pr.username}</p>
             </div>
             <div class="row gx-3 align-items-center" key={pr.phone_nmber}>
               <p class="col-sm-3 text-muted text-sm-end mb-0 mb-sm-3">Telephone Number:</p>

@@ -43,7 +43,7 @@ const ConfirmMoney = () =>  {
         if (response.status === 100) {
           SetLoading(false)
           navigate("/success", { state: {
-            "phone": location.state.phone,
+            "username": location.state.username,
             "amount": location.state.amount,
             "currency": location.state.currency
           }})
@@ -66,15 +66,16 @@ const ConfirmMoney = () =>  {
       <div class="header-row">
         <div class="header-column justify-content-start"> 
           
-          <div class="logo me-3"> <a class="d-flex" href="/eremit" title="eRemit - HTML Template"><img src="assets/images/logo.png" alt="eRemit" /></a> </div>
+          <div class="logo me-3"> <a class="d-flex" href="/eremit/#/dashboard" title="eRemit - HTML Template"><img src="assets/images/logo2.png" alt="eRemit" /></a> </div>
           
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#header-nav"> <span></span> <span></span> <span></span> </button>
           
           <nav class="primary-menu navbar navbar-expand-lg">
             <div id="header-nav" class="collapse navbar-collapse">
               <ul class="navbar-nav me-auto">
-                <li><a href="/eremit/#/dashboard">Dashboard</a></li>
-                <li class="active"><a href="/eremit/#/send-money">Send</a></li>
+                <li class="active"><a href="/eremit/#/dashboard">Dashboard</a></li>
+                <li><a href="/eremit/#/send-money">Send</a></li>
+                <li><a href="/eremit/#/deposit">Deposit/Withdraw</a></li>
                 <li><a href="/eremit/#/help">Help</a></li>
               </ul>
             </div>
@@ -84,7 +85,7 @@ const ConfirmMoney = () =>  {
           <nav class="login-signup navbar navbar-expand">
           <div class="col-auto d-flex align-items-center ms-auto">
                     <div class="dropdown"> <a class="text-muted btn-link" href="#" role="button" id="statements" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img class="rounded-circle" src="assets/images/profile-thumb-sm.jpg" alt="" /></a>
-                      <div class="dropdown-menu dropdown-menu-end" aria-labelledby="statements"> <a class="dropdown-item" href="/my-profile">My Profile</a> <a class="dropdown-item" href="/login"onClick={() =>{ localStorage.removeItem('data') } }>Logout</a> </div>
+                      <div class="dropdown-menu dropdown-menu-end" aria-labelledby="statements"> <a class="dropdown-item" href="/eremit/#/my-profile">My Profile</a> <a class="dropdown-item" href="/eremit/#/login"onClick={() =>{ localStorage.removeItem('data') } }>Logout</a> </div>
                     </div>
                   </div>
           </nav>
@@ -121,7 +122,7 @@ const ConfirmMoney = () =>  {
         </div>
       </div>
       <h2 class="fw-400 text-center mt-3">Confirm Details</h2>
-      <p class="lead text-center mb-4">You are sending money to <span class="fw-500">{location.state.phone}</span></p>
+      <p class="lead text-center mb-4">You are sending money to <span class="fw-500">{location.state.username}</span></p>
       <div class="row">
         <div class="col-md-9 col-lg-7 col-xl-6 mx-auto">
           <div class="bg-white shadow-sm rounded p-3 pt-sm-4 pb-sm-5 px-sm-5 mb-4">

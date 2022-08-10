@@ -76,7 +76,7 @@ const Success = () =>  {
               <p class="text-success text-8 fw-500 lh-1">Success!</p>
               <p class="lead">Transactions Complete</p>
             </div>
-            <p class="text-3 mb-4">You've Succesfully sent <span class="text-4 fw-500">{location.state.amount} {location.state.currency}</span> to <span class="fw-500">{location.state.phone}</span>, See transaction details under <a class="btn-link" href="/eremit/#/dashboard">Your wallet</a>.</p>
+            <p class="text-3 mb-4">You've Succesfully sent <span class="text-4 fw-500">{location.state.amount} {location.state.currency}</span> to <span class="fw-500">{location.state.username}</span>, See transaction details under <a class="btn-link" href="/eremit/#/dashboard">Your wallet</a>.</p>
             <div class="d-grid"><a href="/eremit/#/send-money"><button class="btn btn-primary">Send Money Again</button></a></div>
             <a class="text-3 d-inline-block btn-link mt-4" href="#"><i class="fas fa-print"></i> Print</a> </div>
         </div>

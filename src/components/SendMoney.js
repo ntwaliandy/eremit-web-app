@@ -3,13 +3,12 @@ import { useNavigate } from "react-router";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Spinner } from "react-bootstrap";
-import PhoneInput from 'react-phone-input-2'
 import 'react-phone-number-input/style.css';
 
 const SendMoney = () =>  {
   const [userCurrencies, setUserCurrincies] = useState([]);
   const [currency_code, setCurrencyCode] = useState("")
-  const [receiverNumber, setReceiverNumber] = useState("")
+  const [username, setUsername] = useState("")
   const [amount, setAmount] = useState("")
   const [isLoading, SetLoading] = useState(false)
   let navigate = useNavigate()
@@ -42,13 +41,14 @@ const SendMoney = () =>  {
   const handleOnSubmit = e => {
     SetLoading(true)
     e.preventDefault()
+    console.log(username)
     const temp = localStorage.getItem("data")
     const loadedData = JSON.parse(temp)
     const senderId = loadedData.user_id
     const bodData = {
       "sender_id": senderId,
       "currency_code": currency_code,
-      "receiver_phonenumber": receiverNumber,
+      "username": username,
       "amount": parseFloat(amount)
     }
 
@@ -70,14 +70,13 @@ const SendMoney = () =>  {
           "senderWalletId": response.message.sender_walletId,
           "receiverWalletId": response.message.receiver_walletId,
           "amount": amount,
-          "phone": receiverNumber,
+          "username": username,
           "currency": currency_code
         }});
         
       } else if (response.status === 403) {
         SetLoading(false)
         toast(response.message)
-        console.log(receiverNumber)
       } else {
         SetLoading(false)
         toast("Invalid data types")
@@ -161,14 +160,9 @@ const SendMoney = () =>  {
             <h3 class="text-5 fw-400 mb-3 mb-sm-4">Personal Details</h3>
             <hr class="mx-n3 mx-sm-n5 mb-4" />
             <form id="form-send-money" onSubmit={handleOnSubmit}>
-              <div className="mb-3">
-              <PhoneInput
-                specialLabel="Receiver Phonenumber"
-                placeholder="Enter receiver's phone number"
-                class="form-control"
-                defaultCountry="UG"
-                value={receiverNumber}
-                onChange={setReceiverNumber} />
+            <div class="mb-4 mb-sm-5">
+                <label for="description" class="form-label">Receiver Username</label>
+                <input type="text" value={username} class="form-control" onChange={e => setUsername(e.target.value)} rows="4" id="description" required placeholder="Tommy@256" />
               </div>
               <div class="mb-3">
                 <label for="youSend" class="form-label">You Send</label>

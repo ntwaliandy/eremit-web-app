@@ -11,11 +11,13 @@ let navigate = useNavigate();
 const [first_name, setFirst_name] = useState("");
 const [last_name, setLast_name] = useState("");
 const [email, setEmail] = useState("");
+const [username, setUsername] = useState("")
 const [phone_number, setphone_number] = useState("");
 const [password, setPassword] = useState("");
 const [isLoading, SetLoading] = useState(false);
     
     let handleSubmit = async (e) => {
+      console.log(username)
       SetLoading(true)
       e.preventDefault();
       try {
@@ -28,6 +30,7 @@ const [isLoading, SetLoading] = useState(false);
             first_name: first_name,
             last_name: last_name,
             email: email,
+            username: username,
             phone_number: phone_number,
             password: password,
           }),
@@ -110,7 +113,7 @@ return (
                 <div className="mb-3">
                   <PhoneInput
                     specialLabel="Phone Number"
-                    placeholder="256 770 000 000"
+                    placeholder="256770000000"
                     class="form-control"
                     defaultCountry="UG"
                     value={phone_number}
@@ -120,7 +123,11 @@ return (
                 <div className="mb-3">
                   <label for="emailAddress" className="form-label">Email Address</label>
                   <input type="email" className="form-control" id="emailAddress" name="email" value={email} required placeholder="example@gmail.com" onChange={(e) => setEmail(e.target.value)} />
-                </div> 
+                </div>
+                <div className="mb-3">
+                  <label for="emailAddress" className="form-label">Username</label>
+                  <input type="text" className="form-control" id="username" name="username" value={username} required placeholder="Tommy256" onChange={(e) => setUsername(e.target.value)} />
+                </div>
                 <div className="mb-3">
                   <label for="loginPassword" className="form-label">Password</label>
                   <input type="password" className="form-control" id="loginPassword" name="password" value={password} required placeholder="Enter strong Password" onChange={(e) => setPassword(e.target.value)} />
