@@ -155,7 +155,7 @@ const Withdraw = () => {
                 <label for="paymentMethod" class="form-label">Payment Method</label>
                 <select id="cardType" class="form-select" required onChange={e => setTransType(e.target.value)}>
                   <option value="">Select Payment Method</option>
-                  <option value="To_MM">To Mobile Money UG</option>
+                  <option value="To_MM">To Mobile Money (UGX, RWF, NGN, KES)</option>
                 </select>
               </div><hr />
               <p class="text-4 fw-500">You'll Withdraw Minus Charges <span class="float-end">{amount} {currency_code}</span></p>

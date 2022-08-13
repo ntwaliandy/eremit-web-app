@@ -13,7 +13,8 @@ const ConfirmWithdraw = () => {
         console.log(location)
     }, [])
     const handleOnSubmit = e => {
-        SetLoading(true)
+        if (location.state.currency == 'UGX') {
+          SetLoading(true)
         e.preventDefault()
         const bodData = {
           "user_id": location.state.userId,
@@ -52,6 +53,47 @@ const ConfirmWithdraw = () => {
     
           }
         })
+        } else if (location.state.currency == 'RWF') {
+          SetLoading(true)
+        e.preventDefault()
+        const bodData = {
+          "user_id": location.state.userId,
+          "currency": location.state.currency,
+          "phone_number": location.state.phone,
+          "amount": parseFloat(location.state.amount),
+          "trans_type": location.state.trans
+        }
+    
+        const requiredOptions = {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(bodData)
+        }
+    
+        fetch("http://18.116.9.199:9000/deposit-rwanda", requiredOptions)
+        .then(results => results.json())
+        .then((response) => {
+          console.log(response)
+          if (response.status === 100) {
+            SetLoading(false)
+            console.log(response)
+            navigate("/withdraw-success", { state: {
+                "amount": location.state.amount,
+                "currency": location.state.currency,
+                "phone": location.state.phone,
+            }})
+          } else if (response.status === 403) {
+            SetLoading(false)
+            toast(response.message)
+          } else {
+            SetLoading(false)
+            toast("Invalid data types")
+    
+          }
+        })
+        }
     
       }
     return (

@@ -171,19 +171,19 @@ const Transaction = ({props}) => {
                           <p class="d-flex align-items-center fw-500 mb-0">Total Amount <span class="text-3 ms-auto">{tr.amount} {location.state.currency} </span></p>
 						  <hr class="mb-4 mt-2" />
                           <ul class="list-unstyled">
-                            <li class="fw-500">sent to:</li>
+                            <li class="fw-500">Sent To</li>
                             <li class="text-muted">{tr.to_account}</li>
                           </ul>
                           <ul class="list-unstyled">
-                            <li class="fw-500">Transaction ID:</li>
+                            <li class="fw-500">Transaction ID</li>
                             <li class="text-muted">{tr.transaction_id}</li>
                           </ul>
                           <ul class="list-unstyled">
-                            <li class="fw-500">Description:</li>
+                            <li class="fw-500">Description</li>
                             <li class="text-muted">{tr.reason}</li>
                           </ul>
                           <ul class="list-unstyled">
-                            <li class="fw-500">Status:</li>
+                            <li class="fw-500">Status</li>
                             <li class="text-muted">Completed<span class="text-success text-3 ms-1"><i class="fas fa-check-circle"></i></span></li>
                           </ul>
                         </div>
@@ -233,19 +233,19 @@ const Transaction = ({props}) => {
                           <p class="d-flex align-items-center fw-500 mb-0">Total Amount <span class="text-3 ms-auto">{tr.amount} {location.state.currency} </span></p>
 						  <hr class="mb-4 mt-2" />
                           <ul class="list-unstyled">
-                            <li class="fw-500">received from:</li>
+                            <li class="fw-500">Received From</li>
                             <li class="text-muted">{tr.from_account}</li>
                           </ul>
                           <ul class="list-unstyled">
-                            <li class="fw-500">Transaction ID:</li>
+                            <li class="fw-500">Transaction ID</li>
                             <li class="text-muted">{tr.transaction_id}</li>
                           </ul>
                           <ul class="list-unstyled">
-                            <li class="fw-500">Description:</li>
+                            <li class="fw-500">Description</li>
                             <li class="text-muted">{tr.reason}</li>
                           </ul>
                           <ul class="list-unstyled">
-                            <li class="fw-500">Status:</li>
+                            <li class="fw-500">Status</li>
                             <li class="text-muted">Completed<span class="text-success text-3 ms-1"><i class="fas fa-check-circle"></i></span></li>
                           </ul>
                         </div>

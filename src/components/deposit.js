@@ -160,7 +160,7 @@ const Deposit = () => {
                 <label for="paymentMethod" class="form-label">Payment Method</label>
                 <select id="cardType" class="form-select" required onChange={e => setTransType(e.target.value)}>
                   <option value="">Select Payment Method</option>
-                  <option value="From_MM">From Mobile Money UG</option>
+                  <option value="From_MM">From Mobile Money (UGX, RWF, KES, NGN)</option>
                 </select>
               </div><hr />
               <p class="text-4 fw-500">You'll deposit <span class="float-end">{amount} {currency_code}</span></p>

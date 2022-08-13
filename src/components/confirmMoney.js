@@ -26,6 +26,7 @@ const ConfirmMoney = () =>  {
         "to_account": location.state.receiverWalletId,
         "trans_type": "P2P",
         "reason": reason,
+        "receiver_money": parseFloat(location.state.receiverMoney),
         "amount": parseFloat(location.state.amount)
     }
     const requestedOptions = {
@@ -136,7 +137,8 @@ const ConfirmMoney = () =>  {
               <hr class="mx-n3 mx-sm-n5 mb-3 mb-sm-4" />
               <h3 class="text-5 fw-400 mb-3 mb-sm-4">Confirm Details</h3>
               <hr class="mx-n3 mx-sm-n5 mb-4" />
-              <p class="mb-1">Send Amount <span class="text-3 float-end">{location.state.amount} {location.state.currency}</span></p>
+              <p class="mb-1">Sending Amount <span class="text-3 float-end">{location.state.amount} {location.state.currency}</span></p>
+              <p class="mb-1">Receiving Amount <span class="text-3 float-end">{location.state.receiverMoney} {location.state.receiverCurrency}</span></p>
               <p class="mb-1">Total fees <span class="text-3 float-end">0 {location.state.currency}</span></p>
               <hr />
               <p class="text-4 fw-500">Total<span class="float-end">{location.state.amount} {location.state.currency}</span></p>

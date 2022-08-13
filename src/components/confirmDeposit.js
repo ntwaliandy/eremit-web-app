@@ -13,8 +13,10 @@ const ConfirmDeposit = () => {
         console.log(location)
     }, [])
     const handleOnSubmit = e => {
-        SetLoading(true)
-        e.preventDefault()
+        
+        if (location.state.currency == 'UGX') {
+          SetLoading(true)
+          e.preventDefault()
         const bodData = {
           "user_id": location.state.userId,
           "currency": location.state.currency,
@@ -35,7 +37,7 @@ const ConfirmDeposit = () => {
         .then(results => results.json())
         .then((response) => {
           console.log(response)
-          if (response.status === 100) {
+          if (response.status === 100 && response.message.status == "success") {
             SetLoading(false)
             console.log(response)
             window.location.replace(response.message.meta.authorization.redirect)
@@ -43,12 +45,59 @@ const ConfirmDeposit = () => {
           } else if (response.status === 403) {
             SetLoading(false)
             toast(response.message)
+          } else if (response.status === 100 && response.message.status == "error") {
+            SetLoading(false)
+            toast(response.message.message)
           } else {
             SetLoading(false)
             toast("Invalid data types")
     
           }
         })
+        } else if (location.state.currency == 'RWF') {
+          SetLoading(true)
+          e.preventDefault()
+          console.log(location.state.currency)
+          const bodDataRWF = {
+            "user_id": location.state.userId,
+            "currency": location.state.currency,
+            "phone_number": location.state.phone,
+            "amount": parseFloat(location.state.amount),
+            "trans_type": location.state.trans
+          }
+      
+          const requiredOptionsRWF = {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify(bodDataRWF)
+          }
+      
+          fetch("http://18.116.9.199:9000/deposit-rwanda", requiredOptionsRWF)
+          .then(results => results.json())
+          .then((response) => {
+            console.log(response)
+            if (response.status === 100 && response.message.status == "success") {
+              SetLoading(false)
+              console.log(response)
+              window.location.replace(response.message.meta.authorization.redirect)
+              toast("success")
+            } else if (response.status === 403) {
+              SetLoading(false)
+              toast(response.message)
+            } else if (response.status === 100 && response.message.status == "error") {
+              SetLoading(false)
+              toast(response.message.message)
+            } else {
+              SetLoading(false)
+              toast("Invalid data types")
+      
+            }
+          })
+        } else {
+          console.log("failure to pass your data")
+        }
     
       }
     return (

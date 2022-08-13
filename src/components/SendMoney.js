@@ -8,8 +8,10 @@ import 'react-phone-number-input/style.css';
 const SendMoney = () =>  {
   const [userCurrencies, setUserCurrincies] = useState([]);
   const [currency_code, setCurrencyCode] = useState("")
+  const [receiverCode, setReceiverCurrencyCode] = useState("")
   const [username, setUsername] = useState("")
   const [amount, setAmount] = useState("")
+  const [allcurrencies, setAllcurrencies] = useState([])
   const [isLoading, SetLoading] = useState(false)
   let navigate = useNavigate()
   
@@ -36,6 +38,22 @@ const SendMoney = () =>  {
       console.log(response)
       setUserCurrincies(response)
     })
+
+    // all currencies
+    const requiredOpt = {
+      method: "GET",
+      headers: {
+        "Authorization": token,
+        "Content-Type": "application/json"
+      },
+    }
+    fetch("http://18.116.9.199:9000/all_currencies", requiredOpt)
+    .then((response) => response.json())
+    .then(currencyDetails => {
+      console.log(currencyDetails)
+      setAllcurrencies(currencyDetails)
+      
+    });
   }, [])
 
   const handleOnSubmit = e => {
@@ -48,6 +66,7 @@ const SendMoney = () =>  {
     const bodData = {
       "sender_id": senderId,
       "currency_code": currency_code,
+      "receiver_currency_code": receiverCode,
       "username": username,
       "amount": parseFloat(amount)
     }
@@ -70,8 +89,10 @@ const SendMoney = () =>  {
           "senderWalletId": response.message.sender_walletId,
           "receiverWalletId": response.message.receiver_walletId,
           "amount": amount,
+          "receiverMoney": response.message.receiving_money,
           "username": username,
-          "currency": currency_code
+          "currency": currency_code,
+          "receiverCurrency": receiverCode
         }});
         
       } else if (response.status === 403) {
@@ -160,9 +181,24 @@ const SendMoney = () =>  {
             <h3 class="text-5 fw-400 mb-3 mb-sm-4">Personal Details</h3>
             <hr class="mx-n3 mx-sm-n5 mb-4" />
             <form id="form-send-money" onSubmit={handleOnSubmit}>
-            <div class="mb-4 mb-sm-5">
-                <label for="description" class="form-label">Receiver Username</label>
-                <input type="text" value={username} class="form-control" onChange={e => setUsername(e.target.value)} rows="4" id="description" required placeholder="Tommy@256" />
+            <div class="mb-3">
+                <label for="youSend" class="form-label">Receiver Username</label>
+                <div class="input-group">
+                  <span class="input-group-text"></span>
+                  <input type="text" class="form-control" data-bv-field="youSend" id="username" name="username"  onChange={e => setUsername(e.target.value)} value={username} placeholder="Tommy256" />
+                  <span class="input-group-text p-0">
+                    <select id="youSendCurrency" data-style="form-select bg-transparent border-0" data-container="body" name="currency_code" onChange={e => setReceiverCurrencyCode(e.target.value)} data-live-search="true" class="selectpicker form-control bg-transparent" required="">
+                    <option data-icon="currency-flag currency-flag-usd me-1" data-subtext="United States dollar" value="">Receiver Currency</option>
+                      { 
+                        allcurrencies.map((cr) => (
+                          <option data-icon="currency-flag currency-flag-usd me-1" data-subtext="United States dollar"  value={cr.currency_code}>{cr.currency_code}</option>
+                        )) 
+                      }
+                      
+                      
+                    </select>
+                    </span>
+                </div>
               </div>
               <div class="mb-3">
                 <label for="youSend" class="form-label">You Send</label>
@@ -171,7 +207,7 @@ const SendMoney = () =>  {
                   <input type="text" class="form-control" data-bv-field="youSend" id="youSend" name="amount"  onChange={e => setAmount(e.target.value)} value={amount} placeholder="Enter amount" />
                   <span class="input-group-text p-0">
                     <select id="youSendCurrency" data-style="form-select bg-transparent border-0" data-container="body" name="currency_code" onChange={e => setCurrencyCode(e.target.value)} data-live-search="true" class="selectpicker form-control bg-transparent" required="">
-                    <option data-icon="currency-flag currency-flag-usd me-1" data-subtext="United States dollar" value="">currency</option>
+                    <option data-icon="currency-flag currency-flag-usd me-1" data-subtext="United States dollar" value="">Sender Currency</option>
                       { 
                         userCurrencies.map((cr) => (
                           <option data-icon="currency-flag currency-flag-usd me-1" data-subtext="United States dollar"  value={cr.currency_code}>{cr.currency_code}</option>
@@ -183,8 +219,6 @@ const SendMoney = () =>  {
                     </span>
                 </div>
               </div>
-              
-              <p class="text-muted text-center">Receiver gets <span class="fw-500">{amount} {currency_code}</span></p>
               <hr />
               <p>Total Fees<span class="float-end">0 {currency_code}</span></p>
               <hr />
