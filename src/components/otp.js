@@ -1,15 +1,20 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Spinner } from "react-bootstrap";
 
 
 function Otp() {
-let navigate = useNavigate();  
+let navigate = useNavigate();
+const Location = useLocation();
 const [email, setEmail] = useState("");
 const [otp, setOtp] = useState("");
 const [isLoading, SetLoading] = useState(false);
+
+useEffect(() => (
+console.log(Location)
+))
 
 let handleSubmit = async (e) => {
   SetLoading(true)
@@ -18,8 +23,8 @@ let handleSubmit = async (e) => {
     await fetch("http://18.116.9.199:9000/verify_otp", {
       method: "POST",
       body: JSON.stringify({
-        email: email,
-        otp: otp,
+        "email": Location.state.email,
+        "otp": otp,
       }),
       headers: {
         "Content-Type": "application/json"
@@ -91,7 +96,7 @@ let handleSubmit = async (e) => {
 
               <div className="mb-3">
                   <label for="emailAddress" className="form-label">Email Address</label>
-                  <input type="email" className="form-control" id="emailAddress" name="email" value={email} required placeholder="Enter Your Email" onChange={(e) => setEmail(e.target.value)} />
+                  <input type="email" className="form-control" id="emailAddress" name="email" value={Location.state.email}  onChange={(e) => setEmail(e.target.value)} />
                 </div>
 
                 <div className="mb-3">

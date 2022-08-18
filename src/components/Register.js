@@ -40,7 +40,7 @@ const [isLoading, SetLoading] = useState(false);
           if (response.status === 100) {
             toast(response.message)
             SetLoading(false)
-            navigate("/otp", { replace: true});
+            navigate("/otp", { state:{"email":email}});
   
           } else if (response.status === 403){
             SetLoading(false)

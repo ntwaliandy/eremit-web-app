@@ -1,11 +1,17 @@
 import React, {Component} from "react";
 import { Link } from "react-router-dom";
+import { Spinner } from "react-bootstrap";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 class Dashboard extends Component {
   state = {
     wallets: [],
     transactions: [],
+    allCuurencies: [],
+    currency_code: "",
+    isLoading: false
   }
   componentDidMount() {
     const temp = localStorage.getItem("data")
@@ -45,7 +51,62 @@ class Dashboard extends Component {
       this.setState({ transactions: res.message });
     });
 
+    // all currencies
+    const requiredOpt = {
+      method: "GET",
+      headers: {
+        "Authorization": token,
+        "Content-Type": "application/json"
+      },
+    }
+    fetch("http://18.116.9.199:9000/all_currencies", requiredOpt)
+    .then((response) => response.json())
+    .then(currencyDetails => {
+      console.log(currencyDetails)
+      this.setState({
+        allCuurencies: currencyDetails,
+      })
+      
+    });
+
   }
+  handleSelectedChange = e => {
+    this.setState({
+      currency_code: e.target.value
+    })
+  }
+
+curencySubmit = e => {
+  this.setState({ isLoading: true })
+  e.preventDefault()
+  const temp = localStorage.getItem("data")
+  const loadedData = JSON.parse(temp)
+  const token = "Bearer " + loadedData.token
+
+  const bodyData = {
+    "user_id": loadedData.user_id,
+    "currency_code": this.state.currency_code
+  }
+  const requiredOp = {
+    method: "POST",
+    headers: {
+      "Authorization": token,
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(bodyData)
+  }
+
+  fetch("http://18.116.9.199:9000/create_other_wallet", requiredOp)
+    .then((response) => response.json())
+    .then(personDetail => {
+      console.log(personDetail)
+      this.setState({ isLoading: false })
+      toast(personDetail.message)
+      
+    });
+
+}
+
     render(){
         return(
             <div>
@@ -75,6 +136,7 @@ class Dashboard extends Component {
                 <li><a href="/eremit/#/send-money">Send</a></li>
                 <li><a href="/eremit/#/deposit">Deposit/Withdraw</a></li>
                 <li><a href="/eremit/#/help">Help</a></li>
+                <li><a href="#edit-email" data-bs-toggle="modal" class="ms-auto text-2 text-uppercase btn-link">Create New Wallet</a></li>
               </ul>
             </div>
           </nav>
@@ -92,6 +154,7 @@ class Dashboard extends Component {
     </div>
   </header>
   {/* <!-- Header End --> */}
+  <ToastContainer />
   {/* <!-- Content
   ============================================= --> */}
   <div id="content" class="py-4">
@@ -118,6 +181,37 @@ class Dashboard extends Component {
             </div>
           </div>
           {/* <!-- Profile Completeness End -->  */}
+          <div id="edit-email" class="modal fade" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title fw-400">Fill in the form</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                    <div class="modal-body p-4">
+                      <form id="emailAddresses" onSubmit={this.curencySubmit}>
+                      <div class="mb-3">
+                    <label for="emailID" class="form-label">WALLET CURRENCY NAME</label>
+                    <select id="youSendCurrency" value={this.state.senderId} onChange={(e) => this.handleSelectedChange(e)} data-style="form-select bg-transparent border-0" data-container="body" data-live-search="true" class="selectpicker form-control bg-transparent" required>
+                    <option data-icon="currency-flag currency-flag-ars me-1"  data-subtext="Argentine peso" value="">Choose Walllet Currency Code</option>
+                    {
+                      this.state.allCuurencies.map((cr, index) => (
+                        <option key={index} data-icon="currency-flag currency-flag-ars me-1"  data-subtext="Argentine peso" value={cr.currency_code}>{cr.currency_code}</option>
+                      ))
+                    }
+                    
+                    </select>
+                    </div>
+                    <div class="d-grid mt-4">
+                      { 
+                        this.state.isLoading ? <button class="btn btn-primary"><Spinner animation="border" variant="light" /></button> : <button class="btn btn-primary">Create</button>
+                      }
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
           {/* <!-- Recent Activity
           =============================== --> */}
           <div class="bg-white shadow-sm rounded py-4 mb-4">
