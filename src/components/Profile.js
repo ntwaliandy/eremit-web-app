@@ -202,7 +202,7 @@ curencySubmit = e => {
                 <li><a href="/eremit/#/send-money">Send</a></li>
                 <li><a href="/eremit/#/deposit">Deposit/Withdraw</a></li>
                 <li><a href="/eremit/#/help">Help</a></li>
-                <li><a href="#edit-email" data-bs-toggle="modal" class="ms-auto text-2 text-uppercase btn-link">Create New Wallet</a></li>
+                {/* <li><a href="#edit-email" data-bs-toggle="modal" class="ms-auto text-2 text-uppercase btn-link">Create New Wallet</a></li> */}
               </ul>
             </div>
           </nav>

@@ -178,6 +178,12 @@ curencySubmit = e => {
               </div>
                 ))
               }
+            <div class="col-sm-6 col-lg-3"> <a href="#edit-email" data-bs-toggle="modal" class="ms-auto text-2 text-uppercase btn-link">
+            <div class="featured-box style-5 rounded">
+              <div class="featured-box-icon text-primary"> <i class="fas fa-wallet"></i></div>
+              <h3>Create New wallet</h3>
+            </div>
+            </a> </div> 
             </div>
           </div>
           {/* <!-- Profile Completeness End -->  */}
