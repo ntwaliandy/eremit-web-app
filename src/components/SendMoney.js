@@ -12,6 +12,7 @@ const SendMoney = () =>  {
   const [username, setUsername] = useState("")
   const [amount, setAmount] = useState("")
   const [allcurrencies, setAllcurrencies] = useState([])
+  const [savedcontacts, setSavedcontacts] = useState([])
   const [isLoading, SetLoading] = useState(false)
   let navigate = useNavigate()
   
@@ -37,6 +38,21 @@ const SendMoney = () =>  {
     .then((response) => {
       console.log(response)
       setUserCurrincies(response)
+    })
+
+    const requiredDataOptions1 = {
+      method: "POST",
+      headers: {
+        "Authorization": token,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(bodyData)
+    }
+    fetch("http://18.116.9.199:9000/saved_contacts", requiredDataOptions1)
+    .then(results => results.json())
+    .then((response) => {
+      console.log(response)
+      setSavedcontacts(response)
     })
 
     // all currencies
@@ -107,6 +123,47 @@ const SendMoney = () =>  {
 
   }
 
+  // delete saved contact
+  const deleteSavedContact = (user) => {
+    SetLoading(true)
+    console.log(user)
+    const temp = localStorage.getItem("data")
+    const loadedData = JSON.parse(temp)
+    const userID = loadedData.user_id
+    const token = loadedData.token
+    const bodData = {
+      "user_id": userID,
+      "username": user,
+    }
+
+
+    const requiredOptions = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": token
+      },
+      body: JSON.stringify(bodData)
+    }
+
+    fetch("http://18.116.9.199:9000/delete_contact", requiredOptions)
+    .then(results => results.json())
+    .then((response) => {
+      console.log(response)
+      if (response.status === 100) {
+        SetLoading(false)
+        toast(response.message)
+      } else if (response.status === 403) {
+        SetLoading(false)
+        toast(response.message)
+      } else {
+        SetLoading(false)
+        toast("Invalid data types")
+
+      }
+    })
+
+  }
     return (
             <div>
 {/* <div id="preloader">
@@ -184,11 +241,11 @@ const SendMoney = () =>  {
             <div class="mb-3">
                 <label for="youSend" class="form-label">Receiver Username</label>
                 <div class="input-group">
-                  <span class="input-group-text"></span>
+                <span class="input-group-text"><a href="#edit-personal-details" data-bs-toggle="modal" class="ms-auto text-7"><i class="fas fa-user-circle"></i></a></span>
                   <input type="text" class="form-control" data-bv-field="youSend" id="username" name="username"  onChange={e => setUsername(e.target.value)} value={username} placeholder="Tommy256" />
                   <span class="input-group-text p-0">
                     <select id="youSendCurrency" data-style="form-select bg-transparent border-0" data-container="body" name="currency_code" onChange={e => setReceiverCurrencyCode(e.target.value)} data-live-search="true" class="selectpicker form-control bg-transparent" required="">
-                    <option data-icon="currency-flag currency-flag-usd me-1" data-subtext="United States dollar" value="">Receiver Currency</option>
+                    
                       { 
                         allcurrencies.map((cr) => (
                           <option data-icon="currency-flag currency-flag-usd me-1" data-subtext="United States dollar"  value={cr.currency_code}>{cr.currency_code}</option>
@@ -200,6 +257,7 @@ const SendMoney = () =>  {
                     </span>
                 </div>
               </div>
+              
               <div class="mb-3">
                 <label for="youSend" class="form-label">You Send</label>
                 <div class="input-group">
@@ -207,7 +265,7 @@ const SendMoney = () =>  {
                   <input type="text" class="form-control" data-bv-field="youSend" id="youSend" name="amount"  onChange={e => setAmount(e.target.value)} value={amount} placeholder="Enter amount" />
                   <span class="input-group-text p-0">
                     <select id="youSendCurrency" data-style="form-select bg-transparent border-0" data-container="body" name="currency_code" onChange={e => setCurrencyCode(e.target.value)} data-live-search="true" class="selectpicker form-control bg-transparent" required="">
-                    <option data-icon="currency-flag currency-flag-usd me-1" data-subtext="United States dollar" value="">Sender Currency</option>
+                    
                       { 
                         userCurrencies.map((cr) => (
                           <option data-icon="currency-flag currency-flag-usd me-1" data-subtext="United States dollar"  value={cr.currency_code}>{cr.currency_code}</option>
@@ -233,6 +291,62 @@ const SendMoney = () =>  {
       </div>
     </div>
   </div>
+  {/* saved contacts start */}
+  <div id="edit-personal-details" class="modal fade " role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title fw-400">Personal Details</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body p-4 row gy-4">
+                  {
+                    savedcontacts.length > 0 ? 
+                    
+                      savedcontacts.map((rr) => (
+                  <div class="border rounded text-center px-3 py-4 row g-3">
+                    <div class="col-12 col-sm-6">
+                      <label for="firstName" class="form-label">First name</label>
+                      <input type="text" value={rr.first_name} class="form-control" data-bv-field="firstName" id="firstName" required="" placeholder="First Name" />
+                    </div>
+                    <div class="col-12 col-sm-6">
+                      <label for="lastName" class="form-label">Last name</label>
+                      <input type="text" value={rr.last_name} class="form-control" data-bv-field="lastName" id="lastName" required="" placeholder="Last Name" />
+                    </div>
+                    <div class="col-12 col-sm-6">
+                      <label for="firstName" class="form-label">Email</label>
+                      <input type="text" value={rr.email} class="form-control" data-bv-field="firstName" id="firstName" required="" placeholder="First Name" />
+                    </div>
+                    <div class="col-12 col-sm-6">
+                      <label for="lastName" class="form-label">Phone number</label>
+                      <input type="text" value={rr.phone_number} class="form-control" data-bv-field="lastName" id="lastName" required="" placeholder="Last Name" />
+                    </div>
+                    <div class="col-12 col-sm-6">
+                      <label for="firstName" class="form-label">Username</label>
+                      <input type="text" value={rr.username} class="form-control" data-bv-field="firstName" id="firstName" required="" placeholder="First Name" />
+                    </div>
+                    <div class="col-12 col-sm-6">
+                      {/* <label for="firstName" class="form-label">Username</label> */}
+                      <div onClick={() => setUsername(rr.username)}><p class="col-sm-9 text-3"><a href="#edit-account-settings" data-bs-toggle="modal" class="ms-auto text-2 text-uppercase btn-link"><span class="bg-primary text-white rounded-pill d-inline-block px-2 mb-0"><i class="fas fa-check-circle"></i> Choose</span></a></p></div>
+                      {
+                        isLoading ? <div><p class="col-sm-9 text-3"><a href="#edit-account-settings" data-bs-toggle="modal" class="ms-auto text-2 text-uppercase btn-link"><span class="bg-danger text-white rounded-pill d-inline-block px-2 mb-0"><i class="fas fa-minus-circle"></i> <Spinner animation="border" variant="light" /></span></a></p></div>
+                        : <div onClick={() => deleteSavedContact(rr.username) }><p class="col-sm-9 text-3"><a href="#edit-account-settings" data-bs-toggle="modal" class="ms-auto text-2 text-uppercase btn-link"><span class="bg-danger text-white rounded-pill d-inline-block px-2 mb-0"><i class="fas fa-minus-circle"></i> Delete</span></a></p></div>
+                      }
+                    </div>
+                    
+                  </div>
+                  )) 
+                 : <p>No saved Contacts</p>
+                  }
+                  </div>
+                
+                
+              </div>
+            </div>
+          </div>
+        
+  {/* saved contacts end */}
   <footer id="footer">
     <div class="container">
       <div class="row">

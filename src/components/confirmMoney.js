@@ -8,6 +8,7 @@ import { Spinner } from "react-bootstrap";
 const ConfirmMoney = () =>  {
   const [isLoading, SetLoading] = useState(false)
   const [reason, setReason] = useState("")
+  
     const location = useLocation()
     const navigate = useNavigate()
     useEffect(() => {
@@ -56,6 +57,48 @@ const ConfirmMoney = () =>  {
           toast("invalid data types")
         }
     })
+    }
+    // #saving username
+    const addContact = e => {
+      SetLoading(true)
+      
+      const temp = localStorage.getItem("data")
+      const loadedData = JSON.parse(temp)
+      const userID = loadedData.user_id
+      const token = loadedData.token
+      const bodData = {
+        "user_id": userID,
+        "username": location.state.username,
+      }
+  
+  
+      const requiredOptions4 = {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": token
+        },
+        body: JSON.stringify(bodData)
+      }
+  
+      fetch("http://18.116.9.199:9000/saving_contacts", requiredOptions4)
+      .then(results => results.json())
+      .then((response) => {
+        console.log(response)
+        
+        if (response.status === 100) {
+          SetLoading(false)
+          toast(response.message)
+        } else if (response.status === 403) {
+          SetLoading(false)
+          toast(response.message)
+        } else {
+          SetLoading(false)
+          toast("Invalid data types")
+  
+        }
+      })
+  
     }
 
     return (
@@ -124,6 +167,12 @@ const ConfirmMoney = () =>  {
       </div>
       <h2 class="fw-400 text-center mt-3">Confirm Details</h2>
       <p class="lead text-center mb-4">You are sending money to <span class="fw-500">{location.state.username}</span></p>
+      <div>
+    {
+      isLoading ? <p class="lead text-center mb-4"> <Spinner animation="border" variant="light" /></p>: <div onClick={() => addContact()}><p class="lead text-center mb-4"><a data-bs-toggle="modal" class="ms-auto text-2 text-uppercase btn-link"><span class="bg-primary text-white rounded-pill d-inline-block px-2 mb-0"><i class="fas fa-check-circle"></i> ADD TO FAVOURITES</span></a></p></div>
+    }   
+    </div>
+      
       <div class="row">
         <div class="col-md-9 col-lg-7 col-xl-6 mx-auto">
           <div class="bg-white shadow-sm rounded p-3 pt-sm-4 pb-sm-5 px-sm-5 mb-4">
