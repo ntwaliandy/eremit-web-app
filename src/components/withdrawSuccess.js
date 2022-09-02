@@ -14,7 +14,7 @@ const WithdrawSuccess = () =>  {
       <div class="header-row">
         <div class="header-column justify-content-start"> 
           
-          <div class="logo me-3"> <a class="d-flex" href="/eremit" title="eremit - HTML Template"><img src="assets/images/logo2.png" alt="eremit" /></a> </div>
+          <div class="logo me-3"> <a class="d-flex" href="/eremit" title="eremit - HTML Template"><img src="assets/images/logo7.png" width="121" height="70" alt="eremit" /></a> </div>
           
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#header-nav"> <span></span> <span></span> <span></span> </button>
           
