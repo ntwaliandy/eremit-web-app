@@ -23,7 +23,7 @@ class Contact extends Component {
       <div class="header-column justify-content-start"> 
         {/* <!-- Logo
           ============================= --> */}
-        <div class="logo me-3"> <a class="d-flex" href="/eremit/#/about" title="eRemit - HTML Template"><img src="assets/images/logo2.png" alt="eRemit" /></a> </div>
+        <div class="logo me-3"> <a class="d-flex" href="/eremit/#/about" title="eRemit - HTML Template"><img src="assets/images/logo7.png" width="121" height="70" alt="eRemit" /></a> </div>
         {/* <!-- Logo end -->  */}
         {/* <!-- Collapse Button
           ============================== --> */}
@@ -38,7 +38,7 @@ class Contact extends Component {
               {/* <!-- <li><a href="landing-page-send.html">Send</a></li>
               <li><a href="landing-page-receive.html">Receive</a></li> --> */}
               <li><a href="/eremit/#/about">About Us</a></li>
-              <li><a href="/eremit/#/contact">Contact Us</a></li>
+              <li class="active"><a href="/eremit/#/contact">Contact Us</a></li>
               </ul>
               </div>
               </nav>
@@ -89,11 +89,10 @@ class Contact extends Component {
         <div class="bg-white shadow-md rounded h-100 p-3">
           <div class="featured-box text-center">
             <div class="featured-box-icon text-primary mt-4"> <i class="fas fa-map-marker-alt"></i></div>
-            <h3>eRemit Inc.</h3>
-            <p>4th Floor, Plot No.22, Above Public Park<br />
-              145 Murphy Canyon Rd.<br />
-              Suite 100-18<br />
-              San Diego CA 2028 </p>
+            <h3>clic</h3>
+            <p>Ndundu Complex, Kisasi-Kyanja RD , Kampala, Uganda
+<br />
+              </p>
           </div>
         </div>
       </div>
@@ -102,8 +101,8 @@ class Contact extends Component {
           <div class="featured-box text-center">
             <div class="featured-box-icon text-primary mt-4"> <i class="fas fa-phone"></i> </div>
             <h3>Telephone</h3>
-            <p class="mb-0">(+060) 9898980098</p>
-            <p>(+060) 8898880088</p>
+            <p class="mb-0">(+256) 771289654</p>
+            <p>(+256) 775555464</p>
           </div>
         </div>
       </div>
@@ -112,7 +111,7 @@ class Contact extends Component {
           <div class="featured-box text-center">
             <div class="featured-box-icon text-primary mt-4"> <i class="fas fa-envelope"></i> </div>
             <h3>Business Inquiries</h3>
-            <p>info@eRemit.com</p>
+            <p>info@clic.world</p>
           </div>
         </div>
       </div>
@@ -168,7 +167,7 @@ class Contact extends Component {
       <div class="footer-copyright pt-3 pt-lg-2 mt-2">
         <div class="row">
           <div class="col-lg">
-            <p class="text-center text-lg-start mb-2 mb-lg-0">Copyright &copy; 2022 <a href="/eremit/#/">eRemit</a>. All Rights Reserved.</p>
+            <p class="text-center text-lg-start mb-2 mb-lg-0">Copyright &copy; 2022 <a href="http://www.clic.world">clic.world</a>. All Rights Reserved.</p>
           </div>
           <div class="col-lg d-lg-flex align-items-center justify-content-lg-end">
             <ul class="nav justify-content-center">

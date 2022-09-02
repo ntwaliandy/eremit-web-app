@@ -23,7 +23,7 @@ class Home extends Component {
         <div class="header-column justify-content-start"> 
           {/* <!-- Logo
           ============================= --> */}
-          <div class="logo me-3"> <a class="d-flex" href="/eremit" title="eRemit - HTML Template"><img src="assets/images/logo2.png" width="121" height="33"  alt="eRemit" /></a> </div>
+          <div class="logo me-3"> <a class="d-flex" href="/eremit" title="eRemit - HTML Template"><img src="assets/images/logo7.png" width="121" height="70"  alt="eRemit" /></a> </div>
             {/* <!-- Logo end -->  */}
             {/* <!-- Collapse Button
             ============================== --> */}
@@ -71,7 +71,7 @@ class Home extends Component {
             <div class="container my-auto text-center">
                 
               <h2 class="text-16 text-white">Send & Receive Money</h2>
-              <p class="text-5 text-white mb-4">Quickly and easily send, receive and request money online with eRemit.<br class="d-none d-lg-block" />
+              <p class="text-5 text-white mb-4">Quickly and easily send, receive and request money online with clic.<br class="d-none d-lg-block" />
                 Over 180 countries and 120 currencies supported.</p>
               <a href="/eremit/#/register" class="btn btn-primary m-2">Open a Free Account</a> 
              
@@ -99,7 +99,7 @@ class Home extends Component {
               <h2 class="text-16 text-white">Send & Receive Money</h2>
               <p class="text-5 text-white mb-4">Quickly and easily send, receive and request money online with eRemit.<br class="d-none d-lg-block" />
                 Over 180 countries and 120 currencies supported.</p>
-              <a href="/register" class="btn btn-primary m-2">Open a Free Account</a> <a class="btn btn-outline-light video-btn m-2" href="#" data-src="https://www.youtube.com/embed/7e90gBu4pas" data-bs-toggle="modal" data-bs-target="#videoModal"><span class="text-2 me-3"><i class="fas fa-play"></i></span>See How it Works</a>
+              <a href="/register" class="btn btn-primary m-2">Open a Free Account</a> <a class="btn btn-outline-light video-btn m-2" href="/eremit/#/register" data-src="https://www.youtube.com/embed/7e90gBu4pas" data-bs-toggle="modal" data-bs-target="#videoModal"><span class="text-2 me-3"><i class="fas fa-play"></i></span>See How it Works</a>
              
               </div>
              
@@ -118,7 +118,7 @@ class Home extends Component {
                 <div class="col-12 col-lg-8 col-xl-7 text-center text-lg-start">
                  
                   <p class="text-5 text-white mb-4">Over 180 countries and 120 currencies supported.</p>
-                  <a href="/register" class="btn btn-primary me-3">Get started for free</a> <a class="btn btn-link text-light video-btn" href="#" data-src="https://www.youtube.com/embed/7e90gBu4pas" data-bs-toggle="modal" data-bs-target="#videoModal"><span class="me-2"><i class="fas fa-play-circle"></i></span>Watch Demo</a> 
+                  <a href="/register" class="btn btn-primary me-3">Get started for free</a> <a class="btn btn-link text-light video-btn" href="/eremit/#/register" data-src="https://www.youtube.com/embed/7e90gBu4pas" data-bs-toggle="modal" data-bs-target="#videoModal"><span class="me-2"><i class="fas fa-play-circle"></i></span>Watch Demo</a> 
                   
                   </div>
               </div>
@@ -135,36 +135,36 @@ class Home extends Component {
     ============================================= --> */}
     <section class="section bg-white">
       <div class="container">
-        <h2 class="text-9 text-center">Why should you choose eRemit?</h2>
-        <p class="lead text-center mb-5">Here are the top 4 reasons why you should use eRemit account to manage your money.</p>
+        <h2 class="text-9 text-center">Why should you choose clic?</h2>
+        <p class="lead text-center mb-5">Here are the top 4 reasons why you should use clic account to manage your money.</p>
         <div class="row gy-5">
           <div class="col-sm-6 col-lg-3">
             <div class="featured-box">
               <div class="featured-box-icon text-primary"> <i class="fas fa-hand-pointer"></i> </div>
               <h3>Lower fees</h3>
-              <p class="text-3">Not only is signing up for eRemit free, but you can also  send and receive money to and from family and friends around the world. using your eRemit wallet balance better exchange rates and lower fees than most conventional banks and money transfer services.</p>
-              <a href="#" class="btn-link text-3">see all fees<i class="fas fa-chevron-right text-1 ms-2"></i></a> </div>
+              <p class="text-3">Not only is signing up for clic free, but you can also  send and receive money to and from family and friends around the world. using your eRemit wallet balance better exchange rates and lower fees than most conventional banks and money transfer services.</p>
+              <a href="/eremit/#/register" class="btn-link text-3">see all fees<i class="fas fa-chevron-right text-1 ms-2"></i></a> </div>
           </div>
           <div class="col-sm-6 col-lg-3">
             <div class="featured-box">
               <div class="featured-box-icon text-primary"> <i class="fas fa-share"></i> </div>
               <h3>Faster Payments</h3>
               <p class="text-3">97% of our transfers are ready in minutes.</p>
-              <a href="#" class="btn-link text-3">Learn more<i class="fas fa-chevron-right text-1 ms-2"></i></a> </div>
+              <a href="/eremit/#/register" class="btn-link text-3">Learn more<i class="fas fa-chevron-right text-1 ms-2"></i></a> </div>
           </div>
           <div class="col-sm-6 col-lg-3">
             <div class="featured-box">
               <div class="featured-box-icon text-primary"> <i class="fas fa-dollar-sign"></i> </div>
               <h3>Easy to use</h3>
-              <p class="text-3">No need to enter all your financial information every time you shop. Speed through checkout with eRemit.</p>
-              <a href="#" class="btn-link text-3">Learn more<i class="fas fa-chevron-right text-1 ms-2"></i></a> </div>
+              <p class="text-3">No need to enter all your financial information every time you shop. Speed through checkout with clic.</p>
+              <a href="/eremit/#/register" class="btn-link text-3">Learn more<i class="fas fa-chevron-right text-1 ms-2"></i></a> </div>
           </div>
           <div class="col-sm-6 col-lg-3">
             <div class="featured-box">
               <div class="featured-box-icon text-primary"> <i class="fas fa-lock"></i> </div>
               <h3>100% secure</h3>
-              <p class="text-3">Whether you are paying bills, sending money or making a purchase, eRemit works hard to keep your financial information secure.</p>
-              <a href="#" class="btn-link text-3">Learn more<i class="fas fa-chevron-right text-1 ms-2"></i></a> </div>
+              <p class="text-3">Whether you are paying bills, sending money or making a purchase, clic works hard to keep your financial information secure.</p>
+              <a href="/eremit/#/register" class="btn-link text-3">Learn more<i class="fas fa-chevron-right text-1 ms-2"></i></a> </div>
           </div>
         </div>
       </div>
@@ -178,13 +178,13 @@ class Home extends Component {
           <div class="col-lg-5 col-xl-6 d-flex">
             <div class="my-auto">
               <h2 class="text-9">Payment Solutions for everyone.</h2>
-              <p class="text-4">eRemit is the faster, more secure way to send and receive money online. It lets you pay for your favorite things at millions of online stores in the U.S. and across 203 global markets—all without the hassle of converting currency. So it’s just as easy to know how much you’re spending as it is to spend it. It's free to sign up for an eRemit account to send and receive money to other eRemit users.</p>
-              <a href="#" class="btn-link text-4">Find more solution<i class="fas fa-chevron-right text-2 ms-2"></i></a> </div>
+              <p class="text-4">clic is the faster, more secure way to send and receive money online. It lets you pay for your favorite things at millions of online stores in the U.S. and across 203 global markets—all without the hassle of converting currency. So it’s just as easy to know how much you’re spending as it is to spend it. It's free to sign up for an eRemit account to send and receive money to other eRemit users.</p>
+              <a href="/eremit/#/register" class="btn-link text-4">Find more solution<i class="fas fa-chevron-right text-2 ms-2"></i></a> </div>
           </div>
           <div class="col-lg-7 col-xl-6">
             <div class="row g-4 banner style-2 justify-content-center">
               <div class="col-12 col-sm-6 text-center">
-                <div class="item rounded shadow d-inline-block"> <a href="#">
+                <div class="item rounded shadow d-inline-block"> <a href="/eremit/#/register">
                   <div class="caption rounded-bottom">
                     <h2 class="text-5 fw-400 mb-0">Freelancer</h2>
                   </div>
@@ -192,7 +192,7 @@ class Home extends Component {
                   <img class="img-fluid" src="assets/images/anyone-freelancer.jpg" width="410" height="350"  alt="banner" /> </a> </div>
               </div>
               <div class="col-12 col-sm-6 text-center">
-                <div class="item rounded shadow d-inline-block"> <a href="#">
+                <div class="item rounded shadow d-inline-block"> <a href="/eremit/#/register">
                   <div class="caption rounded-bottom">
                     <h2 class="text-5 fw-400 mb-0">Online Shopping</h2>
                   </div>
@@ -200,7 +200,7 @@ class Home extends Component {
                   <img class="img-fluid" src="assets/images/anyone-online-shopping.jpg" width="410" height="350"  alt="banner" /> </a> </div>
               </div>
               <div class="col-12 col-sm-6 mb-sm-0 text-center">
-                <div class="item rounded shadow d-inline-block"> <a href="#">
+                <div class="item rounded shadow d-inline-block"> <a href="/eremit/#/register">
                   <div class="caption rounded-bottom">
                     <h2 class="text-5 fw-400 mb-0">Online Sellers</h2>
                   </div>
@@ -208,7 +208,7 @@ class Home extends Component {
                   <img class="img-fluid" src="assets/images/anyone-online-sellers.jpg" width="410" height="350"  alt="banner" /> </a> </div>
               </div>
               <div class="col-12 col-sm-6 text-center">
-                <div class="item rounded shadow d-inline-block"> <a href="#">
+                <div class="item rounded shadow d-inline-block"> <a href="/eremit/#/register">
                   <div class="caption rounded-bottom">
                     <h2 class="text-5 fw-400 mb-0">Affiliate Marketing</h2>
                   </div>
@@ -225,36 +225,31 @@ class Home extends Component {
     ============================================= --> */}
     <section class="section bg-white">
       <div class="container">
-        <h2 class="text-9 text-center">What can you do with eRemit?</h2>
+        <h2 class="text-9 text-center">What can you do with clic?</h2>
         <p class="lead text-center mb-5">A wide choice of ways to send money online</p>
-        <p class="lead text-center mb-5">eRemit is a fast and secure service that lets you transfer money online using a computer, smartphone, or our app.</p>
+        <p class="lead text-center mb-5">clic is a fast and secure service that lets you transfer money online using a computer, smartphone, or our app.</p>
         <div class="row g-4">
-          <div class="col-sm-6 col-lg-3"> <a href="#">
+          <div class="col-sm-6 col-lg-3"> <a href="/eremit/#/register">
             <div class="featured-box style-5 rounded">
               <div class="featured-box-icon text-primary"> <i class="fas fa-share-square"></i> </div>
               <h3>Send Money</h3>
             </div>
             </a> </div>
-          <div class="col-sm-6 col-lg-3"> <a href="#">
+          <div class="col-sm-6 col-lg-3"> <a href="/eremit/#/register">
             <div class="featured-box style-5 rounded">
               <div class="featured-box-icon text-primary"> <i class="fas fa-check-square"></i> </div>
               <h3>Receive Money</h3>
             </div>
             </a> </div>
-          <div class="col-sm-6 col-lg-3"> <a href="#">
+          <div class="col-sm-6 col-lg-3"> <a href="/eremit/#/register">
             <div class="featured-box style-5 rounded">
               <div class="featured-box-icon text-primary"> <i class="fas fa-user-friends"></i> </div>
               <h3>Pay a Friend</h3>
             </div>
             </a> </div>
-          <div class="col-sm-6 col-lg-3"> <a href="#">
-            <div class="featured-box style-5 rounded">
-              <div class="featured-box-icon text-primary"> <i class="fas fa-shopping-bag"></i> </div>
-              <h3>Online Shopping</h3>
-            </div>
-            </a> </div>
+          
         </div>
-        <div class="text-center mt-5"><a href="#" class="btn-link text-4">See more can you do<i class="fas fa-chevron-right text-2 ms-2"></i></a></div>
+        <div class="text-center mt-5"><a href="/eremit/#/register" class="btn-link text-4">See more can you do<i class="fas fa-chevron-right text-2 ms-2"></i></a></div>
       </div>
     </section>
     {/* <!-- What can you do end -->  */}
@@ -265,17 +260,17 @@ class Home extends Component {
         <div class="row">
           <div class="col-lg-6">
             <div class="card bg-dark-3 shadow-sm border-0"> <img class="card-img img-fluid opacity-8" src="assets/images/how-work.jpg" width="570" height="362"  alt="banner" />
-              <div class="card-img-overlay p-0"> <a class="d-flex h-100 video-btn" href="#" data-src="https://www.youtube.com/embed/7e90gBu4pas" data-bs-toggle="modal" data-bs-target="#videoModal"> <span class="playButton playButton-pulsing bg-white m-auto"><i class="fas fa-play"></i></span> </a> </div>
+              <div class="card-img-overlay p-0"> <a class="d-flex h-100 video-btn" href="/eremit/#/register" data-src="https://www.youtube.com/embed/7e90gBu4pas" data-bs-toggle="modal" data-bs-target="#videoModal"> <span class="playButton playButton-pulsing bg-white m-auto"><i class="fas fa-play"></i></span> </a> </div>
             </div>
           </div>
           <div class="col-lg-6 mt-5 mt-lg-0">
             <div class="ms-4">
-			  <h2 class="text-9">Getting started with eRemit</h2>
+			  <h2 class="text-9">Getting started clic</h2>
               <p class="text-4">Your transfer is done completely online, unlike traditional money transfer services where you may have to go to a high street agent. Our fees are typically lower, too.</p>
               <ul class="list-unstyled text-3 lh-lg">
                 <li><i class="fas fa-check me-2"></i>Sign Up Account</li>
                 <li><i class="fas fa-check me-2"></i>Receive & Send Payments from worldwide</li>
-                <li><i class="fas fa-check me-2"></i>Your funds will be transferred to your eRemit wallet</li>
+                <li><i class="fas fa-check me-2"></i>Your funds will be transferred to your clic wallet</li>
               </ul>
               <a href="/eremit/#/register" class="btn btn-outline-primary shadow-none mt-2">Open a Free Account</a>
           </div>
@@ -288,7 +283,7 @@ class Home extends Component {
     ============================================= --> */}
     <section class="section bg-white">
       <div class="container">
-        <h2 class="text-9 text-center">What people are saying about eRemit</h2>
+        <h2 class="text-9 text-center">What people are saying about clic</h2>
         <p class="lead text-center mb-4">A payments experience people love to talk about</p>
         <div class="owl-carousel owl-theme" data-autoplay="true" data-nav="true" data-loop="true" data-margin="30" data-slideby="2" data-stagepadding="5" data-items-xs="1" data-items-sm="1" data-items-md="2" data-items-lg="2">
           <div class="item">
@@ -318,7 +313,7 @@ class Home extends Component {
           <div class="item">
             <div class="testimonial rounded text-center p-4">
               <p class="text-9 text-muted opacity-2 lh-base mb-0"><i class="fa fa-quote-left"></i></p>
-			  <p class="text-4">“It's a real good idea to manage your money by eRemit. The rates are fair and you can carry out the transactions without worrying!”</p>
+			  <p class="text-4">“It's a real good idea to manage your money by clic. The rates are fair and you can carry out the transactions without worrying!”</p>
               <strong class="d-block fw-500">Mauri Lindberg</strong> <span class="text-muted">Freelancer from Australia</span> </div>
           </div>
           <div class="item">
@@ -328,7 +323,7 @@ class Home extends Component {
               <strong class="d-block fw-500">Dennis Jacques</strong> <span class="text-muted">User from USA</span> </div>
           </div>
         </div>
-        <div class="text-center mt-4"><a href="#" class="btn-link text-4">See more people review<i class="fas fa-chevron-right text-2 ms-2"></i></a></div>
+        <div class="text-center mt-4"><a href="/eremit/#/register" class="btn-link text-4">See more people review<i class="fas fa-chevron-right text-2 ms-2"></i></a></div>
       </div>
     </section>
     {/* <!-- Testimonial end -->  */}
@@ -341,7 +336,7 @@ class Home extends Component {
         <div class="container text-center">
           <h2 class="text-9 text-white">Awesome Customer Support</h2>
           <p class="lead text-white mb-4">Having any query? Don't worry. We have great customer services team  available 24/7 in  different languages ready to help you whenever you need it.</p>
-          <a href="#" class="btn btn-light">Find out more</a> </div>
+          <a href="/eremit/#/register" class="btn btn-light">Find out more</a> </div>
       </div>
     </section>
     {/* <!-- Customer Support end -->  */}
@@ -352,7 +347,7 @@ class Home extends Component {
         <div class="justify-content-center text-center">
           <h2 class="text-9">Get the app</h2>
           <p class="lead mb-4">Download our app for the fastest, most convenient way to send & get Payment.</p>
-          <a class="d-inline-flex mx-3" href="#"><img alt="" width="168" height="49"  src="assets/images/app-store.png" /></a> <a class="d-inline-flex mx-3" href="#"><img alt="" width="166" height="49"  src="assets/images/google-play-store.png" /></a>
+          <a class="d-inline-flex mx-3" href="/eremit/#/register"><img alt="" width="168" height="49"  src="assets/images/app-store.png" /></a> <a class="d-inline-flex mx-3" href="/eremit/#/register"><img alt="" width="166" height="49"  src="assets/images/google-play-store.png" /></a>
 		</div>
       </div>
     </section>
@@ -383,13 +378,13 @@ class Home extends Component {
       <div class="footer-copyright pt-3 pt-lg-2 mt-2">
         <div class="row">
           <div class="col-lg">
-            <p class="text-center text-lg-start mb-2 mb-lg-0">Copyright &copy; 2022 <a href="#">eRemit</a>. All Rights Reserved.</p>
+            <p class="text-center text-lg-start mb-2 mb-lg-0">Copyright &copy; 2022 <a href="http://www.clic.world">clic.world</a>. All Rights Reserved.</p>
           </div>
           <div class="col-lg d-lg-flex align-items-center justify-content-lg-end">
             <ul class="nav justify-content-center">
-              <li class="nav-item"> <a class="nav-link active" href="#">Security</a></li>
-              <li class="nav-item"> <a class="nav-link" href="#">Terms</a></li>
-              <li class="nav-item"> <a class="nav-link" href="#">Privacy</a></li>
+              <li class="nav-item"> <a class="nav-link active" href="/eremit/#/register">Security</a></li>
+              <li class="nav-item"> <a class="nav-link" href="/eremit/#/register">Terms</a></li>
+              <li class="nav-item"> <a class="nav-link" href="/eremit/#/register">Privacy</a></li>
             </ul>
           </div>
         </div>

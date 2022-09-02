@@ -176,15 +176,15 @@ const SendMoney = () =>  {
       <div class="header-row">
         <div class="header-column justify-content-start"> 
           
-          <div class="logo me-3"> <a class="d-flex" href="/eremit/#/dashboard" title="eremit - HTML Template"><img src="assets/images/logo2.png" alt="eremit" /></a> </div>
+          <div class="logo me-3"> <a class="d-flex" href="/eremit/#/dashboard" title="eremit - HTML Template"><img src="assets/images/logo7.png" width="121" height="70" alt="eremit" /></a> </div>
           
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#header-nav"> <span></span> <span></span> <span></span> </button>
           
           <nav class="primary-menu navbar navbar-expand-lg">
             <div id="header-nav" class="collapse navbar-collapse">
               <ul class="navbar-nav me-auto">
-                <li class="active"><a href="/eremit/#/dashboard">Dashboard</a></li>
-                <li><a href="/eremit/#/send-money">Send</a></li>
+                <li><a href="/eremit/#/dashboard">Dashboard</a></li>
+                <li class="active"><a href="/eremit/#/send-money">Send</a></li>
                 <li><a href="/eremit/#/deposit">Deposit/Withdraw</a></li>
                 <li><a href="/eremit/#/help">Help</a></li>
               </ul>
@@ -371,7 +371,7 @@ const SendMoney = () =>  {
       <div class="footer-copyright pt-3 pt-lg-2 mt-2">
         <div class="row">
           <div class="col-lg">
-            <p class="text-center text-lg-start mb-2 mb-lg-0">Copyright &copy; 2022 <a href="/eremit/#/">eRemit</a>. All Rights Reserved.</p>
+            <p class="text-center text-lg-start mb-2 mb-lg-0">Copyright &copy; 2022 <a href="http://www.clic.world">clic.world</a>. All Rights Reserved.</p>
           </div>
           <div class="col-lg d-lg-flex align-items-center justify-content-lg-end">
             <ul class="nav justify-content-center">

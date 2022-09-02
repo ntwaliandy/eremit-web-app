@@ -23,7 +23,7 @@ class About extends Component {
         <div class="header-column justify-content-start"> 
           {/* <!-- Logo
           ============================= --> */}
-          <div class="logo me-3"> <a class="d-flex" href="/eremit/#/" title="eRemit - HTML Template"><img src="assets/images/logo2.png" alt="eRemit" /></a> </div>
+          <div class="logo me-3"> <a class="d-flex" href="/eremit/#/" title="eRemit - HTML Template"><img src="assets/images/logo7.png"width="121" height="70"alt="eRemit" /></a> </div>
           {/* <!-- Logo end -->  */}
           {/* <!-- Collapse Button
           ============================== --> */}
@@ -104,7 +104,7 @@ class About extends Component {
     
     {/* <!-- Our Values
     ============================================= --> */}
-    <section class="section bg-white">
+    {/* <section class="section bg-white">
       <div class="container">
         <div class="row g-0">
           <div class="col-lg-6 order-2 order-lg-1">
@@ -126,20 +126,20 @@ class About extends Component {
           </div>
         </div>
       </div>
-    </section>
+    </section> */}
     {/* <!-- Our Values end --> */}
     
     {/* <!-- Leadership
     ============================================= --> */}
-    <section class="section">
+    {/* <section class="section">
       <div class="container">
         <h2 class="text-9 text-center">Leadership</h2>
         <p class="lead text-center mb-5">We pride ourselves on hiring a diverse team from different cultural and professional backgrounds. With 1000+ employees around the world, there are more than 30 nationalities in our  headquarters alone. We also have regional hubs around the world.</p>
         <div class="row g-4">
           <div class="col-sm-6 col-md-3 text-center">
-            <div class="team rounded d-inline-block"> <img class="img-fluid rounded" alt="" src="assets/images/team/leader.jpg" />
-              <h3>Neil Patel</h3>
-              <p class="text-muted">CEO &amp; Founder</p>
+            <div class="team rounded d-inline-block"> <img class="img-fluid rounded" alt="" src="assets/images/image7.jpeg" />
+              <h3>Emmanuel Mbonye</h3>
+              <p class="text-muted">C0-founder and CTO</p>
               <ul class="social-icons social-icons-sm d-inline-flex">
                 <li class="social-icons-facebook"><a data-bs-toggle="tooltip" href="#" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a></li>
                 <li class="social-icons-twitter"><a data-bs-toggle="tooltip" href="" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a></li>
@@ -148,9 +148,9 @@ class About extends Component {
             </div>
           </div>
           <div class="col-sm-6 col-md-3 text-center">
-            <div class="team rounded d-inline-block"> <img class="img-fluid rounded" alt="" src="assets/images/team/leader-2.jpg" />
-              <h3>James Maxwell</h3>
-              <p class="text-muted">Co-Founder</p>
+            <div class="team rounded d-inline-block"> <img class="img-fluid rounded" alt="" src="assets/images/image2.jpg" height="200PX" />
+              <h3>IRANKUNDA INNOCENT</h3>
+              <p class="text-muted">FULL STACK DEVELOPER</p>
               <ul class="social-icons social-icons-sm d-inline-flex">
                 <li class="social-icons-facebook"><a data-bs-toggle="tooltip" href="" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a></li>
                 <li class="social-icons-twitter"><a data-bs-toggle="tooltip" href="" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a></li>
@@ -158,10 +158,10 @@ class About extends Component {
               </ul>
             </div>
           </div>
-          <div class="col-sm-6 col-md-3 text-center">
-            <div class="team rounded d-inline-block"> <img class="img-fluid rounded" alt="" src="assets/images/team/leader-3.jpg" />
-              <h3>Ruby Clinton</h3>
-              <p class="text-muted">Chief Marketing Officer</p>
+          <div class="col-sm-6 col-md-3 text-center" height="200px">
+            <div class="team rounded d-inline-block"> <img class="img-fluid rounded" alt="" src="assets/images/image4.jpg" />
+              <h3>NTWALI ANDREW</h3>
+              <p class="text-muted">FULL STACK DEVELOPER</p>
               <ul class="social-icons social-icons-sm d-inline-flex">
                 <li class="social-icons-facebook"><a data-bs-toggle="tooltip" href="" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a></li>
                 <li class="social-icons-twitter"><a data-bs-toggle="tooltip" href="" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a></li>
@@ -169,47 +169,13 @@ class About extends Component {
               </ul>
             </div>
           </div>
-          <div class="col-sm-6 col-md-3 text-center">
-            <div class="team rounded d-inline-block"> <img class="img-fluid rounded" alt="" src="assets/images/team/leader-4.jpg" />
-              <h3>Miky Sheth</h3>
-              <p class="text-muted">General Manager</p>
-              <ul class="social-icons social-icons-sm d-inline-flex">
-                <li class="social-icons-facebook"><a data-bs-toggle="tooltip" href="" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a></li>
-                <li class="social-icons-twitter"><a data-bs-toggle="tooltip" href="" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a></li>
-                <li class="social-icons-google"><a data-bs-toggle="tooltip" href="" target="_blank" title="Google"><i class="fab fa-google"></i></a></li>
-              </ul>
-            </div>
-          </div>
+          
         </div>
       </div>
-    </section>
+    </section> */}
     {/* <!-- Leadership end --> */}
     
-    {/* <!-- Our Investors
-    ============================================= --> */}
-    <section class="section bg-white">
-      <div class="container">
-        <h2 class="text-9 text-center">Our Investors</h2>
-        <p class="lead text-center mb-5">We are Backed by some of the world’s best investors</p>
-        <div class="brands-grid separator-border">
-          <div class="row align-items-center text-center">
-            <div class="col-6 col-sm-4 col-lg-2"><a href=""><img class="img-fluid" src="assets/images/partner/partner-1.png" alt="Brands" /></a></div>
-            <div class="col-6 col-sm-4 col-lg-2"><a href=""><img class="img-fluid" src="assets/images/partner/partner-2.png" alt="Brands" /></a></div>
-            <div class="col-6 col-sm-4 col-lg-2"><a href=""><img class="img-fluid" src="assets/images/partner/partner-3.png" alt="Brands" /></a></div>
-            <div class="col-6 col-sm-4 col-lg-2"><a href=""><img class="img-fluid" src="assets/images/partner/partner-4.png" alt="Brands" /></a></div>
-            <div class="col-6 col-sm-4 col-lg-2"><a href=""><img class="img-fluid" src="assets/images/partner/partner-5.png" alt="Brands" /></a></div>
-            <div class="col-6 col-sm-4 col-lg-2"><a href=""><img class="img-fluid" src="assets/images/partner/partner-6.png" alt="Brands" /></a></div>
-            <div class="col-6 col-sm-4 col-lg-2"><a href=""><img class="img-fluid" src="assets/images/partner/partner-7.png" alt="Brands" /></a></div>
-            <div class="col-6 col-sm-4 col-lg-2"><a href=""><img class="img-fluid" src="assets/images/partner/partner-8.png" alt="Brands" /></a></div>
-            <div class="col-6 col-sm-4 col-lg-2"><a href=""><img class="img-fluid" src="assets/images/partner/partner-9.png" alt="Brands" /></a></div>
-            <div class="col-6 col-sm-4 col-lg-2"><a href=""><img class="img-fluid" src="assets/images/partner/partner-10.png" alt="Brands" /></a></div>
-            <div class="col-6 col-sm-4 col-lg-2"><a href=""><img class="img-fluid" src="assets/images/partner/partner-11.png" alt="Brands" /></a></div>
-            <div class="col-6 col-sm-4 col-lg-2"><a href=""><img class="img-fluid" src="assets/images/partner/partner-1.png" alt="Brands" /></a></div>
-          </div>
-        </div>
-      </div>
-    </section>
-    {/* <!-- Our Investors end --> */}
+ 
     
     {/* <!-- Testimonial
     ============================================= --> */}
@@ -325,7 +291,7 @@ class About extends Component {
       <div class="footer-copyright pt-3 pt-lg-2 mt-2">
         <div class="row">
           <div class="col-lg">
-            <p class="text-center text-lg-start mb-2 mb-lg-0">Copyright &copy; 2022 <a href="/eremit/#/eRemit">eRemit</a>. All Rights Reserved.</p>
+            <p class="text-center text-lg-start mb-2 mb-lg-0">Copyright &copy; 2022 <a href="http://www.clic.world">clic.world</a>. All Rights Reserved.</p>
           </div>
           <div class="col-lg d-lg-flex align-items-center justify-content-lg-end">
             <ul class="nav justify-content-center">
