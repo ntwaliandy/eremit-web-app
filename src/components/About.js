@@ -71,7 +71,7 @@ class About extends Component {
       <div class="container">
         <div class="row">
           <div class="col-12 text-center">
-            <h1 class="text-11 fw-500 text-white mb-3">About eRemit</h1>
+            <h1 class="text-11 fw-500 text-white mb-3">About clic</h1>
             <p class="text-5 text-white lh-base mb-4">Our mission is to help you save on transfer fees and exchange rates!</p>
             <a href="/eremit/#/register" class="btn btn-primary m-2">Open a Free Account</a>  </div>
         </div>
@@ -93,7 +93,7 @@ class About extends Component {
           <div class="col-lg-6 d-flex">
             <div class="my-auto px-0 px-lg-5 mx-2">
               <h2 class="text-9 mb-4">Who we are</h2>
-              <p class="text-4">eRemit is the faster, more secure way to send and receive money online. It lets you pay for your favorite things at millions of online stores in the U.S. and across 203 global markets—all without the hassle of converting currency. So it’s just as easy to know how much you’re spending as it is to spend it. It's free to sign up for an eRemit account to send and receive money to other eRemit users.</p>
+              <p class="text-4">clic is the faster, more secure way to send and receive money online. It lets you pay for your favorite things at millions of online stores in the U.S. and across 203 global markets—all without the hassle of converting currency. So it’s just as easy to know how much you’re spending as it is to spend it. It's free to sign up for an eRemit account to send and receive money to other eRemit users.</p>
             </div>
           </div>
           <div class="col-lg-6 my-auto text-center"> <img class="img-fluid shadow-lg rounded-3" src="assets/images/who-we-are.jpg" alt="" /> </div>
@@ -181,7 +181,7 @@ class About extends Component {
     ============================================= --> */}
     <section class="section">
       <div class="container">
-        <h2 class="text-9 text-center">What people are saying about eRemit</h2>
+        <h2 class="text-9 text-center">What people are saying about clic</h2>
         <p class="lead text-center mb-4">A payment experience that everyone would like to explore</p>
         <div class="owl-carousel owl-theme" data-autoplay="true" data-nav="true" data-loop="true" data-margin="30" data-slideby="2" data-stagepadding="5" data-items-xs="1" data-items-sm="1" data-items-md="2" data-items-lg="2">
           <div class="item">
@@ -211,7 +211,7 @@ class About extends Component {
           <div class="item">
             <div class="testimonial rounded text-center p-4">
               <p class="text-9 text-muted opacity-2 mb-0"><i class="fa fa-quote-left"></i></p>
-			  <p class="text-4">“It's a real good idea to manage your money by eRemit. The rates are fair and you can carry out the transactions without worrying!”</p>
+			  <p class="text-4">“It's a real good idea to manage your money by clic. The rates are fair and you can carry out the transactions without worrying!”</p>
               <strong class="d-block fw-500">Mauri Lindberg</strong> <span class="text-muted">Freelancer from Australia</span> </div>
           </div>
           <div class="item">
@@ -228,7 +228,7 @@ class About extends Component {
     
     {/* <!-- JOIN US
     ============================================= --> */}
-    <section class="section bg-primary py-5">
+    {/* <section class="section bg-primary py-5">
       <div class="container text-center">
         <div class="row gy-4">
           <div class="col-sm-6 col-md-3">
@@ -261,7 +261,7 @@ class About extends Component {
           </div>
         </div>
       </div>
-    </section>
+    </section> */}
     {/* <!-- JOIN US end --> */}
     
   </div>
