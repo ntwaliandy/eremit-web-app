@@ -3,13 +3,13 @@ import React, { Component } from "react";
 
 class About extends Component {
     render() {
+      // let aboutImage = [
+      //   {src:"assets/images/image7.jpeg", title:"image4"},
+      //   {src:"assets/images/image2.jpg", title:"image7"},
+      //   {src:"assets/images/image4.jpg", title:"image2"},
+      // ]
         return (
             <div>
-                {/* <!-- Preloader --> */}
-{/* <div id="preloader">
-  <div data-loader="dual-ring"></div>
-</div> */}
-{/* <!-- Preloader End -->  */}
 
 {/* <!-- Document Wrapper   
 ============================================= --> */}
@@ -131,35 +131,44 @@ class About extends Component {
     
     {/* <!-- Leadership
     ============================================= --> */}
-    {/* <section class="section">
+    <section class="section">
       <div class="container">
         <h2 class="text-9 text-center">Leadership</h2>
         <p class="lead text-center mb-5">We pride ourselves on hiring a diverse team from different cultural and professional backgrounds. With 1000+ employees around the world, there are more than 30 nationalities in our  headquarters alone. We also have regional hubs around the world.</p>
+        {/* <div class="row g-4">
+        <div class="col-sm-6 col-md-3 text-center">
+          {
+            aboutImage.map((index) => <img src={index.src} title={index.title}
+            alt="images" height="500" width="400" style={{border:"solid",backgroundColor:"gray"}}/>)
+          }
+          </div>
+          </div> */}
         <div class="row g-4">
-          <div class="col-sm-6 col-md-3 text-center">
-            <div class="team rounded d-inline-block"> <img class="img-fluid rounded" alt="" src="assets/images/image7.jpeg" />
-              <h3>Emmanuel Mbonye</h3>
-              <p class="text-muted">C0-founder and CTO</p>
+        
+        <div class="col-sm-6 col-md-4 text-center">
+            <div class="team rounded d-inline-block"> <img class="img-fluid rounded" alt="" src="assets/images/image7.jpeg" style={{ width: 500, height: 400 }} />
+              <h3>EMMANUEL MBONYE</h3>
+              <p class="text-muted">FULL STACK DEVELOPER</p>
               <ul class="social-icons social-icons-sm d-inline-flex">
-                <li class="social-icons-facebook"><a data-bs-toggle="tooltip" href="#" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a></li>
+                <li class="social-icons-facebook"><a data-bs-toggle="tooltip" href="" target="_bla5trnk" title="Facebook"><i class="fab fa-facebook-f"></i></a></li>
                 <li class="social-icons-twitter"><a data-bs-toggle="tooltip" href="" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a></li>
                 <li class="social-icons-google"><a data-bs-toggle="tooltip" href="" target="_blank" title="Google"><i class="fab fa-google"></i></a></li>
               </ul>
             </div>
           </div>
-          <div class="col-sm-6 col-md-3 text-center">
-            <div class="team rounded d-inline-block"> <img class="img-fluid rounded" alt="" src="assets/images/image2.jpg" height="200PX" />
+          <div class="col-sm-6 col-md-4 text-center">
+            <div class="team rounded d-inline-block"> <img class="img-fluid rounded" alt="" src="assets/images/image2.jpg" style={{ width: 500, height: 400 }} />
               <h3>IRANKUNDA INNOCENT</h3>
               <p class="text-muted">FULL STACK DEVELOPER</p>
               <ul class="social-icons social-icons-sm d-inline-flex">
-                <li class="social-icons-facebook"><a data-bs-toggle="tooltip" href="" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a></li>
+                <li class="social-icons-facebook"><a data-bs-toggle="tooltip" href="" target="_bla5trnk" title="Facebook"><i class="fab fa-facebook-f"></i></a></li>
                 <li class="social-icons-twitter"><a data-bs-toggle="tooltip" href="" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a></li>
                 <li class="social-icons-google"><a data-bs-toggle="tooltip" href="" target="_blank" title="Google"><i class="fab fa-google"></i></a></li>
               </ul>
             </div>
           </div>
-          <div class="col-sm-6 col-md-3 text-center" height="200px">
-            <div class="team rounded d-inline-block"> <img class="img-fluid rounded" alt="" src="assets/images/image4.jpg" />
+          <div class="col-sm-6 col-md-4 text-center">
+            <div class="team rounded d-inline-block"> <img class="img-fluid rounded" alt="" src="assets/images/image4.jpg" style={{ width: 500, height: 400 }} />
               <h3>NTWALI ANDREW</h3>
               <p class="text-muted">FULL STACK DEVELOPER</p>
               <ul class="social-icons social-icons-sm d-inline-flex">
@@ -172,7 +181,7 @@ class About extends Component {
           
         </div>
       </div>
-    </section> */}
+    </section>
     {/* <!-- Leadership end --> */}
     
  
