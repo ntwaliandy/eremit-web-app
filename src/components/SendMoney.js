@@ -244,8 +244,8 @@ const SendMoney = () =>  {
                 <span class="input-group-text"><a href="#edit-personal-details" data-bs-toggle="modal" class="ms-auto text-7"><i class="fas fa-user-circle"></i></a></span>
                   <input type="text" class="form-control" data-bv-field="youSend" id="username" name="username"  onChange={e => setUsername(e.target.value)} value={username} placeholder="Tommy256" />
                   <span class="input-group-text p-0">
-                    <select id="youSendCurrency" data-style="form-select bg-transparent border-0" data-container="body" name="currency_code" onChange={e => setReceiverCurrencyCode(e.target.value)} data-live-search="true" class="selectpicker form-control bg-transparent" required="">
-                    
+                    <select id="youSendCurrency" data-style="form-select bg-transparent border-0" data-container="body" name="currency_code" required onChange={e => setReceiverCurrencyCode(e.target.value)} data-live-search="true" class="selectpicker form-control bg-transparent">
+                    <option data-icon="currency-flag currency-flag-usd me-1" data-subtext="United States dollar"  value="">currency <i class="bi bi-arrow-down"></i></option>
                       { 
                         allcurrencies.map((cr) => (
                           <option data-icon="currency-flag currency-flag-usd me-1" data-subtext="United States dollar"  value={cr.currency_code}>{cr.currency_code}</option>
@@ -254,7 +254,7 @@ const SendMoney = () =>  {
                       
                       
                     </select>
-                    </span>
+                  </span>
                 </div>
               </div>
               
@@ -264,8 +264,8 @@ const SendMoney = () =>  {
                   <span class="input-group-text"></span>
                   <input type="text" class="form-control" data-bv-field="youSend" id="youSend" name="amount"  onChange={e => setAmount(e.target.value)} value={amount} placeholder="Enter amount" />
                   <span class="input-group-text p-0">
-                    <select id="youSendCurrency" data-style="form-select bg-transparent border-0" data-container="body" name="currency_code" onChange={e => setCurrencyCode(e.target.value)} data-live-search="true" class="selectpicker form-control bg-transparent" required="">
-                    
+                    <select id="youSendCurrency" data-style="form-select bg-transparent border-0" data-container="body" name="currency_code" onChange={e => setCurrencyCode(e.target.value)} data-live-search="true" class="selectpicker form-control bg-transparent" required>
+                    <option data-icon="currency-flag currency-flag-usd me-1" data-subtext="United States dollar"  value="">currency <i class="bi bi-arrow-down"></i></option>
                       { 
                         userCurrencies.map((cr) => (
                           <option data-icon="currency-flag currency-flag-usd me-1" data-subtext="United States dollar"  value={cr.currency_code}>{cr.currency_code}</option>

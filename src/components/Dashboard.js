@@ -226,10 +226,11 @@ curencySubmit = e => {
             =============================== --> */}
             <div class="transaction-title py-2 px-4">
               <div class="row fw-00">
-                <div class="col-2 col-sm-1 text-center"><span class="">Date</span></div>
-                <div class="col col-sm-7">Description</div>
-                <div class="col-auto col-sm-2 d-none d-sm-block text-center">Status</div>
-                <div class="col-3 col-sm-2 text-end">Amount</div>
+                <div class="col-2 col-sm-3"><span class="">Date</span></div>
+                <div class="col col-sm-2">Description</div>
+                <div class="col-auto col-sm-3 d-none d-sm-block">Account</div>
+                <div class="col-auto col-sm-2 d-none d-sm-block">Status</div>
+                <div class="col-3 col-sm-1 text-end">Amount</div>
               </div>
             </div>
             {/* <!-- Title End -->  */}
@@ -261,10 +262,11 @@ curencySubmit = e => {
         <>
   <div class="transaction-item px-4 py-3" data-bs-toggle="modal" data-bs-target={"#transaction-detail" + mr.transaction_id}>
                     <div class="row align-items-center flex-row">
-                      <div class="col-2 col-sm-1 text-center"> <p>{mr.date_time}</p> </div>
-                      <div class="col col-sm-7">  <span class="text-muted">{mr.reason}</span> </div>
-                      <div class="col-auto col-sm-2 d-none d-sm-block text-center text-3"> <span class="text-success" data-bs-toggle="tooltip" title="In Progress"><i class="fas fa-check-circle"></i> </span>sent </div>
-                      <div class="col-3 col-sm-2 text-end text-4"> <span class="text-nowrap"></span> <span class="text-2 text-uppercase">{mr.amount} ({mr.currency_code})</span> </div>
+                      <div class="col-2 col-sm-3"> <p>{mr.date_time}</p> </div>
+                      <div class="col col-sm-2">  <span class="text-muted">{mr.reason}</span> </div>
+                      <div class="col-auto col-sm-3 d-none d-sm-block">  <span class="text-muted">To {mr.to_account}</span> </div>
+                      <div class="col-auto col-sm-2 d-none d-sm-block text-3"> <span class="text-danger" data-bs-toggle="tooltip" title="In Progress"><i class="fas fa-check-circle"></i> </span>sent </div>
+                      <div class="col-3 col-sm-1 text-end text-4"> <span class="text-nowrap"></span> <span class="text-2 text-uppercase">{mr.amount} ({mr.currency_code})</span> </div>
                     </div>
                   </div>
                   <div id={"transaction-detail" + mr.transaction_id} class="modal fade" role="dialog" aria-hidden="true">
@@ -276,7 +278,7 @@ curencySubmit = e => {
                         <div class="my-auto text-center">
                           <div class="text-17 text-white my-3"><i class="fas fa-building"></i></div>
                           <h3 class="text-4 text-white fw-400 my-3">EREMIT Ltd</h3>
-                          <div class="text-8 fw-500 text-white my-4">{mr.amount} {this.state.wallets[i].currency}</div>
+                          <div class="text-8 fw-500 text-white my-4">{mr.amount} {mr.currency_code}</div>
                           <p class="text-white">{mr.date_time}</p>
                         </div>
                       </div>
@@ -323,10 +325,11 @@ curencySubmit = e => {
         <>
   <div class="transaction-item px-4 py-3" data-bs-toggle="modal" data-bs-target={"#transaction-detail" + mr.transaction_id}>
                     <div class="row align-items-center flex-row">
-                      <div class="col-2 col-sm-1 text-center"> <p>{mr.date_time}</p> </div>
-                      <div class="col col-sm-7"> <span class="text-muted">{mr.reason}</span> </div>
-                      <div class="col-auto col-sm-2 d-none d-sm-block text-center text-3"> <span class="text-success" data-bs-toggle="tooltip" title="In Progress"><i class="fas fa-check-circle"></i> </span>received </div>
-                      <div class="col-3 col-sm-2 text-end text-4"> <span class="text-nowrap"></span> <span class="text-2 text-uppercase">{mr.amount} ({mr.currency_code})</span> </div>
+                      <div class="col-2 col-sm-3"> <p>{mr.date_time}</p> </div>
+                      <div class="col col-sm-2"> <span class="text-muted">{mr.reason}</span> </div>
+                      <div class="col-auto col-sm-3 d-none d-sm-block">  <span class="text-muted">From {mr.from_account}</span> </div>
+                      <div class="col-auto col-sm-2 d-none d-sm-block text-3"> <span class="text-success" data-bs-toggle="tooltip" title="In Progress"><i class="fas fa-check-circle"></i> </span>received </div>
+                      <div class="col-3 col-sm-1 text-end text-4"> <span class="text-nowrap"></span> <span class="text-2 text-uppercase">{mr.amount} ({mr.currency_code})</span> </div>
                     </div>
                   </div>
                   <div id={"transaction-detail" + mr.transaction_id} class="modal fade" role="dialog" aria-hidden="true">
