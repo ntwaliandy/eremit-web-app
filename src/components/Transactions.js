@@ -4,6 +4,8 @@ import { useLocation } from "react-router-dom";
 const Transaction = ({props}) => {
   const location = useLocation();
   const [data, setData] = useState([]);
+  const [TofullName, setToFullName] = useState("")
+  const [FromfullName, setFromFullName] = useState("")
       useEffect(() => {
         console.log(location)
         const temp = localStorage.getItem("data")
@@ -27,6 +29,64 @@ const Transaction = ({props}) => {
           setData(res);
         });
       }, [])
+
+
+// displaying TO user names in the transaction table
+const getUserDetails = (walletId) => {
+  const temp = localStorage.getItem("data")
+  const loadedData = JSON.parse(temp)
+  const token = "Bearer " + loadedData.token
+
+  const bodyData = {
+    "wallet_id": walletId
+  }
+
+  const requiredOptions = {
+    method: "POST",
+    headers: {
+      "Authorization": token,
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(bodyData)
+  }
+
+  fetch("http://18.116.9.199:9000/username_byWalletID", requiredOptions)
+    .then((response) => response.json())
+    .then(res => {
+      console.log(res)
+      setToFullName(res.message)
+  });
+
+
+}
+// displaying FROM user names in the transaction table
+const getUserFromDetails = (walletId) => {
+  const temp = localStorage.getItem("data")
+  const loadedData = JSON.parse(temp)
+  const token = "Bearer " + loadedData.token
+
+  const bodyData = {
+    "wallet_id": walletId
+  }
+
+  const requiredOptions = {
+    method: "POST",
+    headers: {
+      "Authorization": token,
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(bodyData)
+  }
+
+  fetch("http://18.116.9.199:9000/username_byWalletID", requiredOptions)
+    .then((response) => response.json())
+    .then(res => {
+      console.log(res)
+      setFromFullName(res.message)
+  });
+
+
+}
         return (
          <div>
            
@@ -122,10 +182,11 @@ const Transaction = ({props}) => {
             
             <div class="transaction-title py-2 px-4">
               <div class="row">
-                <div class="col-2 col-sm-1 text-center"><span class="">Date</span></div>
-                <div class="col col-sm-7 text-center">Description</div>
-                <div class="col-auto col-sm-2 d-none d-sm-block text-center">Status</div>
-                <div class="col-3 col-sm-2 text-end">Amount</div>
+                <div class="col-2 col-sm-3"><span class="">Date</span></div>
+                <div class="col col-sm-2">Description</div>
+                <div class="col-auto col-sm-3 d-none d-sm-block">Account</div>
+                <div class="col-auto col-sm-2 d-none d-sm-block">Status</div>
+                <div class="col-3 col-sm-1 text-end">Amount</div>
               </div>
             </div>
             <div class="transaction-list">
@@ -138,10 +199,17 @@ const Transaction = ({props}) => {
                     <>
                   <div class="transaction-item px-4 py-3" data-bs-toggle="modal" data-bs-target={"#transaction-detail" + tr.id}>
                     <div class="row align-items-center flex-row">
-                      <div class="col-2 col-sm-1 text-center"> <p>{tr.date_time}</p> </div>
-                      <div class="col col-sm-7"> <span class="text-muted">{tr.reason}</span> </div>
-                      <div class="col-auto col-sm-2 d-none d-sm-block text-center text-3"> <span class="text-success" data-bs-toggle="tooltip" title="In Progress"><i class="fas fa-check-circle"></i> </span>sent </div>
-                      <div class="col-3 col-sm-2 text-end text-4"> <span class="text-nowrap"></span> <span class="text-2 text-uppercase">{tr.amount} ({location.state.currency})</span> </div>
+                      <div class="col-2 col-sm-3"> <p>{tr.date_time}</p> </div>
+                      <div class="col col-sm-2"> <span class="text-muted">{tr.reason}</span> </div>
+                      <div class="col-auto col-sm-3 d-none d-sm-block">  
+                      
+                      {
+                        tr.to_account === 'MM_UGANDA' ? <span class="text-muted">To MM_UGANDA</span> :
+                        <span class="text-muted">{getUserDetails(tr.to_account)} To {TofullName}</span> 
+                      }
+                      </div>
+                      <div class="col-auto col-sm-2 d-none d-sm-block text-3"> <span class="text-danger" data-bs-toggle="tooltip" title="In Progress"><i class="fas fa-check-circle"></i> </span>sent </div>
+                      <div class="col-3 col-sm-1 text-end text-4"> <span class="text-nowrap"></span> <span class="text-2 text-uppercase">{tr.amount} ({location.state.currency})</span> </div>
                     </div>
                   </div>
                   <div id={"transaction-detail" + tr.id} class="modal fade" role="dialog" aria-hidden="true">
@@ -200,10 +268,18 @@ const Transaction = ({props}) => {
                     <>
                     <div class="transaction-item px-4 py-3" data-bs-toggle="modal" data-bs-target={"#transaction-detail" + tr.id}>
                     <div class="row align-items-center flex-row">
-                      <div class="col-2 col-sm-1 text-center"> <p>{tr.date_time}</p> </div>
-                      <div class="col col-sm-7">  <span class="text-muted">{tr.reason}</span> </div>
-                      <div class="col-auto col-sm-2 d-none d-sm-block text-center text-3"> <span class="text-success" data-bs-toggle="tooltip" title="In Progress"><i class="fas fa-check-circle"></i> </span> received</div>
-                      <div class="col-3 col-sm-2 text-end text-4"> <span class="text-nowrap"></span> <span class="text-2 text-uppercase">{tr.amount} ({location.state.currency})</span> </div>
+                      <div class="col-2 col-sm-3"> <p>{tr.date_time}</p> </div>
+                      <div class="col col-sm-2">  <span class="text-muted">{tr.reason}</span> </div>
+                      <div class="col-auto col-sm-3 d-none d-sm-block">
+                        
+                      {
+                        tr.from_account === 'MM_UGANDA' ? <span class="text-muted">From MM_UGANDA</span> :
+                        <span class="text-muted">{getUserFromDetails(tr.from_account)} From {FromfullName}</span>
+                      }
+                
+                </div>
+                      <div class="col-auto col-sm-2 d-none d-sm-block text-3"> <span class="text-success" data-bs-toggle="tooltip" title="In Progress"><i class="fas fa-check-circle"></i> </span> received</div>
+                      <div class="col-3 col-sm-1 text-end text-4"> <span class="text-nowrap"></span> <span class="text-2 text-uppercase">{tr.amount} ({location.state.currency})</span> </div>
                     </div>
                     </div> 
                     <div id={"transaction-detail" + tr.id} class="modal fade" role="dialog" aria-hidden="true">

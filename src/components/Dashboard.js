@@ -11,7 +11,9 @@ class Dashboard extends Component {
     transactions: [],
     allCuurencies: [],
     currency_code: "",
-    isLoading: false
+    isLoading: false,
+    TofullName: "",
+    FromfullName: "",
   }
   componentDidMount() {
     const temp = localStorage.getItem("data")
@@ -104,6 +106,63 @@ curencySubmit = e => {
       toast(personDetail.message)
       
     });
+
+}
+
+// displaying TO user names in the transaction table
+getUserDetails(walletId) {
+  const temp = localStorage.getItem("data")
+  const loadedData = JSON.parse(temp)
+  const token = "Bearer " + loadedData.token
+
+  const bodyData = {
+    "wallet_id": walletId
+  }
+
+  const requiredOptions = {
+    method: "POST",
+    headers: {
+      "Authorization": token,
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(bodyData)
+  }
+
+  fetch("http://18.116.9.199:9000/username_byWalletID", requiredOptions)
+    .then((response) => response.json())
+    .then(res => {
+      console.log(res)
+      this.setState({ TofullName: res.message })
+  });
+
+
+}
+// displaying FROM user names in the transaction table
+getUserFromDetails(walletId) {
+  const temp = localStorage.getItem("data")
+  const loadedData = JSON.parse(temp)
+  const token = "Bearer " + loadedData.token
+
+  const bodyData = {
+    "wallet_id": walletId
+  }
+
+  const requiredOptions = {
+    method: "POST",
+    headers: {
+      "Authorization": token,
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(bodyData)
+  }
+
+  fetch("http://18.116.9.199:9000/username_byWalletID", requiredOptions)
+    .then((response) => response.json())
+    .then(res => {
+      console.log(res)
+      this.setState({ FromfullName: res.message })
+  });
+
 
 }
 
@@ -264,7 +323,13 @@ curencySubmit = e => {
                     <div class="row align-items-center flex-row">
                       <div class="col-2 col-sm-3"> <p>{mr.date_time}</p> </div>
                       <div class="col col-sm-2">  <span class="text-muted">{mr.reason}</span> </div>
-                      <div class="col-auto col-sm-3 d-none d-sm-block">  <span class="text-muted">To {mr.to_account}</span> </div>
+                      <div class="col-auto col-sm-3 d-none d-sm-block">  
+                      
+                      {
+                        mr.to_account === 'MM_UGANDA' ? <span class="text-muted">To MM_UGANDA</span> :
+                        <span class="text-muted">To {this.getUserDetails(mr.to_account)} {this.state.TofullName}</span> 
+                      } 
+                      </div>
                       <div class="col-auto col-sm-2 d-none d-sm-block text-3"> <span class="text-danger" data-bs-toggle="tooltip" title="In Progress"><i class="fas fa-check-circle"></i> </span>sent </div>
                       <div class="col-3 col-sm-1 text-end text-4"> <span class="text-nowrap"></span> <span class="text-2 text-uppercase">{mr.amount} ({mr.currency_code})</span> </div>
                     </div>
@@ -327,7 +392,13 @@ curencySubmit = e => {
                     <div class="row align-items-center flex-row">
                       <div class="col-2 col-sm-3"> <p>{mr.date_time}</p> </div>
                       <div class="col col-sm-2"> <span class="text-muted">{mr.reason}</span> </div>
-                      <div class="col-auto col-sm-3 d-none d-sm-block">  <span class="text-muted">From {mr.from_account}</span> </div>
+                      <div class="col-auto col-sm-3 d-none d-sm-block">  
+                      
+                      {
+                        mr.from_account === 'MM_UGANDA' ? <span class="text-muted">From MM_UGANDA</span> :
+                        <span class="text-muted">From {this.getUserFromDetails(mr.from_account)} {this.state.FromfullName}</span>
+                      } 
+                      </div>
                       <div class="col-auto col-sm-2 d-none d-sm-block text-3"> <span class="text-success" data-bs-toggle="tooltip" title="In Progress"><i class="fas fa-check-circle"></i> </span>received </div>
                       <div class="col-3 col-sm-1 text-end text-4"> <span class="text-nowrap"></span> <span class="text-2 text-uppercase">{mr.amount} ({mr.currency_code})</span> </div>
                     </div>
