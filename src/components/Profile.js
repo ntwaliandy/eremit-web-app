@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Spinner } from "react-bootstrap";
+import axios from "axios";
 
 class Profile extends Component {
 
@@ -19,7 +20,9 @@ class Profile extends Component {
     confirm_password: "",
     allCuurencies: [],
     currency_code: "",
-    isLoading: false
+    isLoading: false,
+    prof_pic: null,
+    isProfLoading: false,
   }
 
   
@@ -141,6 +144,8 @@ class Profile extends Component {
     });
 
   }
+
+  // create new wallet
   handleSelectedChange = e => {
     this.setState({
       currency_code: e.target.value
@@ -175,7 +180,41 @@ curencySubmit = e => {
       toast(personDetail.message)
       
     });
+}
 
+// update profile pic
+updateProfilePic = e => {
+  this.setState({ isProfLoading: true })
+  e.preventDefault()
+  const temp = localStorage.getItem("data")
+  const loadedData = JSON.parse(temp)
+  const token = "Bearer " + loadedData.token
+  const user_id = loadedData.user_id
+
+  console.log(this.state.prof_pic)
+  const data = new FormData()
+  data.append("file", this.state.prof_pic)
+  data.append("user_id", user_id)
+
+  
+  // required options
+  const requiredOp = {
+    headers: {
+      'content-type': 'multipart/form-data',
+      'Accept': "application/json",
+      'Authorization': token
+    }
+  }
+  axios.post("http://18.116.9.199:9000/profile_update", data, requiredOp)
+  .then((response) => {
+    this.setState({ isProfLoading: false })
+    console.log(response)
+    toast(response.data.message)
+
+    if (response.data.status == 100) {
+      toast("refresh the page")
+    }
+  })
 }
 
   
@@ -230,9 +269,38 @@ curencySubmit = e => {
   <div id="content" class="py-4">
     <div class="container">
       <div class="row"> 
+        <aside class="col-lg-3">
+        {
+          this.state.person.map((per) => (
+            <form encType="multipart/form-data" onSubmit={this.updateProfilePic}>
+            <div class="bg-white shadow-sm rounded text-center p-3 mb-4">
+            <div class="profile-thumb mt-3 mb-4"> 
+            {
+              per.profile_pic === "null" ? <img class="rounded-circle" width={100} height={100} src="assets/images/team/profile-pic.png" alt="profile_pic" /> :
+              <img class="rounded-circle" width={100} height={100} src={per.profile_pic} alt="profile_pic" />
+
+            }
+              <div class="profile-thumb-edit bg-primary text-white" data-bs-toggle="tooltip" title="Change Profile Picture"> <i class="fas fa-camera position-absolute"></i>
+                <input type="file" class="custom-file-input" accept="image/png, image/jpeg, image/jpg" id="customFile" required onChange={(e) => this.setState({ prof_pic: e.target.files[0] })} />
+              </div>
+            </div>
+            <p class="text-3 fw-500 mb-2">Hello, {per.first_name} {per.last_name}</p>
+            <div class="row g-3">
+                        <div class="col-12 mt-4 d-grid">
+                          { 
+                            this.state.isProfLoading ? <button class="btn btn-primary"><Spinner animation="border" variant="light" /></button> : <button class="btn btn-primary">Upload</button>
+                          }
+                          
+                        </div>
+                    </div>
+          </div>
+          </form>
+          ))
+        }
+        </aside>
         
         
-        <div class="col-lg-16"> 
+        <div class="col-lg-9"> 
           
           {
             this.state.person.map((pr) => (
