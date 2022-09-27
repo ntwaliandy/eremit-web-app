@@ -51,6 +51,8 @@ const handleSubmit = e => {
         navigate("/kyc-success")
       } else if(response.data.status == 403) {
         toast(response.data.message)
+      } else {
+        setIsLoading(false)
       }
     })
   }
