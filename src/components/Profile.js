@@ -205,7 +205,7 @@ updateProfilePic = e => {
       'Authorization': token
     }
   }
-  axios.post("http://18.116.9.199:9000/profile_update", data, requiredOp)
+  axios.put("http://18.116.9.199:9000/profile_update", data, requiredOp)
   .then((response) => {
     this.setState({ isProfLoading: false })
     console.log(response)
@@ -263,6 +263,7 @@ updateProfilePic = e => {
     <div class="container d-flex justify-content-center">
       <ul class="nav nav-pills alternate nav-lg border-bottom-0">
         <li class="nav-item"> <a class="nav-link active" href="/eremit/#/my-profile">Account</a></li>
+        <li class="nav-item"> <a class="nav-link" href="/eremit/#/kyc">Kyc</a></li>
       </ul>
     </div>
   </div>

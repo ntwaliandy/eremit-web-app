@@ -24,6 +24,9 @@ import ConfirmDeposit from './components/confirmDeposit';
 import Withdraw from './components/withdraw';
 import ConfirmWithdraw from './components/confirmWithdraw';
 import WithdrawSuccess from './components/withdrawSuccess';
+import SendKyc from './components/kyc';
+import ConfirmKyc from './components/confirmKyc';
+import KycSuccess from './components/kycSuccess';
 
 
 function App() {
@@ -53,7 +56,9 @@ function App() {
       <Route path='/withdraw' element={<Withdraw />} />
       <Route path='/confirm-withdraw' element={<ConfirmWithdraw />} />
       <Route path='/withdraw-success' element={<WithdrawSuccess />} />
-
+      <Route path='/kyc' element={<SendKyc />} />
+      <Route path='/confirm-kyc' element={<ConfirmKyc />} />
+      <Route path='/confirm-success' element={<KycSuccess />} />
     </Routes>
   )
 }
