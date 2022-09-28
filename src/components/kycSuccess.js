@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 
 const KycSuccess = () =>  {
@@ -75,7 +75,7 @@ const KycSuccess = () =>  {
             </div>
             <p class="text-3 mb-4">You've Succesfully Approved KYC </p>
             <div class="d-grid"><a href="/eremit/#/dashboard"><button class="btn btn-primary">Send and Receive Money</button></a></div>
-            <a class="text-3 d-inline-block btn-link mt-4" href="#"><i class="fas fa-print"></i> Print</a> </div>
+            </div>
         </div>
       </div>
     </div>

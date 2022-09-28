@@ -58,7 +58,7 @@ function App() {
       <Route path='/withdraw-success' element={<WithdrawSuccess />} />
       <Route path='/kyc' element={<SendKyc />} />
       <Route path='/confirm-kyc' element={<ConfirmKyc />} />
-      <Route path='/confirm-success' element={<KycSuccess />} />
+      <Route path='/kyc-success' element={<KycSuccess />} />
     </Routes>
   )
 }
