@@ -25,9 +25,11 @@ class Profile extends Component {
     isProfLoading: false,
   }
 
-  
-
   componentDidMount() {
+this.intApp()
+  }
+
+  intApp() {
     const temp = localStorage.getItem("data")
     const loadedData = JSON.parse(temp)
     const token = "Bearer " + loadedData.token
@@ -111,6 +113,9 @@ class Profile extends Component {
       console.log(personDetail)
       this.setState({ isLoading: false })
       toast(personDetail.message)
+      if (personDetail.status == 100) {
+        this.intApp()
+      }
     });
 
   }
@@ -141,6 +146,9 @@ class Profile extends Component {
       console.log(personDetail)
       this.setState({ isLoading: false })
       toast(personDetail.message)
+      if (personDetail.status == 100) {
+        this.intApp()
+      }
     });
 
   }
@@ -212,7 +220,7 @@ updateProfilePic = e => {
     toast(response.data.message)
 
     if (response.data.status == 100) {
-      toast("refresh the page")
+      this.intApp()
     }
   })
 }
