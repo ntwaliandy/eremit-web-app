@@ -84,7 +84,7 @@ curencySubmit = e => {
   const temp = localStorage.getItem("data")
   const loadedData = JSON.parse(temp)
   const token = "Bearer " + loadedData.token
-
+  console.log(this.state.currency_code)
   const bodyData = {
     "user_id": loadedData.user_id,
     "currency_code": this.state.currency_code
@@ -327,7 +327,7 @@ getUserFromDetails(walletId) {
                       
                       {
                         mr.to_account === 'MM_UGANDA' ? <span class="text-muted">To MM_UGANDA</span> :
-                        <span class="text-muted">To {this.getUserDetails(mr.to_account)} {this.state.TofullName}</span> 
+                        <span class="text-muted">To *homework</span> 
                       } 
                       </div>
                       <div class="col-auto col-sm-2 d-none d-sm-block text-3"> <span class="text-danger" data-bs-toggle="tooltip" title="In Progress"><i class="fas fa-check-circle"></i> </span>sent </div>
@@ -396,7 +396,7 @@ getUserFromDetails(walletId) {
                       
                       {
                         mr.from_account === 'MM_UGANDA' ? <span class="text-muted">From MM_UGANDA</span> :
-                        <span class="text-muted">From {this.getUserFromDetails(mr.from_account)} {this.state.FromfullName}</span>
+                        <span class="text-muted">From *homework</span>
                       } 
                       </div>
                       <div class="col-auto col-sm-2 d-none d-sm-block text-3"> <span class="text-success" data-bs-toggle="tooltip" title="In Progress"><i class="fas fa-check-circle"></i> </span>received </div>
