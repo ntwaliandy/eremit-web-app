@@ -3,7 +3,7 @@ import { useState } from "react";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Spinner } from "react-bootstrap";
-import PhoneInput from 'react-phone-input-2'
+import PhoneInput from 'react-phone-number-input'
 import 'react-phone-number-input/style.css';
 
 function Register() {
@@ -111,11 +111,12 @@ return (
                 </div>
 
                 <div className="mb-3">
+                <label for="first_name" className="form-label">Phone Number</label>
                   <PhoneInput
-                    specialLabel="Phone Number"
-                    placeholder="256770000000"
-                    class="form-control"
+                  
+                    placeholder="77123456789"
                     defaultCountry="UG"
+                    className="form-control"
                     value={phone_number}
                     onChange={setphone_number} />
               </div>
