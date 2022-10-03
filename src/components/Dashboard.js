@@ -231,7 +231,7 @@ getUserFromDetails(walletId) {
               {
                 this.state.wallets.map((pr, i) => (
                   <div class="col-sm-6 col-md-3" key={i}>
-                <div class="border rounded text-center px-3 py-4"> <span class="d-block text-10 text-light mt-2 mb-3">{pr.currency_code} WALLET</span> <span class="text-5 d-block text-success mt-4 mb-3">{pr.balance} {pr.currency_code}</span>
+                <div class="border rounded text-center px-3 py-4"> <span class="d-block text-5 text-light mt-2 mb-3">{pr.currency_code} WALLET</span> <span class="text-3 d-block text-success mt-4 mb-3">{pr.balance} {pr.currency_code}</span>
                    <Link to="/transactions" state={{ walletId: pr.wallet_id, currency: pr.currency_code}}><p class="mb-0">View Transactions</p></Link>
                 </div>
               </div>
@@ -316,7 +316,7 @@ getUserFromDetails(walletId) {
 { 
   this.state.transactions.map(mr => {
     for (let i = 0; i < this.state.wallets.length; i++) {
-     if (mr.from_account == this.state.wallets[i].wallet_id && mr.status == 'credit') {
+     if (mr.from_account === this.state.wallets[i].wallet_id && mr.status === 'credit') {
       return (
         <>
   <div class="transaction-item px-4 py-3" data-bs-toggle="modal" data-bs-target={"#transaction-detail" + mr.transaction_id}>
@@ -331,7 +331,7 @@ getUserFromDetails(walletId) {
                       } 
                       </div>
                       <div class="col-auto col-sm-2 d-none d-sm-block text-3"> <span class="text-danger" data-bs-toggle="tooltip" title="In Progress"><i class="fas fa-check-circle"></i> </span>sent </div>
-                      <div class="col-3 col-sm-1 text-end text-4"> <span class="text-nowrap"></span> <span class="text-2 text-uppercase">{mr.amount} ({mr.currency_code})</span> </div>
+                      <div class="col-3 col-sm-1 text-end text-4"> <span class="text-nowrap"></span> <span class="text-2 text-uppercase">{mr.amount} {mr.currency_code}</span> </div>
                     </div>
                   </div>
                   <div id={"transaction-detail" + mr.transaction_id} class="modal fade" role="dialog" aria-hidden="true">
@@ -385,7 +385,7 @@ getUserFromDetails(walletId) {
             </div>
   </>
       )
-     } else if(mr.to_account == this.state.wallets[i].wallet_id && mr.status == 'debit') {
+     } else if(mr.to_account === this.state.wallets[i].wallet_id && mr.status === 'debit') {
       return (
         <>
   <div class="transaction-item px-4 py-3" data-bs-toggle="modal" data-bs-target={"#transaction-detail" + mr.transaction_id}>
@@ -400,7 +400,7 @@ getUserFromDetails(walletId) {
                       } 
                       </div>
                       <div class="col-auto col-sm-2 d-none d-sm-block text-3"> <span class="text-success" data-bs-toggle="tooltip" title="In Progress"><i class="fas fa-check-circle"></i> </span>received </div>
-                      <div class="col-3 col-sm-1 text-end text-4"> <span class="text-nowrap"></span> <span class="text-2 text-uppercase">{mr.amount} ({mr.currency_code})</span> </div>
+                      <div class="col-3 col-sm-1 text-end text-4"> <span class="text-nowrap"></span> <span class="text-2 text-uppercase">{mr.amount} {mr.currency_code}</span> </div>
                     </div>
                   </div>
                   <div id={"transaction-detail" + mr.transaction_id} class="modal fade" role="dialog" aria-hidden="true">

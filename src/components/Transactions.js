@@ -209,7 +209,7 @@ const getUserFromDetails = (walletId) => {
                       }
                       </div>
                       <div class="col-auto col-sm-2 d-none d-sm-block text-3"> <span class="text-danger" data-bs-toggle="tooltip" title="In Progress"><i class="fas fa-check-circle"></i> </span>sent </div>
-                      <div class="col-3 col-sm-1 text-end text-4"> <span class="text-nowrap"></span> <span class="text-2 text-uppercase">{tr.amount} ({location.state.currency})</span> </div>
+                      <div class="col-3 col-sm-1 text-end text-4"> <span class="text-nowrap"></span> <span class="text-2 text-uppercase">{tr.amount} {location.state.currency}</span> </div>
                     </div>
                   </div>
                   <div id={"transaction-detail" + tr.id} class="modal fade" role="dialog" aria-hidden="true">
@@ -279,7 +279,7 @@ const getUserFromDetails = (walletId) => {
                 
                 </div>
                       <div class="col-auto col-sm-2 d-none d-sm-block text-3"> <span class="text-success" data-bs-toggle="tooltip" title="In Progress"><i class="fas fa-check-circle"></i> </span> received</div>
-                      <div class="col-3 col-sm-1 text-end text-4"> <span class="text-nowrap"></span> <span class="text-2 text-uppercase">{tr.amount} ({location.state.currency})</span> </div>
+                      <div class="col-3 col-sm-1 text-end text-4"> <span class="text-nowrap"></span> <span class="text-2 text-uppercase">{tr.amount} {location.state.currency}</span> </div>
                     </div>
                     </div> 
                     <div id={"transaction-detail" + tr.id} class="modal fade" role="dialog" aria-hidden="true">

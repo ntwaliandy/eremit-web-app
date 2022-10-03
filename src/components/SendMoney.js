@@ -14,6 +14,7 @@ const SendMoney = () =>  {
   const [allcurrencies, setAllcurrencies] = useState([])
   const [savedcontacts, setSavedcontacts] = useState([])
   const [isLoading, SetLoading] = useState(false)
+  const [receiverFullname, setReceiverFullname] = useState("")
   let navigate = useNavigate()
   
 
@@ -164,6 +165,33 @@ const SendMoney = () =>  {
     })
 
   }
+
+  // getting receiver's username
+  const getReceiverFullName = (username) => {
+    const temp = localStorage.getItem("data")
+    const loadedData = JSON.parse(temp)
+    const token = loadedData.token
+    const bodData = {
+      "username": username,
+    }
+
+
+    const requiredOptions = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": token
+      },
+      body: JSON.stringify(bodData)
+    }
+    fetch("http://18.116.9.199:9000/userByUsername", requiredOptions)
+    .then(results => results.json())
+    .then((response) => {
+      console.log(response)
+      setReceiverFullname(response.message)
+    })
+    return receiverFullname
+  }
     return (
             <div>
 {/* <div id="preloader">
@@ -257,6 +285,7 @@ const SendMoney = () =>  {
                   </span>
                 </div>
               </div>
+              <p>Receiver Full Name: {getReceiverFullName(username)}</p>
               
               <div class="mb-3">
                 <label for="youSend" class="form-label">You Send</label>
