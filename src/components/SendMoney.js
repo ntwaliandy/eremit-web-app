@@ -4,6 +4,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Spinner } from "react-bootstrap";
 import 'react-phone-number-input/style.css';
+import { Icon } from "semantic-ui-react";
 
 const SendMoney = () =>  {
   const [userCurrencies, setUserCurrincies] = useState([]);
@@ -280,7 +281,7 @@ const SendMoney = () =>  {
                   <input type="text" class="form-control" data-bv-field="youSend" id="username" name="username"  onChange={e => setUsername(e.target.value)} value={username} placeholder="Tommy256" />
                   <span class="input-group-text p-0">
                     <select id="youSendCurrency" data-style="form-select bg-transparent border-0" data-container="body" name="currency_code" required onChange={e => setReceiverCurrencyCode(e.target.value)} data-live-search="true" class="selectpicker form-control bg-transparent">
-                    <option data-icon="currency-flag currency-flag-usd me-1" data-subtext="United States dollar"  value="">currency <i class="bi bi-arrow-down"></i></option>
+                    <option data-icon="currency-flag currency-flag-usd me-1" data-subtext="United States dollar"  value="">currency <Icon name='angle down' /></option>
                       { 
                         allcurrencies.map((cr) => (
                           <option data-icon="currency-flag currency-flag-usd me-1" data-subtext="United States dollar"  value={cr.currency_code}>{cr.currency_code}</option>
@@ -384,13 +385,13 @@ const SendMoney = () =>  {
                       </div>
                     )) :
                 <div class="transaction-item px-4 py-3" data-bs-toggle="modal">
-                <div class="row align-items-center flex-row">
-                  <div class="col-2 col-sm-3"> <p>No saved Contacts</p></div>
-                  <div class="col-2 col-sm-3 d-none d-sm-block">  <p></p></div>
-                  <div class="col-2 col-sm-3 d-none d-sm-block"><p class="text-muted"></p></div>
-                  <div class="col col-sm-1 text-end text-1">  <p></p> </div>
+                  <div class="row align-items-center flex-row">
+                    <div class="col-2 col-sm-3"> <p>No saved Contacts</p></div>
+                    <div class="col-2 col-sm-3 d-none d-sm-block">  <p></p></div>
+                    <div class="col-2 col-sm-3 d-none d-sm-block"><p class="text-muted"></p></div>
+                    <div class="col col-sm-1 text-end text-1">  <p></p> </div>
+                  </div>
                 </div>
-              </div>
                 }
                 </div>
                 
