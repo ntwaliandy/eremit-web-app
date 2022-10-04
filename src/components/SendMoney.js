@@ -14,11 +14,16 @@ const SendMoney = () =>  {
   const [allcurrencies, setAllcurrencies] = useState([])
   const [savedcontacts, setSavedcontacts] = useState([])
   const [isLoading, SetLoading] = useState(false)
+  const [isSCLoading, SetSCLoading] = useState(false)
   const [receiverFullname, setReceiverFullname] = useState("")
   let navigate = useNavigate()
   
 
   useEffect(() => {
+    initData()
+  }, [])
+
+  const initData = () => {
     const temp = localStorage.getItem("data")
     const loadedData = JSON.parse(temp)
     const token = "Bearer " + loadedData.token
@@ -71,7 +76,7 @@ const SendMoney = () =>  {
       setAllcurrencies(currencyDetails)
       
     });
-  }, [])
+  }
 
   const handleOnSubmit = e => {
     SetLoading(true)
@@ -126,7 +131,7 @@ const SendMoney = () =>  {
 
   // delete saved contact
   const deleteSavedContact = (user) => {
-    SetLoading(true)
+    SetSCLoading(true)
     console.log(user)
     const temp = localStorage.getItem("data")
     const loadedData = JSON.parse(temp)
@@ -152,15 +157,17 @@ const SendMoney = () =>  {
     .then((response) => {
       console.log(response)
       if (response.status === 100) {
-        SetLoading(false)
+        SetSCLoading(false)
+        initData()
         toast(response.message)
       } else if (response.status === 403) {
-        SetLoading(false)
+        SetSCLoading(false)
         toast(response.message)
+        initData()
       } else {
-        SetLoading(false)
+        SetSCLoading(false)
         toast("Invalid data types")
-
+        initData()
       }
     })
 
@@ -285,7 +292,7 @@ const SendMoney = () =>  {
                   </span>
                 </div>
               </div>
-              <p>Receiver Full Name: {getReceiverFullName(username)}</p>
+              <p>Receiver Full Name: { username === "" ? <></> : getReceiverFullName(username) }</p>
               
               <div class="mb-3">
                 <label for="youSend" class="form-label">You Send</label>
@@ -325,55 +332,75 @@ const SendMoney = () =>  {
             <div class="modal-dialog modal-dialog-centered" role="document">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title fw-400">Personal Details</h5>
+                  <h5 class="modal-title fw-400">Saved Contacts</h5>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
 
-                <div class="modal-body p-4 row gy-4">
-                  {
-                    savedcontacts.length > 0 ? 
-                    
-                      savedcontacts.map((rr) => (
-                  <div class="border rounded text-center px-3 py-4 row g-3">
-                    <div class="col-12 col-sm-6">
-                      <label for="firstName" class="form-label">First name</label>
-                      <input type="text" value={rr.first_name} class="form-control" data-bv-field="firstName" id="firstName" required="" placeholder="First Name" />
-                    </div>
-                    <div class="col-12 col-sm-6">
-                      <label for="lastName" class="form-label">Last name</label>
-                      <input type="text" value={rr.last_name} class="form-control" data-bv-field="lastName" id="lastName" required="" placeholder="Last Name" />
-                    </div>
-                    <div class="col-12 col-sm-6">
-                      <label for="firstName" class="form-label">Email</label>
-                      <input type="text" value={rr.email} class="form-control" data-bv-field="firstName" id="firstName" required="" placeholder="First Name" />
-                    </div>
-                    <div class="col-12 col-sm-6">
-                      <label for="lastName" class="form-label">Phone number</label>
-                      <input type="text" value={rr.phone_number} class="form-control" data-bv-field="lastName" id="lastName" required="" placeholder="Last Name" />
-                    </div>
-                    <div class="col-12 col-sm-6">
-                      <label for="firstName" class="form-label">Username</label>
-                      <input type="text" value={rr.username} class="form-control" data-bv-field="firstName" id="firstName" required="" placeholder="First Name" />
-                    </div>
-                    <div class="col-12 col-sm-6">
-                      {/* <label for="firstName" class="form-label">Username</label> */}
-                      <div onClick={() => setUsername(rr.username)}><p class="col-sm-9 text-3"><a href="#edit-account-settings" data-bs-toggle="modal" class="ms-auto text-2 text-uppercase btn-link"><span class="bg-primary text-white rounded-pill d-inline-block px-2 mb-0"><i class="fas fa-check-circle"></i> Choose</span></a></p></div>
-                      {
-                        isLoading ? <div><p class="col-sm-9 text-3"><a href="#edit-account-settings" data-bs-toggle="modal" class="ms-auto text-2 text-uppercase btn-link"><span class="bg-danger text-white rounded-pill d-inline-block px-2 mb-0"><i class="fas fa-minus-circle"></i> <Spinner animation="border" variant="light" /></span></a></p></div>
-                        : <div onClick={() => deleteSavedContact(rr.username) }><p class="col-sm-9 text-3"><a href="#edit-account-settings" data-bs-toggle="modal" class="ms-auto text-2 text-uppercase btn-link"><span class="bg-danger text-white rounded-pill d-inline-block px-2 mb-0"><i class="fas fa-minus-circle"></i> Delete</span></a></p></div>
-                      }
-                    </div>
-                    
+                <div class="transaction-title py-2 px-4">
+                  <div class="row fw-00">
+                    <div class="col-2 col-sm-3"><span class="">Name</span></div>
+                    <div class="col-2 col-sm-3 d-none d-sm-block">Phonenumber</div>
+                    <div class="col-2 col-sm-3 d-none d-sm-block">Username</div>
+                    <div class="col col-sm-1 text-end">Action</div>
                   </div>
-                  )) 
-                 : <p>No saved Contacts</p>
-                  }
-                  </div>
+                </div>
+                <div class="transaction-list">
+                {
+                  savedcontacts.length > 0 ?
+                    savedcontacts.map((sc) => (
+                      <div class="transaction-item px-4 py-3" data-bs-toggle="modal" onClick={() => setUsername(sc.username)}>
+                        <div class="row align-items-center flex-row">
+                          <div class="col-2 col-sm-3 text-1"> <p>{sc.first_name} {sc.last_name}</p></div>
+                          <div class="col-2 col-sm-3 d-none d-sm-block text-1">  <p>{sc.phone_number}</p></div>
+                          <div class="col-2 col-sm-3 d-none d-sm-block text-1"><p>{sc.username}</p></div>
+                          {
+                            isSCLoading ? 
+                            <div class="col col-sm-1 text-end text-1">
+                              <div>
+                                <p class="col-sm-9 text-1">
+                                  <span class="bg-danger text-white rounded-pill d-inline-block px-2 mb-0"> 
+                                    <Spinner animation="border" variant="light" />
+                                  </span>
+                                </p>
+                              </div>
+                            </div>
+                            
+                            : 
+                            <div class="col col-sm-1 text-end text-1" >
+                              <div onClick={() => deleteSavedContact(sc.username)}>
+                                <p class="col-sm-9 text-1">
+                                  <span class="bg-danger text-white rounded-pill d-inline-block px-2 mb-0"> remove</span>
+                                </p>
+                              </div>
+                              <div onClick={() => setUsername(sc.username)}>
+                                <p class="col-sm-9 text-1">
+                                  <span class="bg-primary text-white rounded-pill d-inline-block px-2 mb-0"> choose</span>
+                                </p>
+                              </div>
+                            </div>
+                        
+                          } 
+                        </div>
+                      </div>
+                    )) :
+                <div class="transaction-item px-4 py-3" data-bs-toggle="modal">
+                <div class="row align-items-center flex-row">
+                  <div class="col-2 col-sm-3"> <p>No saved Contacts</p></div>
+                  <div class="col-2 col-sm-3 d-none d-sm-block">  <p></p></div>
+                  <div class="col-2 col-sm-3 d-none d-sm-block"><p class="text-muted"></p></div>
+                  <div class="col col-sm-1 text-end text-1">  <p></p> </div>
+                </div>
+              </div>
+                }
+                </div>
+                
                 
                 
               </div>
             </div>
           </div>
+
+          
         
   {/* saved contacts end */}
   <footer id="footer">
