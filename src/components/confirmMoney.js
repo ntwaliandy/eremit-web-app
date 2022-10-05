@@ -8,9 +8,9 @@ import { Spinner } from "react-bootstrap";
 const ConfirmMoney = () =>  {
   const [isLoading, SetLoading] = useState(false)
   const [reason, setReason] = useState("")
-  
-    const location = useLocation()
-    const navigate = useNavigate()
+  const [isFavLoading, setFavLoading] = useState(false)
+  const location = useLocation()
+  const navigate = useNavigate()
     useEffect(() => {
         console.log(location)
     }, [])
@@ -60,7 +60,7 @@ const ConfirmMoney = () =>  {
     }
     // #saving username
     const addContact = e => {
-      SetLoading(true)
+      setFavLoading(true)
       
       const temp = localStorage.getItem("data")
       const loadedData = JSON.parse(temp)
@@ -87,13 +87,13 @@ const ConfirmMoney = () =>  {
         console.log(response)
         
         if (response.status === 100) {
-          SetLoading(false)
+          setFavLoading(false)
           toast(response.message)
         } else if (response.status === 403) {
-          SetLoading(false)
+          setFavLoading(false)
           toast(response.message)
         } else {
-          SetLoading(false)
+          setFavLoading(false)
           toast("Invalid data types")
   
         }
@@ -167,11 +167,7 @@ const ConfirmMoney = () =>  {
       </div>
       <h2 class="fw-400 text-center mt-3">Confirm Details</h2>
       <p class="lead text-center mb-4">You are sending money to <span class="fw-500">{location.state.username}</span></p>
-      <div>
-    {
-      isLoading ? <p class="lead text-center mb-4"> <Spinner animation="border" variant="light" /></p>: <div onClick={() => addContact()}><p class="lead text-center mb-4"><a data-bs-toggle="modal" class="ms-auto text-2 text-uppercase btn-link"><span class="bg-primary text-white rounded-pill d-inline-block px-2 mb-0"><i class="fas fa-check-circle"></i> ADD TO FAVOURITES</span></a></p></div>
-    }   
-    </div>
+      
       
       <div class="row">
         <div class="col-md-9 col-lg-7 col-xl-6 mx-auto">
@@ -191,6 +187,11 @@ const ConfirmMoney = () =>  {
               <p class="mb-1">Total fees <span class="text-3 float-end">0 {location.state.currency}</span></p>
               <hr />
               <p class="text-4 fw-500">Total<span class="float-end">{location.state.amount} {location.state.currency}</span></p>
+              <div>
+                {
+                  isFavLoading ? <p class="lead text-left mb-4"> <Spinner animation="border" variant="light" /></p>: <div onClick={() => addContact()}><p class="lead text-left mb-4"><a data-bs-toggle="modal" class="ms-auto text-2 text-uppercase btn-link"><span class="bg-primary text-white rounded-pill d-inline-block px-2 mb-0"><i class="fas fa-check-circle"></i> ADD TO FAVOURITES</span></a></p></div>
+                }   
+              </div>
               <div class="d-grid">
                 { 
                   isLoading ? <button class="btn btn-primary"><Spinner animation="border" variant="light" /></button> : <button class="btn btn-primary">Send</button>
