@@ -193,7 +193,7 @@ const getUserFromDetails = (walletId) => {
               
             
             { data.length > 0 ?
-              data.map(tr => {
+              data.map(tr => { 
                 if (tr.from_account === location.state.walletId && tr.status === 'credit' ) {
                   return (
                     <>
