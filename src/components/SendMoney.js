@@ -367,7 +367,7 @@ const SendMoney = () =>  {
                  <label for="youSend" class="form-label">Receiver Username</label>
                  <div class="input-group">
                  <span class="input-group-text"><a href="#edit-personal-details" data-bs-toggle="modal" class="ms-auto text-7"><i class="fas fa-user-circle"></i></a></span>
-                   <input type="text" class="form-control" data-bv-field="youSend" id="username" name="username"  onChange={e => setUsername(e.target.value)} value={username} placeholder="Tommy256" />
+                   <input type="text" class="form-control" data-bv-field="youSend" id="username" name="username"  onChange={e => setUsername(e.target.value)} value={username} placeholder="Tommy256" required />
                    
                  </div>
                  <p>Receiver Fullname: { username === "" ? <></> : getReceiverFullName(username) }</p>
@@ -376,7 +376,7 @@ const SendMoney = () =>  {
                 <label for="youSend" class="form-label">You Send</label>
                 <div class="input-group">
                   <span class="input-group-text"></span>
-                  <input type="text" class="form-control" data-bv-field="youSend" id="youSend" name="amount"  onChange={e => setAmount(e.target.value)} value={amount} placeholder="Enter amount" />
+                  <input type="text" class="form-control" data-bv-field="youSend" id="youSend" name="amount"  onChange={e => { setAmount(e.target.value); getReceiverAmount(currency_code, receiverCode, e.target.value)}} value={amount} placeholder="Enter amount" />
                   <span class="input-group-text p-0">
                     <select id="youSendCurrency" data-style="form-select bg-transparent border-0" data-container="body" name="currency_code" onChange={e => setCurrencyCode(e.target.value)} data-live-search="true" class="selectpicker form-control bg-transparent" required>
                     <option data-icon="currency-flag currency-flag-usd me-1" data-subtext="United States dollar"  value="">currency <i class="bi bi-arrow-down"></i></option>
@@ -407,7 +407,7 @@ const SendMoney = () =>  {
                 <div class="input-group">
                   <input type="text" class="form-control" data-bv-field="youSend" value={rvAmount} id="username" name="receiverAmount" placeholder="0" />
                   <span class="input-group-text p-0">
-                    <select id="youSendCurrency" data-style="form-select bg-transparent border-0" data-container="body" name="currency_code" required onChange={e => getReceiverAmount(currency_code, e.target.value, amount)} data-live-search="true" class="selectpicker form-control bg-transparent">
+                    <select id="youSendCurrency" data-style="form-select bg-transparent border-0" data-container="body" name="currency_code" required onChange={e => setReceiverCurrencyCode(e.target.value)} data-live-search="true" class="selectpicker form-control bg-transparent">
                     <option data-icon="currency-flag currency-flag-usd me-1" data-subtext="United States dollar"  value="">currency <Icon name='angle down' /></option>
                       { 
                         allcurrencies.map((cr) => (
