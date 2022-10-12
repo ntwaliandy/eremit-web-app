@@ -175,7 +175,8 @@ const SendMoney = () =>  {
           "receiverMoney": response.message.receiving_money,
           "username": username,
           "currency": currency_code,
-          "receiverCurrency": receiverCode
+          "receiverCurrency": receiverCode,
+          "receivername": receiverFullname
         }});
         
       } else if (response.status === 403) {
