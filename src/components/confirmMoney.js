@@ -175,17 +175,18 @@ const ConfirmMoney = () =>  {
             <h3 class="text-5 fw-400 mb-3 mb-sm-4">Payment Description</h3>
             <hr class="mx-n3 mx-sm-n5 mb-4" />
             <form id="form-send-money" onSubmit={handleSubmit}>
+              {
+                location.state.currency === location.state.receiverCurrency ? <p></p> :
+                <p class="mb-1">Sending Amount <span class="text-3 float-end">{location.state.amount} {location.state.currency}</span></p>
+              }
+              <p class="mb-1">Receiving Amount <span class="text-3 float-end">{location.state.receiverMoney} {location.state.receiverCurrency}</span></p>
+              <p class="mb-1">Receiver Fullname <span class="text-3 float-end">{location.state.receivername}</span></p>
+              <p class="mb-1">Total fees <span class="text-3 float-end">0 {location.state.currency}</span></p>
+              <hr />
               <div class="mb-4 mb-sm-5">
                 <label for="description" class="form-label">Description</label>
                 <input type="text" value={reason} class="form-control" onChange={e => setReason(e.target.value)} rows="4" id="description" required placeholder="Payment Reason" />
               </div>
-              <hr class="mx-n3 mx-sm-n5 mb-3 mb-sm-4" />
-              <h3 class="text-5 fw-400 mb-3 mb-sm-4">Confirm Details</h3>
-              <hr class="mx-n3 mx-sm-n5 mb-4" />
-              <p class="mb-1">Sending Amount <span class="text-3 float-end">{location.state.amount} {location.state.currency}</span></p>
-              <p class="mb-1">Receiving Amount <span class="text-3 float-end">{location.state.receiverMoney} {location.state.receiverCurrency}</span></p>
-              <p class="mb-1">Total fees <span class="text-3 float-end">0 {location.state.currency}</span></p>
-              <hr />
               <p class="text-4 fw-500">Total<span class="float-end">{location.state.amount} {location.state.currency}</span></p>
               <div>
                 {

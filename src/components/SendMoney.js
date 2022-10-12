@@ -18,7 +18,9 @@ const SendMoney = () =>  {
   const [isSCLoading, SetSCLoading] = useState(false)
   const [receiverFullname, setReceiverFullname] = useState("")
   const [multiCurrency, setMultiCurrency] = useState(false)
-  const [singleCurrency, setSingleCurrency] = useState(false)
+  const [singleCurrency, setSingleCurrency] = useState(true)
+  const [rates, setRates] = useState([])
+  const [rvAmount, setrvAmount] = useState("")
   let navigate = useNavigate()
   
 
@@ -79,6 +81,13 @@ const SendMoney = () =>  {
       setAllcurrencies(currencyDetails)
       
     });
+
+    // fetch exchange rates
+    fetch("https://cliix.co/exrate.php")
+    .then((response) => response.json())
+    .then((res) => {
+      setRates(res.data)
+    })
   }
 
   const handleOnSubmit = e => {
@@ -119,7 +128,8 @@ const SendMoney = () =>  {
           "receiverMoney": response.message.receiving_money,
           "username": username,
           "currency": currency_code,
-          "receiverCurrency": currency_code
+          "receiverCurrency": currency_code,
+          "receivername": receiverFullname
         }});
         
       } else if (response.status === 403) {
@@ -261,6 +271,23 @@ const SendMoney = () =>  {
     setMultiCurrency(true)
     setSingleCurrency(false)
   }
+
+  // get receiverAmount
+  const getReceiverAmount = (sendCurrency, receiverCurrency, Amount) => {
+    setReceiverCurrencyCode(receiverCurrency)
+    const pair = sendCurrency + receiverCurrency
+    rates.forEach((rt, index) => {
+      if (rt.pair === pair) {
+        console.log(rt.pair)
+        const initialAmout = parseFloat(Amount)
+        const indexRate = parseFloat(rt.index)
+        const receiver_amount = initialAmout * indexRate
+        setrvAmount(receiver_amount)
+        console.log(receiver_amount)
+      }
+    })
+  }
+
     return (
             <div>
 {/* <div id="preloader">
@@ -336,6 +363,15 @@ const SendMoney = () =>  {
             <hr class="mx-n3 mx-sm-n5 mb-4" />
             <form id="form-send-money" onSubmit={handleOnSubmit}>
             <div class="mb-3">
+                 <label for="youSend" class="form-label">Receiver Username</label>
+                 <div class="input-group">
+                 <span class="input-group-text"><a href="#edit-personal-details" data-bs-toggle="modal" class="ms-auto text-7"><i class="fas fa-user-circle"></i></a></span>
+                   <input type="text" class="form-control" data-bv-field="youSend" id="username" name="username"  onChange={e => setUsername(e.target.value)} value={username} placeholder="Tommy256" />
+                   
+                 </div>
+                 <p>Receiver Fullname: { username === "" ? <></> : getReceiverFullName(username) }</p>
+               </div>
+            <div class="mb-3">
                 <label for="youSend" class="form-label">You Send</label>
                 <div class="input-group">
                   <span class="input-group-text"></span>
@@ -344,9 +380,9 @@ const SendMoney = () =>  {
                     <select id="youSendCurrency" data-style="form-select bg-transparent border-0" data-container="body" name="currency_code" onChange={e => setCurrencyCode(e.target.value)} data-live-search="true" class="selectpicker form-control bg-transparent" required>
                     <option data-icon="currency-flag currency-flag-usd me-1" data-subtext="United States dollar"  value="">currency <i class="bi bi-arrow-down"></i></option>
                       { 
-                        userCurrencies.map((cr) => (
+                        userCurrencies.length > 0 ? userCurrencies.map((cr) => (
                           <option data-icon="currency-flag currency-flag-usd me-1" data-subtext="United States dollar"  value={cr.currency_code}>{cr.currency_code}</option>
-                        )) 
+                        )) : <></>
                       }
                       
                       
@@ -364,14 +400,13 @@ const SendMoney = () =>  {
                 </div>
               </div>
               {
-                multiCurrency ? 
+                multiCurrency ?
                 <div class="mb-3">
-                <label for="youSend" class="form-label">Receiver Username</label>
+                <label for="youSend" class="form-label">Receives</label>
                 <div class="input-group">
-                <span class="input-group-text"><a href="#edit-personal-details" data-bs-toggle="modal" class="ms-auto text-7"><i class="fas fa-user-circle"></i></a></span>
-                  <input type="text" class="form-control" data-bv-field="youSend" id="username" name="username"  onChange={e => setUsername(e.target.value)} value={username} placeholder="Tommy256" />
+                  <input type="text" class="form-control" data-bv-field="youSend" value={rvAmount} id="username" name="receiverAmount" placeholder="0" />
                   <span class="input-group-text p-0">
-                    <select id="youSendCurrency" data-style="form-select bg-transparent border-0" data-container="body" name="currency_code" required onChange={e => setReceiverCurrencyCode(e.target.value)} data-live-search="true" class="selectpicker form-control bg-transparent">
+                    <select id="youSendCurrency" data-style="form-select bg-transparent border-0" data-container="body" name="currency_code" required onChange={e => getReceiverAmount(currency_code, e.target.value, amount)} data-live-search="true" class="selectpicker form-control bg-transparent">
                     <option data-icon="currency-flag currency-flag-usd me-1" data-subtext="United States dollar"  value="">currency <Icon name='angle down' /></option>
                       { 
                         allcurrencies.map((cr) => (
@@ -383,24 +418,18 @@ const SendMoney = () =>  {
                     </select>
                   </span>
                 </div>
-                <p>Receiver Fullname: { username === "" ? <></> : getReceiverFullName(username) }</p>
               </div>
               
                  :
-                 <div class="mb-3">
-                 <label for="youSend" class="form-label">Receiver Username</label>
-                 <div class="input-group">
-                 <span class="input-group-text"><a href="#edit-personal-details" data-bs-toggle="modal" class="ms-auto text-7"><i class="fas fa-user-circle"></i></a></span>
-                   <input type="text" class="form-control" data-bv-field="youSend" id="username" name="username"  onChange={e => setUsername(e.target.value)} value={username} placeholder="Tommy256" />
-                   
-                 </div>
-                 <p>Receiver Fullname: { username === "" ? <></> : getReceiverFullName(username) }</p>
-               </div>
+                 <p></p>
               }
               <hr />
               <p>Total Fees<span class="float-end">0 {currency_code}</span></p>
               <hr />
-              <p class="text-4 fw-500">Total To Pay<span class="float-end">{amount} {currency_code}</span></p>
+              {
+                multiCurrency ? <p class="text-4 fw-500">Total To Pay<span class="float-end">{rvAmount} {receiverCode}</span></p>
+                : <p class="text-4 fw-500">Total To Pay<span class="float-end">{amount} {currency_code}</span></p>
+              }
               <div class="d-grid"> 
                 { 
                   isLoading ? <button class="btn btn-primary"><Spinner animation="border" variant="light" /></button> : <button class="btn btn-primary">Continue</button>
