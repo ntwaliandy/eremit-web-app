@@ -44,7 +44,7 @@ this.intApp()
       },
       body: JSON.stringify(userId)
     }
-    fetch("http://18.116.9.199:9000/get_user_by_id", requiredOptions)
+    fetch("http://18.176.147.191:8500/get_user_by_id", requiredOptions)
     .then((response) => response.json())
     .then(personDetail => {
       console.log(personDetail)
@@ -66,7 +66,7 @@ this.intApp()
         "Content-Type": "application/json"
       },
     }
-    fetch("http://18.116.9.199:9000/all_currencies", requiredOpt)
+    fetch("http://18.176.147.191:8500/all_currencies", requiredOpt)
     .then((response) => response.json())
     .then(currencyDetails => {
       console.log(currencyDetails)
@@ -107,7 +107,7 @@ this.intApp()
       },
       body: JSON.stringify(userData)
     }
-    fetch("http://18.116.9.199:9000/update_user", requiredOptions)
+    fetch("http://18.176.147.191:8500/update_user", requiredOptions)
     .then((response) => response.json())
     .then(personDetail => {
       console.log(personDetail)
@@ -140,7 +140,7 @@ this.intApp()
       },
       body: JSON.stringify(userData)
     }
-    fetch("http://18.116.9.199:9000/update_user_password", requiredOptions)
+    fetch("http://18.176.147.191:8500/update_user_password", requiredOptions)
     .then((response) => response.json())
     .then(personDetail => {
       console.log(personDetail)
@@ -180,7 +180,7 @@ curencySubmit = e => {
     body: JSON.stringify(bodyData)
   }
 
-  fetch("http://18.116.9.199:9000/create_other_wallet", requiredOp)
+  fetch("http://18.176.147.191:8500/create_other_wallet", requiredOp)
     .then((response) => response.json())
     .then(personDetail => {
       console.log(personDetail)
@@ -213,7 +213,7 @@ updateProfilePic = e => {
       'Authorization': token
     }
   }
-  axios.put("http://18.116.9.199:9000/profile_update", data, requiredOp)
+  axios.put("http://18.176.147.191:8500/profile_update", data, requiredOp)
   .then((response) => {
     this.setState({ isProfLoading: false })
     console.log(response)

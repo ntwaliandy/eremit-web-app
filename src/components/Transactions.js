@@ -22,7 +22,7 @@ const Transaction = ({props}) => {
           },
           body: JSON.stringify(bodyData)
         }
-        fetch("http://18.116.9.199:9000/transaction_base_on_wallet", requiredOptions)
+        fetch("http://18.176.147.191:8500/transaction_base_on_wallet", requiredOptions)
         .then((response) => response.json())
         .then(res => {
           console.log(res)
@@ -50,7 +50,7 @@ const getUserDetails = (walletId) => {
     body: JSON.stringify(bodyData)
   }
 
-  fetch("http://18.116.9.199:9000/username_byWalletID", requiredOptions)
+  fetch("http://18.176.147.191:8500/username_byWalletID", requiredOptions)
     .then((response) => response.json())
     .then(res => {
       console.log(res)
@@ -78,7 +78,7 @@ const getUserFromDetails = (walletId) => {
     body: JSON.stringify(bodyData)
   }
 
-  fetch("http://18.116.9.199:9000/username_byWalletID", requiredOptions)
+  fetch("http://18.176.147.191:8500/username_byWalletID", requiredOptions)
     .then((response) => response.json())
     .then(res => {
       console.log(res)

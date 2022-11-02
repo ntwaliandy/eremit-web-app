@@ -20,7 +20,7 @@ let handleSubmit = async (e) => {
   SetLoading(true)
   e.preventDefault();
   try {
-    await fetch("http://18.116.9.199:9000/verify_otp", {
+    await fetch("http://18.176.147.191:8500/verify_otp", {
       method: "POST",
       body: JSON.stringify({
         "email": Location.state.email,

@@ -30,7 +30,7 @@ class Dashboard extends Component {
       },
       body: JSON.stringify(userId)
     }
-    fetch("http://18.116.9.199:9000/user_wallet_details", requiredOptions)
+    fetch("http://18.176.147.191:8500/user_wallet_details", requiredOptions)
     .then((response) => response.json())
     .then(res => {
       console.log(res)
@@ -45,7 +45,7 @@ class Dashboard extends Component {
       },
       body: JSON.stringify(userId)
     }
-    fetch("http://18.116.9.199:9000/user_transactions", requiredOptions1)
+    fetch("http://18.176.147.191:8500/user_transactions", requiredOptions1)
     .then((response) => response.json())
     .then(res => {
       console.log(res)
@@ -61,7 +61,7 @@ class Dashboard extends Component {
         "Content-Type": "application/json"
       },
     }
-    fetch("http://18.116.9.199:9000/all_currencies", requiredOpt)
+    fetch("http://18.176.147.191:8500/all_currencies", requiredOpt)
     .then((response) => response.json())
     .then(currencyDetails => {
       console.log(currencyDetails)

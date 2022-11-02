@@ -33,7 +33,7 @@ const ConfirmDeposit = () => {
           body: JSON.stringify(bodData)
         }
     
-        fetch("http://18.116.9.199:9000/deposit", requiredOptions)
+        fetch("http://18.176.147.191:8500/deposit", requiredOptions)
         .then(results => results.json())
         .then((response) => {
           console.log(response)
@@ -74,7 +74,7 @@ const ConfirmDeposit = () => {
             body: JSON.stringify(bodDataRWF)
           }
       
-          fetch("http://18.116.9.199:9000/deposit-rwanda", requiredOptionsRWF)
+          fetch("http://18.176.147.191:8500/deposit-rwanda", requiredOptionsRWF)
           .then(results => results.json())
           .then((response) => {
             console.log(response)

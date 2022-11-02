@@ -32,7 +32,7 @@ const Withdraw = () => {
             },
             body: JSON.stringify(bodyData)
           }
-          fetch("http://18.116.9.199:9000/user_wallet_details", requiredDataOptions)
+          fetch("http://18.176.147.191:8500/user_wallet_details", requiredDataOptions)
           .then(results => results.json())
           .then((response) => {
             console.log(response)
