@@ -33,23 +33,27 @@ const SendMoney = () =>  {
     const loadedData = JSON.parse(temp)
     const token = "Bearer " + loadedData.token
 
-    const bodyData = {
+    const userId = {
       "user_id": loadedData.user_id
     }
-    const requiredDataOptions = {
+    const requiredOptions = {
       method: "POST",
       headers: {
         "Authorization": token,
         "Content-Type": "application/json"
       },
-      body: JSON.stringify(bodyData)
+      body: JSON.stringify(userId)
     }
-    fetch("http://18.176.147.191:8500/user_wallet_details", requiredDataOptions)
-    .then(results => results.json())
-    .then((response) => {
-      console.log(response)
-      setUserCurrincies(response)
-    })
+    fetch("http://18.176.147.191:8500/user_wallets", requiredOptions)
+    .then((response) => response.json())
+    .then(res => {
+      console.log(res)
+      setUserCurrincies(res.message)
+    });
+
+    const bodyData = {
+      "user_id": loadedData.user_id
+    }
 
     const requiredDataOptions1 = {
       method: "POST",
@@ -100,12 +104,11 @@ const SendMoney = () =>  {
     const loadedData = JSON.parse(temp)
     const senderId = loadedData.user_id
     const bodData = {
-      "sender_id": senderId,
-      "currency_code": currency_code,
-      "receiver_currency_code": currency_code,
-      "username": username,
-      "amount": parseFloat(amount)
-    }
+      "user_id": senderId,
+      "receiver_name": username,
+      "amount": parseFloat(amount),
+      "asset_type": currency_code
+  }
 
     const requiredOptions = {
       method: "POST",
@@ -115,20 +118,20 @@ const SendMoney = () =>  {
       body: JSON.stringify(bodData)
     }
 
-    fetch("http://18.176.147.191:8500/verify_currency", requiredOptions)
+    fetch("http://18.176.147.191:8500/verify_single_payment", requiredOptions)
     .then(results => results.json())
     .then((response) => {
       console.log(response)
       if (response.status === 100) {
         SetLoading(false)
         navigate("/confirm-money", { state: {
-          "senderWalletId": response.message.sender_walletId,
-          "receiverWalletId": response.message.receiver_walletId,
-          "amount": amount,
-          "receiverMoney": response.message.receiving_money,
-          "username": username,
-          "currency": currency_code,
-          "receiverCurrency": currency_code,
+          "amount": response.message.amount,
+          "assetType": response.message.asset_type,
+          "receiverPubKey": response.message.receiverPubKey,
+          "receiverSecKey": response.message.receiverSecKey,
+          "senderPubKey": response.message.senderPubKey,
+          "senderSecKey": response.message.senderSecKey,
+          "transaction_id": response.message.transaction_id,
           "receivername": receiverFullname
         }});
         
@@ -376,13 +379,13 @@ const SendMoney = () =>  {
                 <label for="youSend" class="form-label">You Send</label>
                 <div class="input-group">
                   <span class="input-group-text"></span>
-                  <input type="text" class="form-control" data-bv-field="youSend" id="youSend" name="amount"  onChange={e => { setAmount(e.target.value); getReceiverAmount(currency_code, receiverCode, e.target.value)}} value={amount} placeholder="Enter amount" />
+                  <input type="text" class="form-control" data-bv-field="youSend" id="youSend" name="amount" required  onChange={e => { setAmount(e.target.value); getReceiverAmount(currency_code, receiverCode, e.target.value)}} value={amount} placeholder="Enter amount" />
                   <span class="input-group-text p-0">
                     <select id="youSendCurrency" data-style="form-select bg-transparent border-0" data-container="body" name="currency_code" onChange={e => setCurrencyCode(e.target.value)} data-live-search="true" class="selectpicker form-control bg-transparent" required>
                     <option data-icon="currency-flag currency-flag-usd me-1" data-subtext="United States dollar"  value="">currency <i class="bi bi-arrow-down"></i></option>
                       { 
                         userCurrencies.length > 0 ? userCurrencies.map((cr) => (
-                          <option data-icon="currency-flag currency-flag-usd me-1" data-subtext="United States dollar"  value={cr.currency_code}>{cr.currency_code}</option>
+                          <option data-icon="currency-flag currency-flag-usd me-1" data-subtext="United States dollar"  value={cr.asset_type}>{cr.asset_type}</option>
                         )) : <></>
                       }
                       

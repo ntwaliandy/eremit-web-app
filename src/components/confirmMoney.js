@@ -23,13 +23,15 @@ const ConfirmMoney = () =>  {
     const token = loadedData.token
 
     const bodyData = {
-        "from_account": location.state.senderWalletId,
-        "to_account": location.state.receiverWalletId,
-        "trans_type": "P2P",
-        "reason": reason,
-        "receiver_money": parseFloat(location.state.receiverMoney),
-        "amount": parseFloat(location.state.amount)
-    }
+      "amount": location.state.amount,
+      "asset_type": location.state.assetType,
+      "receiverPubKey": location.state.receiverPubKey,
+      "receiverSecKey": location.state.receiverSecKey,
+      "senderPubKey": location.state.senderPubKey,
+      "senderSecKey": location.state.senderSecKey,
+      "transaction_id": location.state.transaction_id,
+      "message": reason
+  }
     const requestedOptions = {
         method: "POST",
         headers: {
@@ -38,16 +40,16 @@ const ConfirmMoney = () =>  {
         },
         body: JSON.stringify(bodyData)
     }
-    fetch("http://18.176.147.191:8500/send", requestedOptions)
+    fetch("http://18.176.147.191:8500/send_single_payment", requestedOptions)
     .then(result => result.json())
     .then((response) => {
         console.log(response);
         if (response.status === 100) {
           SetLoading(false)
           navigate("/success", { state: {
-            "username": location.state.username,
+            "username": location.state.receivername,
             "amount": location.state.amount,
-            "currency": location.state.currency
+            "currency": location.state.assetType
           }})
         } else if (response.status === 403) {
           SetLoading(false)
@@ -166,7 +168,7 @@ const ConfirmMoney = () =>  {
         </div>
       </div>
       <h2 class="fw-400 text-center mt-3">Confirm Details</h2>
-      <p class="lead text-center mb-4">You are sending money to <span class="fw-500">{location.state.username}</span></p>
+      <p class="lead text-center mb-4">You are sending money to <span class="fw-500">{location.state.receivername}</span></p>
       
       
       <div class="row">
@@ -179,7 +181,7 @@ const ConfirmMoney = () =>  {
                 location.state.currency === location.state.receiverCurrency ? <p></p> :
                 <p class="mb-1">Sending Amount <span class="text-3 float-end">{location.state.amount} {location.state.currency}</span></p>
               }
-              <p class="mb-1">Receiving Amount <span class="text-3 float-end">{location.state.receiverMoney} {location.state.receiverCurrency}</span></p>
+              <p class="mb-1">Receiving Amount <span class="text-3 float-end">{location.state.amount} {location.state.assetType}</span></p>
               <p class="mb-1">Receiver Fullname <span class="text-3 float-end">{location.state.receivername}</span></p>
               <p class="mb-1">Total fees <span class="text-3 float-end">0 {location.state.currency}</span></p>
               <hr />

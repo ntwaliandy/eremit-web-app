@@ -30,11 +30,11 @@ class Dashboard extends Component {
       },
       body: JSON.stringify(userId)
     }
-    fetch("http://18.176.147.191:8500/user_wallet_details", requiredOptions)
+    fetch("http://18.176.147.191:8500/user_wallets", requiredOptions)
     .then((response) => response.json())
     .then(res => {
       console.log(res)
-      this.setState({ wallets: res });
+      this.setState({ wallets: res.message });
     });
 
     const requiredOptions1 = {
@@ -231,8 +231,8 @@ getUserFromDetails(walletId) {
               {
                 this.state.wallets.length > 0 ? this.state.wallets.map((pr, i) => (
                   <div class="col-sm-6 col-md-3" key={i}>
-                <div class="border rounded text-center px-3 py-4"> <span class="d-block text-5 text-light mt-2 mb-3">{pr.currency_code} WALLET</span> <span class="text-3 d-block text-success mt-4 mb-3">{pr.balance} {pr.currency_code}</span>
-                   <Link to="/transactions" state={{ walletId: pr.wallet_id, currency: pr.currency_code}}><p class="mb-0">View Transactions</p></Link>
+                <div class="border rounded text-center px-3 py-4"> <span class="d-block text-5 text-light mt-2 mb-3">{pr.asset_type} WALLET</span> <span class="text-3 d-block text-success mt-4 mb-3">{pr.balance} {pr.asset_type}</span>
+                   <Link to="/transactions" state=""><p class="mb-0">View Transactions</p></Link>
                 </div>
               </div>
                 )) :
