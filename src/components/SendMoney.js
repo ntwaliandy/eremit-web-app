@@ -385,7 +385,7 @@ const SendMoney = () =>  {
                     <option data-icon="currency-flag currency-flag-usd me-1" data-subtext="United States dollar"  value="">currency <i class="bi bi-arrow-down"></i></option>
                       { 
                         userCurrencies.length > 0 ? userCurrencies.map((cr) => (
-                          <option data-icon="currency-flag currency-flag-usd me-1" data-subtext="United States dollar"  value={cr.asset_type}>{cr.asset_type}</option>
+                          <option data-icon="currency-flag currency-flag-usd me-1" data-subtext="United States dollar"  value={cr.asset_type}>{cr.asset_type == "native" ? "XLM" : cr.asset_code}</option>
                         )) : <></>
                       }
                       

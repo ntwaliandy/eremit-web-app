@@ -8,14 +8,20 @@ import 'react-toastify/dist/ReactToastify.css';
 class Dashboard extends Component {
   state = {
     wallets: [],
-    transactions: [],
     allCuurencies: [],
     currency_code: "",
     isLoading: false,
     TofullName: "",
     FromfullName: "",
+    assetCode: "",
+    assetIssuer: "",
   }
   componentDidMount() {
+    this.initState()
+
+  }
+
+  initState() {
     const temp = localStorage.getItem("data")
     const loadedData = JSON.parse(temp)
     const token = "Bearer " + loadedData.token
@@ -36,46 +42,6 @@ class Dashboard extends Component {
       console.log(res)
       this.setState({ wallets: res.message });
     });
-
-    const requiredOptions1 = {
-      method: "POST",
-      headers: {
-        "Authorization": token,
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(userId)
-    }
-    fetch("http://18.176.147.191:8500/user_transactions", requiredOptions1)
-    .then((response) => response.json())
-    .then(res => {
-      console.log(res)
-      console.log(res.wallet_id)
-      this.setState({ transactions: res.message });
-    });
-
-    // all currencies
-    const requiredOpt = {
-      method: "GET",
-      headers: {
-        "Authorization": token,
-        "Content-Type": "application/json"
-      },
-    }
-    fetch("http://18.176.147.191:8500/all_currencies", requiredOpt)
-    .then((response) => response.json())
-    .then(currencyDetails => {
-      console.log(currencyDetails)
-      this.setState({
-        allCuurencies: currencyDetails,
-      })
-      
-    });
-
-  }
-  handleSelectedChange = e => {
-    this.setState({
-      currency_code: e.target.value
-    })
   }
 
 curencySubmit = e => {
@@ -83,88 +49,30 @@ curencySubmit = e => {
   e.preventDefault()
   const temp = localStorage.getItem("data")
   const loadedData = JSON.parse(temp)
-  const token = "Bearer " + loadedData.token
-  console.log(this.state.currency_code)
   const bodyData = {
     "user_id": loadedData.user_id,
-    "currency_code": this.state.currency_code
+    "asset_code": this.state.assetCode,
+    "asset_issuer": this.state.assetIssuer
   }
   const requiredOp = {
     method: "POST",
     headers: {
-      "Authorization": token,
       "Content-Type": "application/json"
     },
     body: JSON.stringify(bodyData)
   }
 
-  fetch("http://18.116.9.199:9000/create_other_wallet", requiredOp)
+  fetch("http://18.176.147.191:8500/add_asset", requiredOp)
     .then((response) => response.json())
     .then(personDetail => {
       console.log(personDetail)
       this.setState({ isLoading: false })
       toast(personDetail.message)
-      
+      this.initState()
     });
 
 }
 
-// displaying TO user names in the transaction table
-getUserDetails(walletId) {
-  const temp = localStorage.getItem("data")
-  const loadedData = JSON.parse(temp)
-  const token = "Bearer " + loadedData.token
-
-  const bodyData = {
-    "wallet_id": walletId
-  }
-
-  const requiredOptions = {
-    method: "POST",
-    headers: {
-      "Authorization": token,
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(bodyData)
-  }
-
-  fetch("http://18.116.9.199:9000/username_byWalletID", requiredOptions)
-    .then((response) => response.json())
-    .then(res => {
-      console.log(res)
-      this.setState({ TofullName: res.message })
-  });
-
-
-}
-// displaying FROM user names in the transaction table
-getUserFromDetails(walletId) {
-  const temp = localStorage.getItem("data")
-  const loadedData = JSON.parse(temp)
-  const token = "Bearer " + loadedData.token
-
-  const bodyData = {
-    "wallet_id": walletId
-  }
-
-  const requiredOptions = {
-    method: "POST",
-    headers: {
-      "Authorization": token,
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(bodyData)
-  }
-
-  fetch("http://18.116.9.199:9000/username_byWalletID", requiredOptions)
-    .then((response) => response.json())
-    .then(res => {
-      console.log(res)
-      this.setState({ FromfullName: res.message })
-  });
-
-
-}
 
     render(){
         return(
@@ -225,23 +133,23 @@ getUserFromDetails(walletId) {
           {/* <!-- Profile Completeness
           =============================== --> */}
           <div class="bg-white shadow-sm rounded p-4 mb-4">
-            <h3 class="text-5 fw-400 d-flex align-items-center mb-4">All Wallet Details</h3>
+            <h3 class="text-5 fw-400 d-flex align-items-center mb-4">All Asset Details</h3>
             <hr class="mb-4 mx-n4" />
             <div class="row gy-4 profile-completeness">
               {
                 this.state.wallets.length > 0 ? this.state.wallets.map((pr, i) => (
                   <div class="col-sm-6 col-md-3" key={i}>
-                <div class="border rounded text-center px-3 py-4"> <span class="d-block text-5 text-light mt-2 mb-3">{pr.asset_type} WALLET</span> <span class="text-3 d-block text-success mt-4 mb-3">{pr.balance} {pr.asset_type}</span>
+                <div class="border rounded text-center px-3 py-4"> <span class="d-block text-5 text-light mt-2 mb-3">{pr.asset_type == "native" ? "XLM" : pr.asset_code } Asset</span> <span class="text-3 d-block text-success mt-4 mb-3">{pr.balance} {pr.asset_type == "native" ? "XLM" : pr.asset_code }</span>
                    <Link to="/transactions" state=""><p class="mb-0">View Transactions</p></Link>
                 </div>
               </div>
                 )) :
                 <p></p>
               }
-            <div class="col-sm-6 col-lg-3"> <a href="#edit-email" data-bs-toggle="modal" class="ms-auto text-2 text-uppercase btn-link">
+            <div class="col-sm-6 col-md-3"> <a href="#edit-email" data-bs-toggle="modal" class="ms-auto text-2 text-uppercase btn-link">
             <div class="featured-box style-5 rounded">
               <div class="featured-box-icon text-primary"> <i class="fas fa-wallet"></i></div>
-              <h3>Create New wallet</h3>
+              <h3>Add Asset</h3>
             </div>
             </a> </div> 
             </div>
@@ -257,17 +165,13 @@ getUserFromDetails(walletId) {
                     <div class="modal-body p-4">
                       <form id="emailAddresses" onSubmit={this.curencySubmit}>
                       <div class="mb-3">
-                    <label for="emailID" class="form-label">WALLET CURRENCY NAME</label>
-                    <select id="youSendCurrency" value={this.state.senderId} onChange={(e) => this.handleSelectedChange(e)} data-style="form-select bg-transparent border-0" data-container="body" data-live-search="true" class="selectpicker form-control bg-transparent" required>
-                    <option data-icon="currency-flag currency-flag-ars me-1"  data-subtext="Argentine peso" value="">Choose Walllet Currency Code</option>
-                    {
-                      this.state.allCuurencies.map((cr, index) => (
-                        <option key={index} data-icon="currency-flag currency-flag-ars me-1"  data-subtext="Argentine peso" value={cr.currency_code}>{cr.currency_code}</option>
-                      ))
-                    }
-                    
-                    </select>
-                    </div>
+                        <label for="existingPassword" class="form-label">Asset Code</label>
+                        <input type="text" class="form-control" value={this.state.assetCode} name="asset_code" data-bv-field="existingpassword" id="existingPassword" required="" placeholder="Enter Asset Code" onChange={(e) => this.setState({ assetCode: e.target.value })} />
+                      </div>
+                      <div class="mb-3">
+                        <label for="existingPassword" class="form-label">Asset Issuer</label>
+                        <input type="text" class="form-control" value={this.state.assetIssuer} name="asset_issuer" data-bv-field="existingpassword" id="existingPassword" required="" placeholder="Enter Asset Issuer" onChange={(e) => this.setState({ assetIssuer: e.target.value })} />
+                      </div>
                     <div class="d-grid mt-4">
                       { 
                         this.state.isLoading ? <button class="btn btn-primary"><Spinner animation="border" variant="light" /></button> : <button class="btn btn-primary">Create</button>
@@ -297,45 +201,21 @@ getUserFromDetails(walletId) {
             {/* <!-- Transaction List
             =============================== --> */}
             <div class="transaction-list"> 
-            {/* {
-                this.state.transactions.map((mr, i) => (
-                  
-              <div class="transaction-item px-4 py-3" data-bs-toggle="modal" data-bs-target="#transaction-detail" key={i}>
-              
-                <div class="row align-items-center flex-row" >
-                  <div class="col-2 col-sm-1 text-center"> <span class="d-block text-4 fw-300">16</span> <span class="d-block text-1 fw-300 text-uppercase">{mr.date_time}</span> </div>
-                  <div class="col col-sm-7"> <span class="d-block text-4">{mr.from_account}</span> <span class="text-muted">{mr.to_account}</span> </div>
-                  <div class="col-auto col-sm-2 d-none d-sm-block text-center text-3"> <span class="text-warning" data-bs-toggle="tooltip" title="In Progress"><i class="fas fa-check-circle"></i></span>{mr.status} </div>
-                  <div class="col-3 col-sm-2 text-end text-4"> <span class="text-nowrap">{mr.amount}{mr.currency_code}</span> <span class="text-2 text-uppercase"></span> </div>
-                </div>
-                
-              
-              </div>
-              ))
-            } */}
+            
 
-{ 
-  this.state.transactions.map(mr => {
-    for (let i = 0; i < this.state.wallets.length; i++) {
-     if (mr.from_account === this.state.wallets[i].wallet_id && mr.status === 'credit') {
-      return (
-        <>
-  <div class="transaction-item px-4 py-3" data-bs-toggle="modal" data-bs-target={"#transaction-detail" + mr.transaction_id}>
+
+  <div class="transaction-item px-4 py-3" data-bs-toggle="modal" data-bs-target="">
                     <div class="row align-items-center flex-row">
-                      <div class="col-2 col-sm-3"> <p>{mr.date_time}</p> </div>
-                      <div class="col col-sm-2">  <span class="text-muted">{mr.reason}</span> </div>
+                      <div class="col-2 col-sm-3"> <p>""</p> </div>
+                      <div class="col col-sm-2">  <span class="text-muted">""</span> </div>
                       <div class="col-auto col-sm-3 d-none d-sm-block">  
-                      
-                      {
-                        mr.to_account === 'MM_UGANDA' ? <span class="text-muted">To MM_UGANDA</span> :
-                        <span class="text-muted">To {this.getUserDetails(mr.to_account)} {this.state.TofullName}</span> 
-                      } 
+                      <span class="text-muted"></span>
                       </div>
                       <div class="col-auto col-sm-2 d-none d-sm-block text-3"> <span class="text-danger" data-bs-toggle="tooltip" title="In Progress"><i class="fas fa-check-circle"></i> </span>sent </div>
-                      <div class="col-3 col-sm-1 text-end text-4"> <span class="text-nowrap"></span> <span class="text-2 text-uppercase">{mr.amount} {mr.currency_code}</span> </div>
+                      <div class="col-3 col-sm-1 text-end text-4"> <span class="text-nowrap"></span> <span class="text-2 text-uppercase">""</span> </div>
                     </div>
                   </div>
-                  <div id={"transaction-detail" + mr.transaction_id} class="modal fade" role="dialog" aria-hidden="true">
+                  <div id="" class="modal fade" role="dialog" aria-hidden="true">
               <div class="modal-dialog modal-dialog-centered transaction-details" role="document">
                 <div class="modal-content">
                   <div class="modal-body">
@@ -344,8 +224,8 @@ getUserFromDetails(walletId) {
                         <div class="my-auto text-center">
                           <div class="text-17 text-white my-3"><i class="fas fa-building"></i></div>
                           <h3 class="text-4 text-white fw-400 my-3">EREMIT Ltd</h3>
-                          <div class="text-8 fw-500 text-white my-4">{mr.amount} {mr.currency_code}</div>
-                          <p class="text-white">{mr.date_time}</p>
+                          <div class="text-8 fw-500 text-white my-4">""</div>
+                          <p class="text-white">""</p>
                         </div>
                       </div>
                       <div class="col-sm-7">
@@ -355,23 +235,23 @@ getUserFromDetails(walletId) {
                         <hr />
                         <div class="px-3">
                           <ul class="list-unstyled">
-                            <li class="mb-2">Payment Amount <span class="float-end text-3">{mr.amount} {mr.currency_code}</span></li>
-                            <li class="mb-2">Fee <span class="float-end text-3">0.0 {mr.currency_code}</span></li>
+                            <li class="mb-2">Payment Amount <span class="float-end text-3">""</span></li>
+                            <li class="mb-2">Fee <span class="float-end text-3">""</span></li>
                           </ul>
                           <hr class="mb-2" />
-                          <p class="d-flex align-items-center fw-500 mb-0">Total Amount <span class="text-3 ms-auto">{mr.amount} {mr.currency_code} </span></p>
+                          <p class="d-flex align-items-center fw-500 mb-0">Total Amount <span class="text-3 ms-auto">"" </span></p>
 						  <hr class="mb-4 mt-2" />
                           <ul class="list-unstyled">
                             <li class="fw-500">Sent To:</li>
-                            <li class="text-muted">{mr.to_account}</li>
+                            <li class="text-muted">""</li>
                           </ul>
                           <ul class="list-unstyled">
                             <li class="fw-500">Transaction ID</li>
-                            <li class="text-muted">{mr.transaction_id}</li>
+                            <li class="text-muted">""</li>
                           </ul>
                           <ul class="list-unstyled">
                             <li class="fw-500">Description</li>
-                            <li class="text-muted">{mr.reason}</li>
+                            <li class="text-muted">""</li>
                           </ul>
                           <ul class="list-unstyled">
                             <li class="fw-500">Status</li>
@@ -384,82 +264,7 @@ getUserFromDetails(walletId) {
                 </div>
               </div>
             </div>
-  </>
-      )
-     } else if(mr.to_account === this.state.wallets[i].wallet_id && mr.status === 'debit') {
-      return (
-        <>
-  <div class="transaction-item px-4 py-3" data-bs-toggle="modal" data-bs-target={"#transaction-detail" + mr.transaction_id}>
-                    <div class="row align-items-center flex-row">
-                      <div class="col-2 col-sm-3"> <p>{mr.date_time}</p> </div>
-                      <div class="col col-sm-2"> <span class="text-muted">{mr.reason}</span> </div>
-                      <div class="col-auto col-sm-3 d-none d-sm-block">  
-                      
-                      {
-                        mr.from_account === 'MM_UGANDA' ? <span class="text-muted">From MM_UGANDA</span> :
-                        <span class="text-muted">From {this.getUserFromDetails(mr.from_account)} {this.state.FromfullName}</span>
-                      } 
-                      </div>
-                      <div class="col-auto col-sm-2 d-none d-sm-block text-3"> <span class="text-success" data-bs-toggle="tooltip" title="In Progress"><i class="fas fa-check-circle"></i> </span>received </div>
-                      <div class="col-3 col-sm-1 text-end text-4"> <span class="text-nowrap"></span> <span class="text-2 text-uppercase">{mr.amount} {mr.currency_code}</span> </div>
-                    </div>
-                  </div>
-                  <div id={"transaction-detail" + mr.transaction_id} class="modal fade" role="dialog" aria-hidden="true">
-              <div class="modal-dialog modal-dialog-centered transaction-details" role="document">
-                <div class="modal-content">
-                  <div class="modal-body">
-                    <div class="row g-0">
-                      <div class="col-sm-5 d-flex justify-content-center bg-primary rounded-start py-4">
-                        <div class="my-auto text-center">
-                          <div class="text-17 text-white my-3"><i class="fas fa-building"></i></div>
-                          <h3 class="text-4 text-white fw-400 my-3">EREMIT Ltd</h3>
-                          <div class="text-8 fw-500 text-white my-4">{mr.amount} {mr.currency_code}</div>
-                          <p class="text-white">{mr.date_time}</p>
-                        </div>
-                      </div>
-                      <div class="col-sm-7">
-                        <h5 class="text-5 fw-400 m-3">Transaction Details
-                          <button type="button" class="btn-close text-2 float-end" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </h5>
-                        <hr />
-                        <div class="px-3">
-                          <ul class="list-unstyled">
-                            <li class="mb-2">Payment Amount <span class="float-end text-3">{mr.amount} {mr.currency_code}</span></li>
-                            <li class="mb-2">Fee <span class="float-end text-3">0.0 {mr.currency_code}</span></li>
-                          </ul>
-                          <hr class="mb-2" />
-                          <p class="d-flex align-items-center fw-500 mb-0">Total Amount <span class="text-3 ms-auto">{mr.amount} {mr.currency_code} </span></p>
-						  <hr class="mb-4 mt-2" />
-                          <ul class="list-unstyled">
-                            <li class="fw-500">Received From</li>
-                            <li class="text-muted">{mr.from_account}</li>
-                          </ul>
-                          <ul class="list-unstyled">
-                            <li class="fw-500">Transaction ID</li>
-                            <li class="text-muted">{mr.transaction_id}</li>
-                          </ul>
-                          <ul class="list-unstyled">
-                            <li class="fw-500">Description</li>
-                            <li class="text-muted">{mr.reason}</li>
-                          </ul>
-                          <ul class="list-unstyled">
-                            <li class="fw-500">Status</li>
-                            <li class="text-muted">Completed<span class="text-success text-3 ms-1"><i class="fas fa-check-circle"></i></span></li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-  </>
-      )
-     }
-      
-   }
-  })
-}
+
             
             </div>
           </div>
