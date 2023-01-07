@@ -16,5 +16,11 @@ jobs:
           node-version: '16.x'
       - name: Install NPM dependencies
         run: npm install
-      - name: Build react.js app
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: "AKIAWHE2A6VCN4ZM7XMV"
+          aws-secret-access-key: "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"
+          aws-region: us-east-1
+      - name: Deploy React.js app
         run: npm run build
