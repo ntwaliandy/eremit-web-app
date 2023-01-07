@@ -19,8 +19,11 @@ jobs:
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
-          aws-access-key-id: "AKIAWHE2A6VCN4ZM7XMV"
-          aws-secret-access-key: "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"
-          aws-region: us-east-1
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID  }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY  }}
+          aws-region: ap-northeast-1
+          instance-ids: ${{ secrets.INSTANCE_ID  }}
+          comment: Deploy the master branch
+          working-directory: /var/www/html/eremit/
       - name: Deploy React.js app
         run: npm run build
