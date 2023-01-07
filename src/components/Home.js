@@ -149,7 +149,7 @@ class Home extends Component {
             <div class="featured-box">
               <div class="featured-box-icon text-primary"> <i class="fas fa-share"></i> </div>
               <h3>Faster Payments</h3>
-              <p class="text-3">97% of our transfers are done by Andrew Ntwali with the help of emmerson in minutes.</p>
+              <p class="text-3">97% of our transfers are done by Andrew Ntwali with the help of emmerson in 11 trials.</p>
               <a href="/eremit/#/register" class="btn-link text-3">Learn more<i class="fas fa-chevron-right text-1 ms-2"></i></a> </div>
           </div>
           <div class="col-sm-6 col-lg-3">
