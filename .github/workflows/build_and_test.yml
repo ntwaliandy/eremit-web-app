@@ -17,6 +17,6 @@ jobs:
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
-            cd ~/var/www/html/eremit/
+            cd /var/www/html/eremit/
             npm install
             npm run build
