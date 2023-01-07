@@ -1,16 +1,19 @@
-name: Build and Test
-
+name: CI
 on:
   push:
-    branches: [master]
+    branches: [ master ]
   pull_request:
-    branches: [master]
-
+    branches: [ master ]
+  workflow_dispatch:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Run build
-      run: |
-        npm install
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '16.x'
+      - name: Install NPM dependencies
+        run: npm install
+      - name: Build react app
+        run: npm run build
