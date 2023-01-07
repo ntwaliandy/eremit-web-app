@@ -16,14 +16,13 @@ jobs:
           node-version: '16.x'
       - name: Install NPM dependencies
         run: npm install
-      - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v1
+      - name: Executing remote ssh commands using ssh key
+        uses: appleboy/ssh-action@master
         with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID  }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY  }}
-          aws-region: ap-northeast-1
-          instance-ids: ${{ secrets.INSTANCE_ID  }}
-          comment: Deploy the master branch
-          working-directory: /var/www/html/eremit/
-      - name: Deploy React.js app
-        run: npm run build
+          host: ${{ secrets.HOST_DNS }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            cd ~/var/www/html/eremit/
+            npm install
+            npm run build
